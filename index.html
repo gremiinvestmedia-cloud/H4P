@@ -107,7 +107,7 @@ input[readonly]{background:#f0ebe0;color:#888;}
   <div class="logo-circle">H4</div>
   <div><h1>H4P — Generator Umów</h1><p>Nadarzyn · ul. Turystyczna</p></div>
 </header>
-
+ 
 <div class="container">
   <div class="main-tabs" id="main-tabs">
     <div class="main-tab active" onclick="setMain('fiz')" id="mt-fiz">
@@ -126,9 +126,9 @@ input[readonly]{background:#f0ebe0;color:#888;}
       <div class="mt-sub">Do istniejącej umowy ramowej</div>
     </div>
   </div>
-
+ 
   <div id="form-area">
-
+ 
     <!-- ═══════════════ FIZYCZNA ═══════════════ -->
     <div class="form-section active" id="fs-fiz">
       <div class="steps">
@@ -343,7 +343,7 @@ input[readonly]{background:#f0ebe0;color:#888;}
         <div class="nav-btns"><button class="btn-prev" onclick="fGo(5)">← Wstecz</button><button class="btn-gen" onclick="fGenerate()">✦ Generuj dokumenty</button></div>
       </div>
     </div><!-- /fs-fiz -->
-
+ 
     <!-- ═══════════════ RAMOWA ═══════════════ -->
     <div class="form-section" id="fs-ramowa">
       <div class="steps">
@@ -414,7 +414,7 @@ input[readonly]{background:#f0ebe0;color:#888;}
         <div class="nav-btns"><button class="btn-prev" onclick="rGo(2)">← Wstecz</button><button class="btn-gen" onclick="rGenerate()">✦ Generuj dokumenty</button></div>
       </div>
     </div><!-- /fs-ramowa -->
-
+ 
     <!-- ═══════════════ TYLKO ZAMÓWIENIE ═══════════════ -->
     <div class="form-section" id="fs-zamowienie">
       <div class="steps">
@@ -468,9 +468,9 @@ input[readonly]{background:#f0ebe0;color:#888;}
         <div class="nav-btns"><button class="btn-prev" onclick="zGo(1)">← Wstecz</button><button class="btn-gen" onclick="zGenerate()">✦ Generuj zamówienie</button></div>
       </div>
     </div><!-- /fs-zamowienie -->
-
+ 
   </div><!-- /form-area -->
-
+ 
   <div id="preview-area" style="display:none;">
     <div class="print-btns">
       <button class="btn-print" onclick="window.print()">🖨 Drukuj / Zapisz PDF</button>
@@ -479,18 +479,18 @@ input[readonly]{background:#f0ebe0;color:#888;}
     <div id="out"></div>
   </div>
 </div>
-
+ 
 <script>
 // ─── STATE ────────────────────────────────────────────────────────────────────
 const fst={signer:'Prezesem Arnold Hertfelder',pred:'lokal',kaucja:'jed',sklad:'3'};
 const rst={signer:'Prezesa Zarządu – Arnold Hertfelder',typ:'posrednik'};
 const zst={signer:'Prezesa Zarządu – Arnold Hertfelder',typ:'posrednik'};
 let fDorosli=[],fDzieci=[],fBedTypes={};
-
+ 
 // Wszystkie domy - stałe
 const WSZYSTKIE_DOMY='9, 9a, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45';
 const WSZYSTKIE_DOMY_TEKST='budynkach mieszkalnych nr 9, 9a, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43 i 45 przy ul. Turystycznej w miejscowości Nadarzyn';
-
+ 
 // ─── FORMULARZ ZAMÓWIENIA (reusable HTML) ────────────────────────────────────
 function zamFormHTML(prefix){
   return `
@@ -551,15 +551,53 @@ function zamFormHTML(prefix){
     <div class="field"><label>Wysokość kaucji (PLN)</label><input type="number" id="${prefix}zamKaucja" placeholder="np. 6000"></div>
     <div class="field"><label>Kaucja — termin zapłaty</label><input type="date" id="${prefix}zamKaucjaDt"></div>
   </div>
-  <div class="field" style="margin-top:8px;"><label>Inne warunki</label><input type="text" id="${prefix}zamInne" placeholder="np. Brak"></div>`;
+  <div class="field" style="margin-top:8px;"><label>Inne warunki</label><input type="text" id="${prefix}zamInne" placeholder="np. Brak"></div>
+  <div class="sep"></div>
+  <div class="sl" style="color:var(--navy);font-size:12px;">📋 Protokół zdawczo-odbiorczy</div>
+  <div class="form-row">
+    <div class="field"><label>Data protokołu</label><input type="date" id="${prefix}protData"></div>
+    <div class="field"><label>Liczba kluczy</label><input type="text" id="${prefix}protKlucze" placeholder="np. 2 komplety"></div>
+  </div>
+  <div class="sep"></div>
+  <div class="sl">Stan wyposażenia</div>
+  <div class="pom-box">
+    <div class="pom-title">🍳 Kuchnia</div>
+    <div class="form-row" style="margin-bottom:10px;">
+      <div class="field"><label>Stan wizualny</label><select id="${prefix}kw"><option>bardzo dobry</option><option>dobry</option><option>dostateczny</option><option>zły</option></select></div>
+      <div class="field"><label>Stan urządzeń</label><select id="${prefix}kt"><option>bardzo dobry</option><option>dobry</option><option>dostateczny</option><option>zły</option></select></div>
+    </div>
+    <div class="sl">Meble</div>
+    <div class="qty-row"><span class="qty-label">Szafki zabudowa stała</span><span style="font-size:12px;color:var(--muted)">nowe (stałe)</span></div>
+    <div class="qty-row"><span class="qty-label">Stół</span><button class="qty-btn" onclick="chQ(\`${prefix}ks\`,-1)">−</button><span class="qty-val" id="${prefix}ks">1</span><button class="qty-btn" onclick="chQ(\`${prefix}ks\`,1)">+</button></div>
+    <div class="qty-row"><span class="qty-label">Krzesło</span><button class="qty-btn" onclick="chQ(\`${prefix}kkr\`,-1)">−</button><span class="qty-val" id="${prefix}kkr">3</span><button class="qty-btn" onclick="chQ(\`${prefix}kkr\`,1)">+</button></div>
+    <div class="sl" style="margin-top:8px;">Urządzenia</div>
+    <div class="qty-row"><span class="qty-label">Kuchenka z piekarnikiem</span><span style="font-size:12px;color:var(--muted)">1 szt. – nowa</span></div>
+    <div class="qty-row"><span class="qty-label">Czajnik</span><button class="qty-btn" onclick="chQ(\`${prefix}kcz\`,-1)">−</button><span class="qty-val" id="${prefix}kcz">1</span><button class="qty-btn" onclick="chQ(\`${prefix}kcz\`,1)">+</button></div>
+    <div class="qty-row"><span class="qty-label">Lodówka</span><button class="qty-btn" onclick="chQ(\`${prefix}klo\`,-1)">−</button><span class="qty-val" id="${prefix}klo">1</span><button class="qty-btn" onclick="chQ(\`${prefix}klo\`,1)">+</button></div>
+    <div class="qty-row"><span class="qty-label">Kuchenka mikrofalowa</span><button class="qty-btn" onclick="chQ(\`${prefix}kmi\`,-1)">−</button><span class="qty-val" id="${prefix}kmi">1</span><button class="qty-btn" onclick="chQ(\`${prefix}kmi\`,1)">+</button></div>
+    <div class="field" style="margin-top:8px;"><label>Uwagi</label><input type="text" id="${prefix}kuwagi" placeholder="opcjonalne"></div>
+  </div>
+  <div id="${prefix}pokoje-prot-wrap"></div>
+  <div class="pom-box">
+    <div class="pom-title">🚿 Łazienka</div>
+    <div class="form-row" style="margin-bottom:10px;">
+      <div class="field"><label>Stan wizualny</label><select id="${prefix}lw"><option>bardzo dobry</option><option>dobry</option><option>dostateczny</option><option>zły</option></select></div>
+      <div class="field"><label>Stan urządzeń</label><select id="${prefix}lt"><option>bardzo dobry</option><option>dobry</option><option>dostateczny</option><option>zły</option></select></div>
+    </div>
+    <div class="qty-row"><span class="qty-label">Pralka</span><span style="font-size:12px;color:var(--muted)">1 szt. – nowa</span></div>
+    <div class="field" style="margin-top:8px;"><label>Uwagi</label><input type="text" id="${prefix}luwagi" placeholder="opcjonalne"></div>
+  </div>
+  <div class="sep"></div>
+  <div class="field"><label>Uwagi ogólne do protokołu</label><textarea id="${prefix}protUwagi" rows="3" placeholder="Opcjonalne..."></textarea></div>`;
 }
-
+ 
 function selectCzynsz(prefix, kwota, btn){
   document.querySelectorAll(`[id^="${prefix}co"]`).forEach(el=>el.classList.remove('sel'));
   btn.classList.add('sel');
   document.getElementById(prefix+'zamCzynsz').value=kwota;
+  initZamPokoje(prefix);
 }
-
+ 
 // ─── MAIN TYPE ────────────────────────────────────────────────────────────────
 function setMain(type){
   document.querySelectorAll('.main-tab').forEach(t=>t.classList.remove('active'));
@@ -568,12 +606,14 @@ function setMain(type){
   document.getElementById('fs-'+type).classList.add('active');
   if(type==='ramowa'&&!document.getElementById('r-zam-form').innerHTML){
     document.getElementById('r-zam-form').innerHTML=zamFormHTML('r-');
+initZamPokoje('r-');
   }
   if(type==='zamowienie'&&!document.getElementById('z-zam-form').innerHTML){
     document.getElementById('z-zam-form').innerHTML=zamFormHTML('z-');
+    initZamPokoje('z-');
   }
 }
-
+ 
 // ─── NAVIGATION ──────────────────────────────────────────────────────────────
 function fGo(n){
   document.querySelectorAll('#fs-fiz .section').forEach(s=>s.classList.remove('active'));
@@ -593,10 +633,11 @@ function zGo(n){
   for(let i=1;i<=2;i++){const e=document.getElementById('sz'+i);e.classList.remove('active','done');if(i<n)e.classList.add('done');if(i===n)e.classList.add('active');}
   if(n===2&&!document.getElementById('z-zam-form').innerHTML){
     document.getElementById('z-zam-form').innerHTML=zamFormHTML('z-');
+    initZamPokoje('z-');
   }
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
+ 
 // ─── TOGGLES ─────────────────────────────────────────────────────────────────
 function ftg(gid,idx){document.querySelectorAll('#'+gid+' .tb').forEach((b,i)=>b.classList.toggle('on',i===idx));}
 function rtg(gid,idx){document.querySelectorAll('#'+gid+' .tb').forEach((b,i)=>b.classList.toggle('on',i===idx));}
@@ -606,11 +647,11 @@ function fSetSklad(v){fst.sklad=v;ftg('ftg-sklad',v==='3'?0:1);fRenderPokoje();}
 function fSetKaucja(v){fst.kaucja=v;ftg('ftg-kaucja',v==='jed'?0:1);document.getElementById('f-k-jed').style.display=v==='jed'?'':'none';document.getElementById('f-k-dwie').style.display=v==='dwie'?'':'none';}
 function rSetTyp(v){rst.typ=v;rtg('rtg-typ',v==='posrednik'?0:1);}
 function zSetTyp(v){zst.typ=v;ztg('ztg-typ',v==='posrednik'?0:1);}
-
+ 
 // ─── QTY ─────────────────────────────────────────────────────────────────────
 function chQ(id,d){const el=document.getElementById(id);if(!el)return;let val=parseInt(el.textContent)||0;el.textContent=Math.max(0,val+d);}
 function gq(id){const el=document.getElementById(id);return el?parseInt(el.textContent)||0:0;}
-
+ 
 // ─── POKOJE PROTOKÓŁ (fiz) ───────────────────────────────────────────────────
 function fRenderPokoje(){
   const n=parseInt(fst.sklad);
@@ -643,7 +684,7 @@ function fRenderPokoje(){
 }
 function fSetBed(pid,type,btn){fBedTypes[pid]=type;document.querySelectorAll('#'+pid+'-bt .bed-opt').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');}
 function fBedText(pid){const t=fBedTypes[pid]||'tapczan2';return t==='tapczan1'?'Tapczan (1 szt.) – stan bardzo dobry':t==='tapczan3'?'Tapczan (3 szt.) – stan bardzo dobry':t==='lozko'?'Łóżko dwuosobowe (1 szt.) – stan bardzo dobry':'Tapczan (2 szt.) – stan bardzo dobry';}
-
+ 
 // ─── FIZ PEOPLE ──────────────────────────────────────────────────────────────
 function fAddP(type){
   const id=Date.now()+Math.floor(Math.random()*9999);
@@ -673,7 +714,7 @@ function fRenderPeople(){
   document.getElementById('f-price-hint-txt').textContent=`Łącznie ${total} dorosł${total===1?'a':'ych'} → sugerowany czynsz: ${(pm[Math.min(total,6)]||6000).toLocaleString('pl')} PLN/mies.`;
   hint.style.display='flex';
 }
-
+ 
 // ─── SŁOWNIE ─────────────────────────────────────────────────────────────────
 function n2w(n){
   if(!n||isNaN(n))return'';n=parseInt(n);
@@ -690,14 +731,59 @@ function n2w(n){
   return r+' '+sf+' 00/100';
 }
 function upSl(inp,out){const el=document.getElementById(out);if(el)el.value=n2w(document.getElementById(inp).value);}
-
+ 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 function v(id){const el=document.getElementById(id);return el?el.value.trim():'';}
 function sv(id){const el=document.getElementById(id);return el?el.value:'';}
 function fd(d){if(!d)return'…';const[y,m,dy]=d.split('-');return`${dy}.${m}.${y} r.`;}
 function mn(d){if(!d)return'…';const ms=['stycznia','lutego','marca','kwietnia','maja','czerwca','lipca','sierpnia','września','października','listopada','grudnia'];const[y,m]=d.split('-');return ms[parseInt(m)-1]+' '+y+' r.';}
-
+ 
 // ─── ZAMÓWIENIE HTML (shared) ────────────────────────────────────────────────
+// ─── BUILD POKOJE FOR ZAMOWIENIE PROTOCOL ────────────────────────────────────
+function zamBedTypes(prefix,pid){return window['zamBed_'+prefix+pid]||'tapczan2';}
+function zamBedText(prefix,pid){
+  const t=zamBedTypes(prefix,pid);
+  return t==='tapczan1'?'Tapczan (1 szt.) – stan bardzo dobry':t==='tapczan3'?'Tapczan (3 szt.) – stan bardzo dobry':t==='lozko'?'Łóżko dwuosobowe (1 szt.) – stan bardzo dobry':'Tapczan (2 szt.) – stan bardzo dobry';
+}
+function initZamPokoje(prefix){
+  // Determine number of rooms from czynsz selection: 6000=>3 rooms, 4000=>2 rooms, else guess from osoby
+  const cz=parseInt(document.getElementById(prefix+'zamCzynsz')?.value)||0;
+  const n=cz>=5500?3:2;
+  const wrap=document.getElementById(prefix+'pokoje-prot-wrap');
+  if(!wrap)return;
+  wrap.innerHTML='';
+  for(let i=1;i<=n;i++){
+    const pid='p'+i;
+    window['zamBed_'+prefix+pid]='tapczan2';
+    wrap.innerHTML+=`<div class="pom-box">
+      <div class="pom-title">🛏 Pokój ${i}</div>
+      <div class="form-row" style="margin-bottom:10px;">
+        <div class="field"><label>Stan wizualny</label><select id="${prefix}${pid}w"><option>bardzo dobry</option><option>dobry</option><option>dostateczny</option><option>zły</option></select></div>
+        <div class="field"><label>Stan urządzeń</label><select id="${prefix}${pid}t"><option>bardzo dobry</option><option>dobry</option><option>dostateczny</option><option>zły</option></select></div>
+      </div>
+      <div class="sl">Łóżko / Tapczan</div>
+      <div class="bed-toggle" id="${prefix}${pid}-bt">
+        <button class="bed-opt sel" onclick="setZamBed('${prefix}','${pid}','tapczan2',this)">Tapczan (2 szt.)</button>
+        <button class="bed-opt" onclick="setZamBed('${prefix}','${pid}','tapczan1',this)">Tapczan (1 szt.)</button>
+        <button class="bed-opt" onclick="setZamBed('${prefix}','${pid}','tapczan3',this)">Tapczan (3 szt.)</button>
+        <button class="bed-opt" onclick="setZamBed('${prefix}','${pid}','lozko',this)">Łóżko dwuosobowe</button>
+      </div>
+      <div class="sl" style="margin-top:7px;">Meble</div>
+      <div class="qty-row"><span class="qty-label">Komoda</span><button class="qty-btn" onclick="chQ('${prefix}${pid}ko',-1)">−</button><span class="qty-val" id="${prefix}${pid}ko">1</span><button class="qty-btn" onclick="chQ('${prefix}${pid}ko',1)">+</button></div>
+      <div class="qty-row"><span class="qty-label">Szafa</span><button class="qty-btn" onclick="chQ('${prefix}${pid}sz',-1)">−</button><span class="qty-val" id="${prefix}${pid}sz">1</span><button class="qty-btn" onclick="chQ('${prefix}${pid}sz',1)">+</button></div>
+      <div class="qty-row"><span class="qty-label">Krzesło</span><button class="qty-btn" onclick="chQ('${prefix}${pid}kr',-1)">−</button><span class="qty-val" id="${prefix}${pid}kr">2</span><button class="qty-btn" onclick="chQ('${prefix}${pid}kr',1)">+</button></div>
+      <div class="qty-row"><span class="qty-label">Stół</span><button class="qty-btn" onclick="chQ('${prefix}${pid}st',-1)">−</button><span class="qty-val" id="${prefix}${pid}st">1</span><button class="qty-btn" onclick="chQ('${prefix}${pid}st',1)">+</button></div>
+      <div class="qty-row"><span class="qty-label">Szafka nocna</span><button class="qty-btn" onclick="chQ('${prefix}${pid}sn',-1)">−</button><span class="qty-val" id="${prefix}${pid}sn">2</span><button class="qty-btn" onclick="chQ('${prefix}${pid}sn',1)">+</button></div>
+      <div class="field" style="margin-top:8px;"><label>Uwagi</label><input type="text" id="${prefix}${pid}uw" placeholder="opcjonalne"></div>
+    </div>`;
+  }
+}
+function setZamBed(prefix,pid,type,btn){
+  window['zamBed_'+prefix+pid]=type;
+  document.querySelectorAll('#'+prefix+pid+'-bt .bed-opt').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+}
+ 
 function buildZamHTML(prefix, dataRamowa, sigName, firmaPelna, firmaCity, firmaAdres, firmaNIP, firmaREGON, firmaKRS, firmaRepr, firmaEmail, signerFull){
   const zamNr=v(prefix+'zamNr');
   const zamDom=v(prefix+'zamDom');
@@ -712,9 +798,25 @@ function buildZamHTML(prefix, dataRamowa, sigName, firmaPelna, firmaCity, firmaA
   const zamInne=v(prefix+'zamInne')||'Brak';
   const m1od=v(prefix+'zamM1od'),m1do=v(prefix+'zamM1do'),m1kw=v(prefix+'zamM1kw');
   const hasM1=m1od&&m1do&&m1kw;
-
+ 
+  // Protocol data
+  const protData=fd(v(prefix+'protData'));
+  const protKlucze=v(prefix+'protKlucze')||'…';
+  const nPok=parseInt(zamCzynsz)>=5500?3:2;
+  // pokoje HTML for protocol
+  let zamPokHTML='';
+  for(let i=1;i<=nPok;i++){
+    const pid='p'+i;
+    const bed=zamBedText(prefix,pid);
+    const ko=gq(prefix+pid+'ko'),sz=gq(prefix+pid+'sz'),kr=gq(prefix+pid+'kr'),stol=gq(prefix+pid+'st'),sn=gq(prefix+pid+'sn');
+    const meble=[bed,ko?`komoda (${ko} szt.) – stan bardzo dobry`:'',sz?`szafa (${sz} szt.) – stan bardzo dobry`:'',kr?`krzesło (${kr} szt.) – stan bardzo dobry`:'',stol?`stół (${stol} szt.) – stan bardzo dobry`:'',sn?`szafka nocna (${sn} szt.) – stan bardzo dobry`:''].filter(Boolean).join(', ');
+    zamPokHTML+=`<p><strong>Pokój ${i}</strong></p><ul><li>Stan wizualny: ${sv(prefix+pid+'w')}</li><li>Stan urządzeń technicznych: ${sv(prefix+pid+'t')}</li><li>Wyposażenie — meble: ${meble}</li>${v(prefix+pid+'uw')?`<li>Uwagi: ${v(prefix+pid+'uw')}</li>`:''}</ul>`;
+  }
+  const kuchMeble=['Szafki zabudowa stała – nowe',gq(prefix+'ks')?`stół (${gq(prefix+'ks')} szt.) – stan bardzo dobry`:'',gq(prefix+'kkr')?`krzesło (${gq(prefix+'kkr')} szt.) – stan bardzo dobry`:''].filter(Boolean).join(', ');
+  const kuchUrz=['Kuchenka z piekarnikiem (1 szt.) – nowa',gq(prefix+'kcz')?`czajnik (${gq(prefix+'kcz')} szt.) – stan bardzo dobry`:'',gq(prefix+'klo')?`lodówka (${gq(prefix+'klo')} szt.) – stan bardzo dobry`:'',gq(prefix+'kmi')?`kuchenka mikrofalowa (${gq(prefix+'kmi')} szt.) – stan bardzo dobry`:''].filter(Boolean).join(', ');
+ 
   const wypowiedzenieTxt=`Każda ze Stron jest uprawniona do wypowiedzenia Zamówienia z zachowaniem miesięcznego okresu wypowiedzenia. Bieg wypowiedzenia rozpoczyna się w dniu doręczenia drugiej Stronie oświadczenia o wypowiedzeniu.<br><br>Złożenie wypowiedzenia może nastąpić zarówno w formie pisemnej, jak i za pośrednictwem poczty elektronicznej na wyłącznie następujące adresy e-mail: <strong>home4people.info@gmail.com</strong> (Wynajmujący) i <strong>${firmaEmail}</strong> (Najemca). Wypowiedzenie dokonane w formie elektronicznej uważa się za skutecznie doręczone od dnia następującego po dniu przesłania wiadomości e-mail, chyba że odbiorca oświadczenia potwierdzi jego otrzymanie wcześniej.`;
-
+ 
   return `<div class="contract-preview">
 <h2>Zamówienie nr ${zamNr}</h2>
 <p class="sub">do umowy ramowej najmu zawartej dnia ${fd(dataRamowa)} w Łodzi</p>
@@ -736,9 +838,41 @@ function buildZamHTML(prefix, dataRamowa, sigName, firmaPelna, firmaCity, firmaA
   <td><div class="sig-line">___________________________<br>za Wynajmującego<br><small>${sigName}</small></div></td>
   <td><div class="sig-line">Potwierdzam: ___________________________<br>za Najemcę<br><small>${firmaRepr}</small></div></td>
 </tr></table>
+</div>
+<div style="height:40px;"></div>
+<div class="contract-preview">
+<h2>Protokół zdawczo-odbiorczy</h2>
+<p class="sub">Załącznik do Zamówienia nr ${zamNr} z dnia ${fd(dataRamowa)}</p>
+<p>Między <strong>H4P Sp. z o.o.</strong> repr. przez ${sigName} a <strong>${firmaPelna}</strong>.</p>
+<p>Sporządzony dnia ${protData} w Nadarzynie dla lokalu nr ${zamLokal} przy ul. Turystycznej ${zamDom}.</p>
+<p class="sh">DOSTĘPNE MEDIA</p><p>Internet</p>
+<p class="sh">LICZBA KLUCZY</p><p>${protKlucze}</p>
+<p class="sh">STAN WYPOSAŻENIA MIESZKANIA</p>
+<p><strong>Kuchnia</strong></p>
+<ul>
+  <li>Stan wizualny: ${sv(prefix+'kw')}</li>
+  <li>Stan urządzeń technicznych: ${sv(prefix+'kt')}</li>
+  <li>Wyposażenie — meble: ${kuchMeble}</li>
+  <li>Wyposażenie — urządzenia: ${kuchUrz}</li>
+  ${v(prefix+'kuwagi')?`<li>Uwagi: ${v(prefix+'kuwagi')}</li>`:''}
+</ul>
+${zamPokHTML}
+<p><strong>Łazienka</strong></p>
+<ul>
+  <li>Stan wizualny: ${sv(prefix+'lw')}</li>
+  <li>Stan urządzeń technicznych: ${sv(prefix+'lt')}</li>
+  <li>Pralka (1 szt.) – nowa</li>
+  ${v(prefix+'luwagi')?`<li>Uwagi: ${v(prefix+'luwagi')}</li>`:''}
+</ul>
+${v(prefix+'protUwagi')?`<p class="sh">UWAGI OGÓLNE</p><p>${v(prefix+'protUwagi')}</p>`:''}
+<p style="margin-top:16px;">Strony niniejszy protokół sporządziły po szczegółowych oględzinach lokalu, wspólnie i w uzgodnieniu.</p>
+<table class="sig-table"><tr>
+  <td><div class="sig-line">___________________________<br>Wynajmujący<br><small>${sigName}</small></div></td>
+  <td><div class="sig-line">___________________________<br>Najemca<br><small>${firmaRepr}</small></div></td>
+</tr></table>
 </div>`;
 }
-
+ 
 // ─── FIZ GENERATE ────────────────────────────────────────────────────────────
 function fGenerate(){
   const isPokoj=fst.pred==='pokoj';
@@ -769,7 +903,7 @@ function fGenerate(){
   }
   const kuchMeble=['Szafki zabudowa stała – nowe',gq('f-ks')?`stół (${gq('f-ks')} szt.) – stan bardzo dobry`:'',gq('f-kkr')?`krzesło (${gq('f-kkr')} szt.) – stan bardzo dobry`:''].filter(Boolean).join(', ');
   const kuchUrz=['Kuchenka z piekarnikiem (1 szt.) – nowa',gq('f-kcz')?`czajnik (${gq('f-kcz')} szt.) – stan bardzo dobry`:'',gq('f-klo')?`lodówka (${gq('f-klo')} szt.) – stan bardzo dobry`:'',gq('f-kmi')?`kuchenka mikrofalowa (${gq('f-kmi')} szt.) – stan bardzo dobry`:''].filter(Boolean).join(', ');
-
+ 
   const html=`<div class="contract-preview">
 <h2>Umowa najmu</h2><p class="sub">zawarta dnia ${fd(dataZaw)} w Łodzi, zwana dalej: „<strong>Umową</strong>"</p>
 <p>pomiędzy:</p>
@@ -818,7 +952,7 @@ ${v('f-protUwagi')?`<p class="sh">UWAGI OGÓLNE</p><p>${v('f-protUwagi')}</p>`:'
 </div>`;
   showPreview(html);
 }
-
+ 
 // ─── RAMOWA GENERATE ─────────────────────────────────────────────────────────
 function rGenerate(){
   const dataZaw=v('r-dataZaw');
@@ -829,12 +963,12 @@ function rGenerate(){
   const firmaKap=v('r-firmaKap'),firmaRepr=v('r-firmaRepr'),firmaEmail=v('r-firmaEmail'),firmaKores=v('r-firmaKores');
   const stawka=rst.typ==='posrednik'?'900,00':'1.000,00';
   const isPosrednik=rst.typ==='posrednik';
-
+ 
   const umowaTxt=buildUmowaRamowa(dataZaw,sigName,firmaPelna,firmaCity,firmaAdres,firmaSad,firmaKRS,firmaNIP,firmaREGON,firmaKap,firmaRepr,firmaEmail,firmaKores,stawka,isPosrednik,rst.signer);
   const zamTxt=buildZamHTML('r-',dataZaw,sigName,firmaPelna,firmaCity,firmaAdres,firmaNIP,firmaREGON,firmaKRS,firmaRepr,firmaEmail,rst.signer);
   showPreview(umowaTxt+'<div style="height:40px;"></div>'+zamTxt);
 }
-
+ 
 function buildUmowaRamowa(dataZaw,sigName,firmaPelna,firmaCity,firmaAdres,firmaSad,firmaKRS,firmaNIP,firmaREGON,firmaKap,firmaRepr,firmaEmail,firmaKores,stawka,isPosrednik,signerFull){
   return `<div class="contract-preview">
 <h2>Umowa ramowa najmu</h2><p class="sub">zawarta dnia ${fd(dataZaw)} w Łodzi, zwana dalej: „<strong>Umową</strong>"</p>
@@ -870,7 +1004,7 @@ ${isPosrednik?`<p class="sh">§ 9. [Zasady konkurencji]</p>
 <table class="sig-table"><tr><td><div class="sig-line">___________________________<br>za Wynajmującego<br><small>${sigName}</small></div></td><td><div class="sig-line">___________________________<br>za Najemcę<br><small>${firmaRepr}</small></div></td></tr></table>
 </div>`;
 }
-
+ 
 // ─── TYLKO ZAMÓWIENIE GENERATE ────────────────────────────────────────────────
 function zGenerate(){
   const sigName=zst.signer.includes('Arnold')?'Arnold Hertfelder':'Olena Dziubenko';
@@ -883,7 +1017,7 @@ function zGenerate(){
   const html=buildZamHTML('z-',dataRamowa,sigName,firmaPelna,firmaAdresCity,'',firmaNIP,firmaREGON,firmaKRS,firmaRepr,firmaEmail,zst.signer);
   showPreview(html);
 }
-
+ 
 // ─── PREVIEW / NEW ────────────────────────────────────────────────────────────
 function showPreview(html){
   document.getElementById('out').innerHTML=html;
@@ -898,10 +1032,10 @@ function startNew(){
   document.getElementById('main-tabs').style.display='';
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
+ 
 // ─── CLIENT DATABASE ─────────────────────────────────────────────────────────
 const DB_KEY = 'h4p_clients_v1';
-
+ 
 const INITIAL_CLIENTS = [
   // --- OSOBY FIZYCZNE ---
   {type:'fiz', name:'Asinskaya Antanina', pesel:'', dowod:'', adres:'', tel:'', email:'tonya080975@gmail.com'},
@@ -950,7 +1084,7 @@ const INITIAL_CLIENTS = [
   {type:'firma', nazwa:'URBAN GROUP POLAND Sp. z o.o.', pelna:'URBAN GROUP POLAND SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ', city:'Łódź (91-408)', adres:'ul. Pomorska 40', sad:'', krs:'0000819527', nip:'7252295725', regon:'385093842', kap:'', repr:'Andrzej', email:'ksiegowosc@urbangroup.pl', kores:'ul. Pomorska 40, 91-408 Łódź'},
   {type:'firma', nazwa:'WE GO JOB Sp. z o.o.', pelna:'WE GO JOB SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ', city:'Piotrków Trybunalski (97-300)', adres:'ul. Gen. Stefana Grota-Roweckiego 7/C,D', sad:'', krs:'0001037935', nip:'7712925488', regon:'52538203800000', kap:'', repr:'Norbert Latocha – Prezes Zarządu', email:'', kores:'ul. Gen. Stefana Grota-Roweckiego 7/C,D, 97-300 Piotrków Trybunalski'},
 ];
-
+ 
 function loadClients(){
   try{
     const saved=localStorage.getItem(DB_KEY);
@@ -962,7 +1096,7 @@ function saveClients(clients){
   try{localStorage.setItem(DB_KEY,JSON.stringify(clients));}catch(e){}
 }
 let clients=loadClients();
-
+ 
 // ─── CLIENT SELECTOR WIDGET ───────────────────────────────────────────────────
 // mode: 'fiz' | 'firma'
 function buildClientSelector(containerId, mode, fillFn){
@@ -990,7 +1124,7 @@ function buildClientSelector(containerId, mode, fillFn){
     </div>`;
   wrap._fillFn=fillFn;
 }
-
+ 
 function onClientSelect(containerId, mode){
   const sel=document.getElementById(containerId+'-sel');
   const chosen=sel.value;
@@ -999,7 +1133,7 @@ function onClientSelect(containerId, mode){
   if(!c||!document.getElementById(containerId)._fillFn)return;
   document.getElementById(containerId)._fillFn(c);
 }
-
+ 
 function openAddClient(containerId, mode){
   const panel=document.getElementById(containerId+'-add-panel');
   panel.style.display='block';
@@ -1032,9 +1166,9 @@ function openAddClient(containerId, mode){
       </div>`;
   }
 }
-
+ 
 function nv(id){const el=document.getElementById(id);return el?el.value.trim():'';}
-
+ 
 function saveNewClient(containerId, mode){
   let newC;
   if(mode==='fiz'){
@@ -1056,7 +1190,7 @@ function saveNewClient(containerId, mode){
   document.getElementById(containerId+'-add-panel').style.display='none';
   alert('✅ Zapisano w bazie!');
 }
-
+ 
 // ─── INIT ALL SELECTORS ──────────────────────────────────────────────────────
 function initAllSelectors(){
   // Fizyczna - step 2
@@ -1080,9 +1214,9 @@ function initAllSelectors(){
     setVal('z-firmaRepr',c.repr);setVal('z-firmaEmail',c.email);
   });
 }
-
+ 
 function setVal(id, val){const el=document.getElementById(id);if(el&&val!==undefined)el.value=val;}
-
+ 
 // ─── INIT ────────────────────────────────────────────────────────────────────
 document.getElementById('f-dataZaw').value=new Date().toISOString().split('T')[0];
 document.getElementById('f-protData').value=new Date().toISOString().split('T')[0];
