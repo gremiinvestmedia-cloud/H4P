@@ -1237,38 +1237,170 @@ function rGenerate(){
 }
 
 function buildUmowaRamowa(dataZaw,sigName,firmaPelna,firmaCity,firmaAdres,firmaSad,firmaKRS,firmaNIP,firmaREGON,firmaKap,firmaRepr,firmaEmail,firmaKores,stawka,isPosrednik,signerFull){
+  // Paragraph numbers depend on type
+  const p9  = isPosrednik ? '§ 10' : '§ 9';
+  const p10 = isPosrednik ? '§ 11' : '§ 10';
+  const p11 = isPosrednik ? '§ 12' : '§ 11';
+
   return `<div class="contract-preview">
-<h2>Umowa ramowa najmu</h2><p class="sub">zawarta dnia ${fd(dataZaw)} w Łodzi, zwana dalej: „<strong>Umową</strong>"</p>
+<h2>Umowa ramowa najmu</h2>
+<p class="sub">zawarta dnia ${fd(dataZaw)} roku w Łodzi, zwana dalej: „<strong>Umową</strong>"</p>
 <p>pomiędzy:</p>
 <p><strong>H4P spółką z ograniczoną odpowiedzialnością z siedzibą w Łodzi</strong> (90-514) przy ul. Wólczańskiej 66/C311 wpisaną do rejestru przedsiębiorców prowadzonego przez Sąd Rejonowy dla Łodzi Śródmieścia w Łodzi, XX Wydział Gospodarczy KRS pod numerem KRS 0001137971, posługująca się numerem NIP 7252349415, numerem REGON: 540166136, o kapitale zakładowym w wysokości 5.000,00 zł, reprezentowaną przez ${signerFull}, zwaną dalej „<strong>Wynajmującym</strong>",</p>
 <p>a</p>
-<p><strong>${firmaPelna} z siedzibą w ${firmaCity} przy ${firmaAdres}</strong> wpisaną do rejestru przedsiębiorców prowadzonego przez ${firmaSad} pod numerem KRS ${firmaKRS}, posługująca się numerem NIP ${firmaNIP}, numerem REGON: ${firmaREGON}, o kapitale zakładowym w wysokości ${firmaKap} zł, reprezentowaną przez ${firmaRepr}, zwaną dalej „<strong>Najemcą</strong>".</p>
+<p><strong>${firmaPelna} z siedzibą w ${firmaCity} przy ${firmaAdres}</strong>${firmaSad?` wpisaną do rejestru przedsiębiorców prowadzonego przez ${firmaSad} pod numerem KRS ${firmaKRS}, posługująca się numerem NIP ${firmaNIP}, numerem REGON: ${firmaREGON}, o kapitale zakładowym w wysokości ${firmaKap} zł,`:` NIP: ${firmaNIP}, REGON: ${firmaREGON}, KRS: ${firmaKRS},`} reprezentowaną przez ${firmaRepr}, zwaną dalej „<strong>Najemcą</strong>".</p>
+
 <p class="sh">§ 1. [Oświadczenia]</p>
-<ol><li>Wynajmujący oświadcza, że: a) posiada prawo do oddania w najem lokali mieszkalnych znajdujących się w ${WSZYSTKIE_DOMY_TEKST} posadowionych na nieruchomości gruntowej stanowiącej działkę o numerach ewidencyjnych 427/16 w Nadarzynie, gminie Nadarzyn, powiecie pruszkowskim, województwie mazowieckim, obrębie ewidencyjnym 0001, dalej zwaną „<strong>Nieruchomością</strong>"; b) zawarcie Umowy nie naruszy praw przysługujących osobom trzecim; c) Nieruchomość jest wolna od zobowiązań ograniczających używanie przez Najemcę; d) jest czynnym podatnikiem VAT; e) do zawarcia Umowy nie jest wymagana żadna zgoda osób trzecich.</li>
-<li>Najemca oświadcza, że: a) zapoznał się ze stanem technicznym Nieruchomości i nie wnosi zastrzeżeń; b) jest czynnym podatnikiem VAT; c) do zawarcia Umowy nie jest wymagana żadna zgoda osób trzecich; d) będzie wykonywał Umowę w celach związanych z prowadzoną działalnością gospodarczą poprzez podnajmowanie przedmiotu najmu jako noclegi dla pracowników, zleceniobiorców i współpracowników swoich kontrahentów (dalej: „<strong>Lokatorzy</strong>").</li></ol>
+<ol>
+  <li>Wynajmujący oświadcza, że:
+    <ol>
+      <li>posiada prawo do oddania w najem lokali mieszkalnych znajdujących się w ${WSZYSTKIE_DOMY_TEKST} posadowionych na nieruchomości gruntowej stanowiącej działkę o numerach ewidencyjnych 427/16 położonej przy ulicy Turystycznej numer 15, 17, 19, 21, 23, 25, 27 oraz 29 w Nadarzynie, gminie Nadarzyn, powiecie pruszkowskim, województwie mazowieckim, obrębie ewidencyjnym 0001, dalej zwaną „<strong>Nieruchomością</strong>",</li>
+      <li>zawarcie Umowy nie naruszy jakichkolwiek praw przysługujących osobom trzecim,</li>
+      <li>Nieruchomość jest wolna od jakichkolwiek zobowiązań oraz nie jest obciążona prawami osób trzecich w sposób ograniczający używanie przez Najemcę,</li>
+      <li>jest czynnym podatnikiem podatku od towarów i usług (VAT),</li>
+      <li>do zawarcia i wykonania Umowy nie jest wymagana żadna zgoda, zatwierdzenie ani upoważnienie ze strony jakiejkolwiek osoby trzeciej lub sądu.</li>
+    </ol>
+  </li>
+  <li>Najemca oświadcza, że:
+    <ol>
+      <li>zapoznał się ze stanem technicznym Nieruchomości i nie wnosi w tym zakresie żadnych zastrzeżeń,</li>
+      <li>jest czynnym podatnikiem podatku od towarów i usług (VAT),</li>
+      <li>do zawarcia i wykonania Umowy nie jest wymagana żadna zgoda, zatwierdzenie ani upoważnienie ze strony jakiejkolwiek osoby trzeciej lub sądu,</li>
+      <li>będzie wykonywał Umowę w celach związanych z prowadzoną przez niego działalnością gospodarczą poprzez podnajmowanie przedmiotu najmu jako noclegi dla pracowników, zleceniobiorców i współpracowników dla jego kontrahentów (dalej jako: „<strong>Lokatorzy</strong>").</li>
+    </ol>
+  </li>
+</ol>
+
 <p class="sh">§ 2. [Przedmiot Umowy]</p>
-<ol><li>Na zasadach określonych niniejszą Umową Wynajmujący odda Najemcy do używania lokal bądź lokale mieszkalne znajdujące się w Nieruchomości (zwane dalej: „<strong>Lokalami</strong>") na zasadach określonych w zamówieniu, którego wzór stanowi załącznik nr 1 do Umowy (zwane dalej: „<strong>Zamówieniem</strong>").</li><li>Najemca oświadcza, że Lokale będą wykorzystywane wyłącznie w celach mieszkaniowych, jako baza noclegowa dla Lokatorów.</li><li>Każdorazowo wydanie przedmiotu najmu zostanie potwierdzone podpisanym przez Strony protokołem zdawczo-odbiorczym.</li></ol>
+<ol>
+  <li>Na zasadach określonych niniejszą Umową Wynajmujący odda Najemcy do używania lokal bądź lokale mieszkalne znajdujące się w Nieruchomości (zwane dalej: „<strong>Lokalami</strong>") na zasadach określonych w zamówieniu, którego wzór stanowi załącznik nr 1 do Umowy (zwane dalej: „<strong>Zamówieniem</strong>").</li>
+  <li>Najemca oświadcza, że Lokale będą wykorzystywane wyłącznie w celach mieszkaniowych, jako baza noclegowa dla Lokatorów.</li>
+  <li>Każdorazowo wydanie przedmiotu najmu zostanie potwierdzone podpisanym przez Strony protokołem zdawczo-odbiorczym, który będzie określał stan przedmiotu najmu.</li>
+</ol>
+
 <p class="sh">§ 3. [Związanie Zamówieniem]</p>
-<ol><li>W celu związania Zamówieniem Najemca za pośrednictwem poczty elektronicznej wyśle z następującego adresu Najemcy <strong>${firmaEmail}</strong> na następujący adres Wynajmującego <strong>home4people.info@gmail.com</strong> zapytanie zawierające przynajmniej: ilość osób podlegających zakwaterowaniu oraz preferowany okres najmu.</li><li>Wynajmujący w terminie 3 dni od otrzymania zapytania przesyła wypełniony formularz Zamówienia lub odmawia realizacji. Brak odpowiedzi w terminie równoznaczny jest z odmową przyjęcia zapytania.</li><li>Najemca w terminie 24 godzin od otrzymania wypełnionego formularza dokonuje potwierdzenia poprzez odesłanie podpisanego skanu. Brak odpowiedzi w terminie równoznaczny jest z odmową przyjęcia Zamówienia.</li><li>Po przeprowadzeniu procedury wskazanej w pkt 3.1.–3.3. Strony są związane Zamówieniem.</li></ol>
+<ol>
+  <li>W celu związania Zamówieniem Najemca za pośrednictwem poczty elektronicznej wyśle z następującego adresu Najemcy <strong>${firmaEmail}</strong> na następujący adres Wynajmującego <strong>home4people.info@gmail.com</strong> zapytanie w formie wiadomości e-mail zawierające przynajmniej: ilość osób podlegających zakwaterowaniu w ramach Zamówienia oraz preferowany okres najmu, mające na celu doprowadzenie do związania Zamówieniem.</li>
+  <li>Wynajmujący w terminie 3 dni od otrzymania zapytania, o którym mowa w pkt 3.1. powyżej, w odpowiedzi przesyła wypełniony formularz Zamówienia na podstawie załącznika nr 1 lub odmawia realizacji przedmiotu zapytania. Brak odpowiedzi Wynajmującego w terminie, o którym mowa w zdaniu poprzedzającym, równoznaczny jest z odmową przyjęcia zapytania do realizacji.</li>
+  <li>Najemca w terminie 24 godzin od momentu otrzymania od Wynajmującego wypełnionego formularza Zamówienia dokonuje potwierdzenia lub odmowy potwierdzenia Zamówienia poprzez wydrukowanie skanu przesłanego Zamówienia, opatrzenia go podpisem, zeskanowania Zamówienia z podpisem i odesłania tegoż skanu na adres mailowy wskazany w pkt 3.1. powyżej. Brak odpowiedzi Najemcy w terminie, o którym mowa w zdaniu poprzedzającym, równoznaczny jest z odmową przyjęcia Zamówienia.</li>
+  <li>Po przeprowadzeniu procedury wskazanej w pkt 3.1.–3.3. powyżej, Strony są związane Zamówieniem.</li>
+</ol>
+
 <p class="sh">§ 4. [Czynsz]</p>
-<ol><li>Najemca będzie płacił Wynajmującemu miesięczny czynsz w wysokości wskazanej w Zamówieniach. Wysokość czynszu dla każdego Zamówienia będzie stanowić iloczyn ilości Lokatorów oraz kwoty ${stawka} zł netto + VAT.</li><li>Czynsz za niepełny miesiąc jest obliczany proporcjonalnie do liczby dni zakwaterowania.</li><li>Czynsz płatny jest z góry w terminie do 14. dnia każdego miesiąca przelewem na rachunek bankowy Wynajmującego wskazany na fakturze VAT. W przypadku pierwszego miesiąca danego Zamówienia — w terminie ${isPosrednik?'14':'7'} dni od dnia związania Zamówieniem.</li><li>Za dzień dokonania płatności uznaje się dzień uznania rachunku bankowego Wynajmującego.</li><li>Kwota czynszu określona w Zamówieniu zawiera wszystkie opłaty związane z używaniem Lokalu (opłaty eksploatacyjne).</li></ol>
+<ol>
+  <li>Najemca będzie płacił Wynajmującemu miesięczny czynsz w wysokości wskazanej w Zamówieniach.${isPosrednik?` Wysokość czynszu najmu dla każdego Zamówienia będzie stanowić iloczyn ilości Lokatorów oraz kwoty ${stawka} zł netto + VAT.`:''}</li>
+  <li>Czynsz za niepełny miesiąc jest obliczany proporcjonalnie do liczby dni zakwaterowania i stawki miesięcznej czynszu.</li>
+  <li>Czynsz płatny jest z góry w terminie do 14 dnia każdego miesiąca przelewem na rachunek bankowy Wynajmującego wskazany na fakturze VAT. W przypadku pierwszego miesiąca obowiązywania danego Zamówienia, czynsz jest płatny z góry w terminie 7 dni od dnia związania Zamówieniem.</li>
+  <li>Za dzień dokonania płatności uznaje się dzień uznania rachunku bankowego Wynajmującego.</li>
+  <li>Każdorazowo kwota czynszu określona w Zamówieniu zawiera w sobie również wszystkie opłaty związane z używaniem Lokalu (opłaty eksploatacyjne).</li>
+</ol>
+
 <p class="sh">§ 5. [Obowiązki Wynajmującego]</p>
-<ol><li>Wynajmujący oświadcza, że każdy oddany Najemcy Lokal będzie w stanie umożliwiającym zamieszkanie i spełniającym wymagania sanitarne.</li><li>Wynajmujący zobowiązuje się do: umożliwienia niezakłóconego korzystania z przedmiotu najmu; niezwłocznego informowania Najemcy o okolicznościach wpływających na jego prawo do najmu; wykonywania napraw obciążających Wynajmującego.</li></ol>
+<ol>
+  <li>Wynajmujący oświadcza, że każdy oddany Najemcy Lokal będzie w stanie umożliwiającym zamieszkanie i spełniającym wymagania sanitarne.</li>
+  <li>Wynajmujący zobowiązuje się do:
+    <ol>
+      <li>umożliwienia Najemcy niezakłóconego korzystania z przedmiotu najmu,</li>
+      <li>niezwłocznego informowania Najemcy o każdej okoliczności mającej wpływ na przysługujące mu prawo do najmu przedmiotu najmu,</li>
+      <li>wykonywania napraw obciążających Wynajmującego.</li>
+    </ol>
+  </li>
+</ol>
+
 <p class="sh">§ 6. [Obowiązki Najemcy]</p>
-<ol><li>Najemca zobowiązuje się do: używania przedmiotu najmu zgodnie z przeznaczeniem; korzystania z niego w sposób nie utrudniający innym użytkownikom Nieruchomości; terminowego uiszczania czynszu; utrzymywania przedmiotu najmu w należytym stanie; wykonywania napraw obciążających Najemcę; przestrzegania przepisów ppoż. i bhp; przekazywania informacji o szkodach; przestrzegania zakazu palenia w Nieruchomości przez niego i Lokatorów.</li><li>Najemca umożliwi Wynajmującemu kontrolę warunków Umowy.</li><li>Najemca nie jest uprawniony do zakwaterowania większej ilości osób niż wskazana w Zamówieniu.</li></ol>
+<ol>
+  <li>Najemca zobowiązuje się do:
+    <ol>
+      <li>używania przedmiotu najmu w sposób zgodny z jego przeznaczeniem,</li>
+      <li>korzystania z przedmiotu najmu w sposób nie utrudniający i nie przeszkadzający innym użytkownikom Nieruchomości,</li>
+      <li>terminowego uiszczania czynszu i innych opłat wynikających z Umowy,</li>
+      <li>utrzymywania przedmiotu najmu w należytym stanie i dbania o czystość zarówno w przedmiocie najmu jak i częściach wspólnych Nieruchomości,</li>
+      <li>wykonywania napraw obciążających Najemcę,</li>
+      <li>przestrzegania przepisów dotyczących ochrony przeciwpożarowej oraz bhp,</li>
+      <li>powstrzymania się od podejmowania działań mogących wywołać bezpośrednie niebezpieczeństwo powstania szkody w przedmiocie najmu,</li>
+      <li>przekazania informacji dotyczących szkody w Nieruchomości, spowodowanych działalnością osób trzecich,</li>
+      <li>przestrzegania przez niego i Lokatorów zakazu palenia w Nieruchomości.</li>
+    </ol>
+  </li>
+  <li>Najemca dołoży wszelkich starań w celu umożliwienia Wynajmującemu dokonywania kontroli przestrzegania przez Najemcę warunków Umowy.</li>
+  <li>Najemca nie jest uprawniony do zakwaterowania większej ilości osób niż wskazana w Zamówieniu.</li>
+</ol>
+
 <p class="sh">§ 7. [Kaucja]</p>
-<ol><li>Najemca zapłaci Wynajmującemu kaucję w wysokości i w terminie określonym w Zamówieniu.</li><li>Kaucja jest pobierana jako zabezpieczenie roszczeń Wynajmującego wynikających z Umowy.</li><li>Kaucja nie podlega waloryzacji ani oprocentowaniu.</li><li>W przypadku wykorzystania kaucji Najemca uzupełni ją w terminie 7 dni od wezwania.</li><li>Kaucja podlega zwrotowi w terminie 14 dni od daty zwrotu przedmiotu najmu, gdy Wynajmujący nie ma roszczeń.</li></ol>
+<ol>
+  <li>Najemca zapłaci Wynajmującemu kaucję w wysokości i w terminie określonym w Zamówieniu.</li>
+  <li>Kaucja jest pobierana jako zabezpieczenie ewentualnych roszczeń Wynajmującego wynikających z Umowy.</li>
+  <li>Kaucja nie jest przychodem Wynajmującego i nie podlega waloryzacji ani oprocentowaniu.</li>
+  <li>W przypadku wykorzystania przez Wynajmującego części lub całości kaucji na cele wskazane w pkt 7.2 powyżej Najemca uzupełni kaucję do pierwotnej wysokości w terminie 7 dni od daty otrzymania wezwania.</li>
+  <li>W przypadku, gdy Wynajmujący nie ma w stosunku do Najemcy żadnych roszczeń powstałych w związku z Umową lub Zamówieniem, kaucja podlega zwrotowi w terminie 14 dni od daty zwrotu przedmiotu najmu.</li>
+</ol>
+
 <p class="sh">§ 8. [Podnajem]</p>
-${isPosrednik?`<ol><li>Strony oświadczają, że Najemca jest uprawniony do podnajmu wyłącznie na zasadach wskazanych w niniejszym paragrafie.</li><li>Najemca jest uprawniony do podnajmu wyłącznie w celach związanych z prowadzoną działalnością — jako noclegi dla pracowników, zleceniobiorców i współpracowników swoich kontrahentów.</li><li>Najemca nie będzie zawierał umów podnajmu, na podstawie których: a) czynsz byłby niższy niż iloczyn ilości Lokatorów i kwoty 1.000,00 zł netto + VAT; b) podnajemca byłby uprawniony do dalszego wynajmowania osobom innym niż pracownicy i współpracownicy.</li><li>Wynajmujący jest uprawniony do wynajmowania lokali niebędących przedmiotem Zamówień innym podmiotom, wyłącznie na warunkach, na których czynsz nie będzie niższy niż iloczyn ilości lokatorów i kwoty 1.000,00 zł netto + VAT.</li></ol>`:`<ol><li>Najemcy nie przysługuje prawo do oddania przedmiotu najmu w podnajem bez uzyskania uprzedniej zgody Wynajmującego.</li></ol>`}
-${isPosrednik?`<p class="sh">§ 9. [Zasady konkurencji]</p>
-<ol><li>Kontrahentem Najemcy jest podmiot, który zawarł z Najemcą umowę podnajmu Lokali.</li><li>Wynajmujący nie będzie zawierał umów najmu z Kontrahentami Najemcy, z zastrzeżeniem, że zakaz ten nie obowiązuje, gdy Kontrahent skontaktuje się z Wynajmującym po raz trzeci lub będzie miał racjonalne powody odmowy zawarcia umowy z Najemcą.</li><li>Postanowienia niniejszego paragrafu przestają obowiązywać w przypadku naruszenia przez Najemcę pkt 8.3. Umowy.</li></ol>`:''}
-<p class="sh">${isPosrednik?'§ 10':'§ 9'}. [Czas trwania i rozwiązanie Umowy]</p>
-<ol><li>Umowa zostaje zawarta na czas nieokreślony.</li><li>Strony mogą wypowiedzieć Umowę z zachowaniem miesięcznego okresu wypowiedzenia, liczonego od pierwszego dnia miesiąca następującego po miesiącu, w którym dokonano wypowiedzenia. W okresie wypowiedzenia Strony nie będą zawiązywały nowych Zamówień.</li><li>Wynajmujący uprawniony jest do wstrzymania realizacji Zamówień i rozwiązania Umowy z 7-dniowym okresem wypowiedzenia, jeżeli: Najemca opóźnia się z zapłatą czynszu powyżej 30 dni; Lokal jest używany niezgodnie z Umową; Najemca zakwaterował więcej osób niż wskazano; Najemca naruszył zakaz podnajmu.</li><li>Wypowiedzenie Umowy winno nastąpić w formie pisemnej pod rygorem nieważności.</li><li>Niezależnie od rozwiązania Umowy Strony mogą rozwiązać poszczególne Zamówienia. Wynajmujący może rozwiązać Zamówienie z 7-dniowym okresem wypowiedzenia, jeżeli: Najemca opóźnia się z zapłatą; Lokal jest używany niezgodnie z Umową; Najemca zakwaterował więcej osób; Najemca nie wpłacił kaucji w terminie.</li><li>W przypadku rozwiązania Umowy lub Zamówienia Najemca zwróci Lokale w stanie niepogorszonym.</li><li>Wszelkie nakłady poczynione przez Najemcę są jego własnym kosztem bez prawa zwrotu, chyba że Strony postanowią inaczej na piśmie.</li><li>Dalsze korzystanie po upływie okresu najmu nie stanowi przedłużenia stosunku najmu (wyłączenie art. 674 k.c.).</li></ol>
-<p class="sh">${isPosrednik?'§ 11':'§ 10'}. [Odpowiedzialność i kary umowne]</p>
-<ol><li>Wynajmujący nie ponosi odpowiedzialności za mienie wniesione do Lokalu przez Najemcę lub Lokatorów.</li><li>${isPosrednik?'Wynajmujący zapewnia, że Nieruchomość jest ubezpieczona od szkód spowodowanych przez ogień, zalanie, przepięcie, burze i instalację wodną.':'Wynajmujący nie ponosi odpowiedzialności za szkody w majątku Najemcy lub Lokatorów w wyniku działania osób trzecich lub awarii urządzeń.'}</li><li>Najemca zapłaci kary umowne: a) za naruszenie zakazu palenia – 500,00 zł za każde naruszenie; b) za zakwaterowanie większej ilości osób niż wskazana w Zamówieniu – 50 zł dziennie za każdą osobę ponad limit (nie więcej niż wartość miesięcznego czynszu); c) za naruszenie zakazu podnajmu – 10.000 zł za każde naruszenie.</li>${isPosrednik?'<li>Najemca może naliczyć Wynajmującemu karę umowną za naruszenie nakazu najmu na warunkach z § 8.5 – 10.000 zł za każde naruszenie.</li>':''}<li>Wynajmującemu przysługuje prawo dochodzenia odszkodowania przewyższającego kary umowne.</li></ol>
-<p class="sh">${isPosrednik?'§ 12':'§ 11'}. [Postanowienia końcowe]</p>
-<ol><li>W sprawach nieuregulowanych stosuje się przepisy prawa polskiego.</li><li>Strony wskazują następujące dane do korespondencji, z wyłączeniem czynności dotyczących składania Zamówienia opisanych w § 3: a) Wynajmujący – home4people.info@gmail.com, (90-514) Łódź, ul. Wólczańska 66/C311; b) Najemca – ${firmaEmail}, ${firmaKores}.</li><li>Strony będą informować się o zmianach danych kontaktowych w terminie 3 dni.</li><li>Wszelkie spory rozstrzygane będą przez sąd właściwy dla siedziby powoda.</li><li>Umowę sporządzono w dwóch jednobrzmiących egzemplarzach.</li><li>Zmiany wymagają formy pisemnej pod rygorem nieważności.</li><li>Załącznik nr 1 – wzór zamówienia – stanowi integralną część Umowy.</li></ol>
-<table class="sig-table"><tr><td><div class="sig-line">___________________________<br>za Wynajmującego<br><small>${sigName}</small></div></td><td><div class="sig-line">___________________________<br>za Najemcę<br><small>${firmaRepr}</small></div></td></tr></table>
+${isPosrednik?`
+<ol>
+  <li>Strony oświadczają, że Najemca jest uprawniony do dalszego oddawania przedmiotu najmu w podnajem wyłącznie na zasadach wskazanych w pkt 8 Umowy.</li>
+  <li>Najemca jest uprawniony do oddania przedmiotu najmu w podnajem wyłącznie w celach związanych z prowadzoną przez niego działalnością gospodarczą polegającą na podnajmowaniu przedmiotu najmu jako noclegi dla pracowników, zleceniobiorców i współpracowników swoich kontrahentów.</li>
+  <li>Najemca nie będzie oferował oraz zawierał umów podnajmu, na podstawie których: a) czynsz najmu będzie stanowił kwotę niższą niż iloczyn ilości Lokatorów i kwoty 1.000,00 zł netto + VAT; b) podnajemca byłby uprawniony do dalszego wynajmowania, podnajmowania przedmiot najmu lub jego części osobom innym niż jego pracownicy, zleceniobiorcy i współpracownicy.</li>
+  <li>Wynajmujący jest uprawniony do wynajmowania lokali mieszkalnych w Nieruchomości, które nie będą przedmiotem Zamówień, innym podmiotom niż Najemca, wyłącznie na warunkach, na których czynsz nie będzie niższy niż iloczyn ilości lokatorów i kwoty 1.000,00 zł netto + VAT.</li>
+</ol>`:`
+<ol>
+  <li>Najemcy nie przysługuje prawo do oddania przedmiotu najmu w podnajem lub do oddania do jakiegokolwiek innego używania, bez uzyskania uprzedniej zgody Wynajmującego, chyba że podnajemcą będzie pracownik lub zleceniobiorca Najemcy.</li>
+</ol>`}
+
+${isPosrednik?`
+<p class="sh">§ 9. [Zasady konkurencji]</p>
+<ol>
+  <li>Strony przyjmują, że kontrahentem Najemcy (zwanym dalej: „<strong>Kontrahentem</strong>") jest podmiot, który zawarł z Najemcą umowę podnajmu Lokali.</li>
+  <li>Wynajmujący nie będzie zawierał umów najmu z Kontrahentami Najemcy z tym zastrzeżeniem, że zakaz ten nie obowiązuje w sytuacji, gdy: a) Kontrahent skontaktuje się z Wynajmującym po raz trzeci w celu zawarcia umowy najmu; b) Kontrahent będzie miał racjonalne powody, dla których nie będzie chciał zawrzeć umowy z Najemcą.</li>
+  <li>Postanowienia pkt 9 Umowy przestają obowiązywać w przypadku dopuszczenia się przez Najemcę naruszenia pkt 8.3. Umowy.</li>
+</ol>`:''}
+
+<p class="sh">${p9}. [Czas trwania i rozwiązanie Umowy]</p>
+<ol>
+  <li>Umowa zostaje zawarta na czas nieokreślony.</li>
+  <li>Strony mogą m.in. wypowiedzieć Umowę z zachowaniem miesięcznego okresu wypowiedzenia. Bieg wypowiedzenia rozpoczyna się pierwszego dnia miesiąca następującego po tym, w którym dokonano wypowiedzenia. W okresie biegu wypowiedzenia Strony nie będą zawiązywały nowych Zamówień.</li>
+  <li>Wynajmujący uprawniony jest do wstrzymania się z realizacją Zamówień oraz rozwiązania Umowy z zachowaniem siedmiodniowego okresu wypowiedzenia, m.in. jeżeli: a) Najemca będzie opóźniał się z zapłatą całości bądź części czynszu w sposób przekraczający 30 dni; b) którykolwiek Lokal wykorzystywany będzie przez Najemcę niezgodnie z postanowieniami Umowy; c) Najemca dopuści się zakwaterowania większej ilości osób niż wskazana w którymkolwiek Zamówieniu; d) Najemca dopuści się naruszenia zakazu podnajmu.</li>
+  <li>Wypowiedzenie Umowy winno nastąpić w sposób pisemny pod rygorem jego nieważności.</li>
+  <li>Niezależnie od rozwiązania Umowy, Strony mogą też rozwiązać stosunek najmu zawarty na podstawie jednego, kilku albo wszystkich Zamówień na zasadach określonych w tych Zamówieniach. Ponadto Wynajmujący może rozwiązać stosunek najmu zawarty na podstawie jednego, kilku albo wszystkich Zamówień z zachowaniem siedmiodniowego okresu wypowiedzenia, jeżeli: a) Najemca będzie opóźniał się z zapłatą całości bądź części czynszu wynikającego z Zamówienia w sposób przekraczający 30 dni; b) Lokal będący przedmiotem Zamówienia będzie wykorzystywany przez Najemcę niezgodnie z postanowieniami Umowy; c) Najemca dopuści się zakwaterowania większej ilości osób niż wskazana w Zamówieniu; d) Najemca nie wpłaci kaucji w terminie wskazanym w Zamówieniu.</li>
+  <li>W przypadku rozwiązania Umowy Najemca zwróci Lokale z dniem jej zakończenia w stanie niepogorszonym. Analogicznie, w przypadku zakończenia związania Zamówieniem, Najemca zwróci lokale mieszkalne stanowiące przedmiot Zamówienia z dniem ustania stosunku najmu także w stanie niepogorszonym.</li>
+  <li>Wszelkie nakłady poczynione na Lokale przez Najemcę są wyłącznie jego własnym kosztem bez prawa zwrotu wartości nakładów po zakończeniu okresu najmu, chyba że Strony postanowią na piśmie inaczej przed dokonaniem nakładów.</li>
+  <li>Dalsze korzystanie przez Najemcę z przedmiotu najmu po upływie okresu najmu nie będzie uważane za przedłużenie stosunku najmu (wyłączenie stosowania art. 674 Kodeksu cywilnego).</li>
+</ol>
+
+<p class="sh">${p10}. [Odpowiedzialność i kary umowne]</p>
+<ol>
+  <li>Wynajmujący nie ponosi odpowiedzialności za mienie wniesione do Lokalu przez Najemcę lub Lokatorów, którzy powinni je zabezpieczyć przed kradzieżą czy zniszczeniem we własnym zakresie.</li>
+  <li>Wynajmujący nie ponosi odpowiedzialności za szkody powstałe w majątku Najemcy lub Lokatorów w wyniku działania osób trzecich lub będących wynikiem niezawinionej przez Wynajmującego awarii urządzeń wodno-kanalizacyjnych, elektrycznych, czy centralnego ogrzewania.</li>
+  <li>Najemca zapłaci na rzecz Wynajmującego następujące kary umowne:
+    <ol>
+      <li>w przypadku każdorazowego naruszenia zakazu palenia w Nieruchomości wskazanego w pkt 6.1.9. Umowy – w wysokości 500,00 zł za każde naruszenie,</li>
+      <li>w przypadku każdorazowego zakwaterowania większej ilości osób niż wskazana w Zamówieniu – w wysokości 50 zł dziennie za każdą osobę ponad umówiony limit, z tym zastrzeżeniem, że naliczona na tej podstawie kara umowna nie może przekroczyć wartości miesięcznego czynszu dla Zamówienia, dla którego nastąpiło naruszenie,</li>
+      <li>w przypadku każdorazowego naruszenia zakazu podnajmu – w wysokości 10.000 zł za każde naruszenie.</li>
+    </ol>
+  </li>
+  ${isPosrednik?'<li>Najemca może naliczyć Wynajmującemu karę umowną za każdorazowe naruszenie nakazu najmu na warunkach wskazanych w pkt 8.5. Umowy – w wysokości 10.000 zł za każde naruszenie.</li>':''}
+  <li>Wynajmującemu przysługuje uprawnienie do dochodzenia odszkodowania przewyższającego zastrzeżone kary umowne.</li>
+</ol>
+
+<p class="sh">${p11}. [Postanowienia końcowe]</p>
+<ol>
+  <li>W sprawach nieuregulowanych Umową mają zastosowanie przepisy prawa polskiego.</li>
+  <li>Strony wskazują następujące dane do korespondencji, z wyłączeniem czynności dotyczących składania Zamówienia opisanych w pkt 3 Umowy, dla których wyłącznie właściwe są adresy e-mail wskazane w pkt 3 Umowy:
+    <ol>
+      <li>Wynajmujący – home4people.info@gmail.com, (90-514) Łódź, ul. Wólczańska 66/C311,</li>
+      <li>Najemca – ${firmaEmail}, ${firmaKores}.</li>
+    </ol>
+  </li>
+  <li>Strony będą niezwłocznie, nie później niż w terminie 3 dni, informować się pisemnie lub za pośrednictwem wiadomości e-mail o zmianie danych, o których mowa w pkt ${p11}.2. powyżej. W przypadku braku wskazania nowych danych, przesłanie korespondencji na dotychczasowe dane kontaktowe uważa się za skutecznie doręczone.</li>
+  <li>Wszelkie spory wynikłe na tle niniejszej Umowy rozstrzygane będą przez sąd właściwy dla siedziby powoda.</li>
+  <li>Umowę sporządzono w dwóch jednobrzmiących egzemplarzach, po jednym dla każdej ze Stron.</li>
+  <li>Zmiany postanowień Umowy wymagają formy pisemnej pod rygorem nieważności.</li>
+  <li>Załącznik nr 1 – wzór zamówienia – stanowi integralną część Umowy.</li>
+</ol>
+<table class="sig-table"><tr>
+  <td><div class="sig-line">___________________________<br>za Wynajmującego<br><small>${sigName}</small></div></td>
+  <td><div class="sig-line">___________________________<br>za Najemcę<br><small>${firmaRepr}</small></div></td>
+</tr></table>
 </div>`;
 }
 
@@ -2005,7 +2137,13 @@ function sendEmailConfirm(){
   const subject=encodeURIComponent(document.getElementById('email-subject').value);
   const body=encodeURIComponent(document.getElementById('email-body').value);
   document.getElementById('email-send-modal').style.display='none';
-  location.href=`mailto:${addr}?subject=${subject}&body=${body}`;
+  // Use invisible anchor - works in all browsers including GitHub Pages
+  const a=document.createElement('a');
+  a.href=`mailto:${addr}?subject=${subject}&body=${body}`;
+  a.style.display='none';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>document.body.removeChild(a),1000);
 }
 
 function sendEmailCancel(){
