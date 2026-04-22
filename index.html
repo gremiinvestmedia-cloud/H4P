@@ -98,17 +98,119 @@ input[readonly]{background:#f0ebe0;color:#888;}
 .czynsz-option .co-title{font-weight:700;font-size:13px;color:var(--navy);}
 .czynsz-option .co-sub{font-size:12px;color:var(--muted);margin-top:3px;}
 .czynsz-option.sel .co-title,.czynsz-option.sel .co-sub{color:var(--gold);}
+.arch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:16px;}
+.arch-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:var(--shadow);transition:all .2s;}
+.arch-card:hover{border-color:var(--gold);transform:translateY(-2px);}
+.arch-card .ac-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:6px;}
+.arch-card .ac-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--navy);margin-bottom:4px;}
+.arch-card .ac-meta{font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.5;}
+.arch-card .ac-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.arch-card .ac-btn{padding:6px 12px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;border:none;transition:all .2s;}
+.arch-btn-view{background:var(--navy);color:var(--gold);}
+.arch-btn-view:hover{background:var(--gold);color:var(--navy);}
+.arch-btn-del{background:#fdecea;color:var(--red);border:1px solid #f5b8b2!important;}
+.arch-btn-del:hover{background:var(--red);color:#fff;}
+.arch-btn-dl{background:var(--cream2);color:var(--navy);border:1px solid var(--border)!important;}
+.arch-btn-dl:hover{background:var(--navy);color:var(--gold);}
+.arch-empty{text-align:center;padding:48px 24px;color:var(--muted);font-size:14px;}
+.arch-empty .ae-icon{font-size:48px;margin-bottom:12px;}
+.arch-filter{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.arch-filter select,.arch-filter input{padding:8px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--cream);}
+.arch-filter input{flex:1;min-width:180px;}
+.upload-zone{border:2px dashed var(--gold);border-radius:12px;padding:28px;text-align:center;cursor:pointer;transition:all .2s;background:var(--cream);}
+.upload-zone:hover{background:#fef8ec;}
+.upload-zone p{font-size:13px;color:var(--muted);margin-top:8px;}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+.badge-fiz{background:#e8f4fd;color:#1a5276;}
+.badge-firma{background:#eafaf1;color:#1a6b3c;}
+.badge-zam{background:#fef9e7;color:#7d6608;}
+.badge-manual{background:#f4ecf7;color:#6c3483;}
 @media(max-width:600px){.form-row,.form-row.t{grid-template-columns:1fr;}.card{padding:16px 13px;}.contract-preview{padding:20px 12px;}header{padding:14px 16px;}.container{padding:16px 9px 38px;}.person-row{grid-template-columns:1fr;}.main-tabs{flex-direction:column;}.czynsz-grid{grid-template-columns:1fr;}}
-@media print{header,.main-tabs,.steps,.nav-btns,.print-btns,#form-area{display:none!important;}#preview-area{display:block!important;}.contract-preview{box-shadow:none;border:none;padding:0 10px;}body{background:#fff;}}
+@media print{
+  header,.main-tabs,.steps,.nav-btns,.print-btns,#form-area,#fs-archiwum{display:none!important;}
+  #preview-area{display:block!important;}
+  .contract-preview{box-shadow:none;border:none;padding:0 10px;margin-bottom:0;page-break-after:always;}
+  .contract-preview:last-child{page-break-after:auto;}
+  body{background:#fff;}
+  .zam-table td{border:1pt solid #999;}
+}
+
+/* ── GLOBAL SEARCH ── */
+.global-search-wrap{position:relative;margin-bottom:0;}
+.global-search-input{width:100%;padding:11px 44px 11px 16px;border:2px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;background:var(--white);transition:border-color .2s;}
+.global-search-input:focus{outline:none;border-color:var(--gold);}
+.global-search-icon{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:16px;pointer-events:none;}
+.search-results-dropdown{position:absolute;top:calc(100% + 6px);left:0;right:0;background:var(--white);border:1.5px solid var(--border);border-radius:12px;box-shadow:0 8px 32px rgba(15,27,45,.18);z-index:1000;max-height:400px;overflow-y:auto;display:none;}
+.search-results-dropdown.open{display:block;}
+.sr-section{padding:8px 14px 4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);background:var(--cream2);}
+.sr-item{padding:10px 16px;cursor:pointer;border-bottom:1px solid var(--cream2);display:flex;align-items:center;gap:12px;transition:background .15s;}
+.sr-item:hover{background:var(--cream);}
+.sr-item:last-child{border-bottom:none;}
+.sr-item .sri-icon{font-size:18px;flex-shrink:0;}
+.sr-item .sri-main{font-size:13px;font-weight:600;color:var(--navy);}
+.sr-item .sri-sub{font-size:11px;color:var(--muted);margin-top:1px;}
+.sr-empty{padding:20px;text-align:center;color:var(--muted);font-size:13px;}
+/* ── REMINDERS ── */
+.reminder-bar{background:linear-gradient(135deg,#fef3cd,#fff3e0);border:1.5px solid #f0ad4e;border-radius:12px;padding:14px 18px;margin-bottom:20px;display:none;}
+.reminder-bar.has-items{display:block;}
+.reminder-bar h3{font-size:13px;font-weight:700;color:#7d4e00;margin-bottom:10px;}
+.reminder-item{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #f0dba0;font-size:12px;color:#5d3a00;}
+.reminder-item:last-child{border-bottom:none;}
+.reminder-item .ri-icon{font-size:16px;flex-shrink:0;}
+.reminder-item .ri-urgent{color:var(--red);font-weight:700;}
+.reminder-item .ri-btn{margin-left:auto;padding:4px 10px;background:var(--navy);color:var(--gold);border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;}
+/* ── EMAIL BUTTON ── */
+.btn-email{padding:10px 20px;background:#d44638;color:#fff;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px;}
+.btn-email:hover{background:#b03a2e;}
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .container{padding:12px 8px 40px;}
+  .main-tabs{flex-direction:column;gap:8px;}
+  .main-tab{display:flex;align-items:center;gap:12px;padding:14px 16px;text-align:left;}
+  .main-tab .mt-icon{font-size:22px;margin:0;}
+  .main-tab .mt-title{font-size:14px;}
+  .steps{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .step-item{min-width:60px;padding:10px 4px;font-size:10px;}
+  .card{padding:16px 14px;border-radius:12px;}
+  .card-title{font-size:16px;}
+  .form-row{grid-template-columns:1fr!important;}
+  .form-row.t{grid-template-columns:1fr!important;}
+  .nav-btns{flex-direction:column-reverse;gap:10px;}
+  .btn-prev,.btn-next,.btn-gen{width:100%;text-align:center;padding:14px;}
+  .print-btns{flex-direction:column;}
+  .print-btns button{width:100%;}
+  .contract-preview{padding:20px 12px;font-size:12px;}
+  .zam-table{font-size:11px;}
+  .zam-table td{padding:6px 8px;display:block;width:100%;}
+  .zam-table td:first-child{background:var(--cream2);font-weight:700;border-bottom:none;}
+  .sig-table td{display:block;width:100%;padding:10px 0;}
+  .person-row{grid-template-columns:1fr 1fr auto;}
+  header{padding:14px 16px;}
+  header h1{font-size:17px;}
+  .arch-grid{grid-template-columns:1fr!important;}
+  .czynsz-grid{grid-template-columns:1fr!important;}
+  .tg{flex-direction:column;}
+  .tg .tb{border-right:none!important;border-bottom:1px solid var(--border);}
+  .tg .tb:last-child{border-bottom:none;}
+  .global-search-wrap{margin-bottom:16px;}
+}
 </style>
 </head>
 <body>
 <header>
   <div class="logo-circle">H4</div>
-  <div><h1>H4P — Generator Umów</h1><p>Nadarzyn · ul. Turystyczna</p></div>
+  <div style="flex:1;"><h1>H4P — Generator Umów</h1><p>Nadarzyn · ul. Turystyczna</p></div>
+  <div class="global-search-wrap" style="max-width:320px;width:100%;position:relative;" id="global-search-container">
+    <input class="global-search-input" type="text" placeholder="🔍 Szukaj klientów, archiwum..." id="global-search-input" autocomplete="off" oninput="globalSearch(this.value)" onblur="setTimeout(()=>closeGlobalSearch(),200)">
+    <div class="search-results-dropdown" id="global-search-results"></div>
+  </div>
 </header>
- 
+
 <div class="container">
+  <div class="reminder-bar" id="reminder-bar">
+    <h3>⚠️ Powiadomienia</h3>
+    <div id="reminder-list"></div>
+  </div>
   <div class="main-tabs" id="main-tabs">
     <div class="main-tab active" onclick="setMain('fiz')" id="mt-fiz">
       <div class="mt-icon">🏠</div>
@@ -125,10 +227,15 @@ input[readonly]{background:#f0ebe0;color:#888;}
       <div class="mt-title">Tylko Zamówienie</div>
       <div class="mt-sub">Do istniejącej umowy ramowej</div>
     </div>
+    <div class="main-tab" onclick="setMain('archiwum')" id="mt-archiwum">
+      <div class="mt-icon">🗄️</div>
+      <div class="mt-title">Archiwum</div>
+      <div class="mt-sub">Podpisane umowy i protokoły</div>
+    </div>
   </div>
- 
+
   <div id="form-area">
- 
+
     <!-- ═══════════════ FIZYCZNA ═══════════════ -->
     <div class="form-section active" id="fs-fiz">
       <div class="steps">
@@ -223,20 +330,22 @@ input[readonly]{background:#f0ebe0;color:#888;}
       <div class="section" id="fiz-4">
         <div class="card">
           <div class="card-title"><span class="num">4</span>Czynsz</div>
-          <div class="sl">§ 3.1 — Czynsz za okres niepełny</div>
-          <div class="form-row t">
-            <div class="field"><label>Od dnia</label><input type="date" id="f-c1od"></div>
-            <div class="field"><label>Do dnia</label><input type="date" id="f-c1do"></div>
-            <div class="field"><label>Kwota (PLN)</label><input type="number" id="f-c1kw" placeholder="np. 2030" oninput="upSl('f-c1kw','f-c1sl')"></div>
-          </div>
-          <div class="field" style="margin-bottom:14px;"><label>Słownie</label><input type="text" id="f-c1sl" readonly></div>
-          <div class="sep"></div>
-          <div class="sl">§ 3.2 — Czynsz miesięczny</div>
+          <div class="sl">§ 3.2 — Czynsz miesięczny (pełny miesiąc)</div>
           <div class="form-row">
-            <div class="field"><label>Od miesiąca (data)</label><input type="date" id="f-c2od"></div>
-            <div class="field"><label>Kwota miesięczna (PLN)</label><input type="number" id="f-c2kw" placeholder="np. 3000" oninput="upSl('f-c2kw','f-c2sl')"></div>
+            <div class="field"><label>Od miesiąca (data)</label><input type="date" id="f-c2od" onchange="fAutoCalc()"></div>
+            <div class="field"><label>Kwota miesięczna (PLN)</label><input type="number" id="f-c2kw" placeholder="np. 3000" oninput="upSl('f-c2kw','f-c2sl');fAutoCalc()"></div>
           </div>
           <div class="field" style="margin-bottom:12px;"><label>Słownie</label><input type="text" id="f-c2sl" readonly></div>
+          <div class="sep"></div>
+          <div class="sl">§ 3.1 — Czynsz za okres niepełny (auto-kalkulator)</div>
+          <div class="info-box" style="margin-bottom:10px;"><span>🧮</span><span>Wpisz daty i stawkę miesięczną — kwota za niepełny miesiąc obliczy się automatycznie (proporcjonalnie do liczby dni).</span></div>
+          <div class="form-row t">
+            <div class="field"><label>Od dnia</label><input type="date" id="f-c1od" onchange="fAutoCalc()"></div>
+            <div class="field"><label>Do dnia</label><input type="date" id="f-c1do" onchange="fAutoCalc()"></div>
+            <div class="field"><label>Kwota za niepełny mies. (PLN)</label><input type="number" id="f-c1kw" placeholder="auto lub wpisz" oninput="upSl('f-c1kw','f-c1sl')"></div>
+          </div>
+          <div id="f-calc-info" style="display:none;background:#f0f7f2;border:1px solid #b8d9c4;border-radius:8px;padding:10px 14px;font-size:13px;color:var(--green);margin-bottom:10px;"></div>
+          <div class="field" style="margin-bottom:14px;"><label>Słownie</label><input type="text" id="f-c1sl" readonly></div>
           <div class="field"><label>E-mail do faktur (Najemcy)</label><input type="email" id="f-emailFakt" placeholder="najemca@email.com"></div>
         </div>
         <div class="card">
@@ -275,7 +384,7 @@ input[readonly]{background:#f0ebe0;color:#888;}
       <div class="section" id="fiz-5">
         <div class="card">
           <div class="card-title"><span class="num">5</span>Osoby zamieszkujące</div>
-          <div class="warn-box"><strong>Czynsz wg liczby dorosłych:</strong><br>1 os. → 3 000 zł | 2 os. → 4 000 zł | 3 os. → 4 500 zł | 4 os. → 5 000 zł | 5 os. → 5 500 zł | 6 os. → 6 000 zł<br><em>Dzieci nie są wliczane do czynszu.</em></div>
+          <div class="warn-box"><strong>Czynsz — lokal 3-pokojowy:</strong> 2 os.→4 000 | 3 os.→4 500 | 4 os.→5 000 | 5 os.→5 500 | 6 os.→6 000 zł<br><strong>Czynsz — lokal 2-pokojowy:</strong> 3 600 zł (stała stawka)<br><em>Dzieci nie są wliczane do czynszu.</em></div>
           <div class="sl">Dorośli współlokatorzy (oprócz Najemcy)</div>
           <div id="f-dorosli-c"></div>
           <button class="btn-add" onclick="fAddP('d')">＋ Dodaj dorosłego</button>
@@ -343,7 +452,7 @@ input[readonly]{background:#f0ebe0;color:#888;}
         <div class="nav-btns"><button class="btn-prev" onclick="fGo(5)">← Wstecz</button><button class="btn-gen" onclick="fGenerate()">✦ Generuj dokumenty</button></div>
       </div>
     </div><!-- /fs-fiz -->
- 
+
     <!-- ═══════════════ RAMOWA ═══════════════ -->
     <div class="form-section" id="fs-ramowa">
       <div class="steps">
@@ -414,7 +523,7 @@ input[readonly]{background:#f0ebe0;color:#888;}
         <div class="nav-btns"><button class="btn-prev" onclick="rGo(2)">← Wstecz</button><button class="btn-gen" onclick="rGenerate()">✦ Generuj dokumenty</button></div>
       </div>
     </div><!-- /fs-ramowa -->
- 
+
     <!-- ═══════════════ TYLKO ZAMÓWIENIE ═══════════════ -->
     <div class="form-section" id="fs-zamowienie">
       <div class="steps">
@@ -468,35 +577,172 @@ input[readonly]{background:#f0ebe0;color:#888;}
         <div class="nav-btns"><button class="btn-prev" onclick="zGo(1)">← Wstecz</button><button class="btn-gen" onclick="zGenerate()">✦ Generuj zamówienie</button></div>
       </div>
     </div><!-- /fs-zamowienie -->
- 
+
+    <!-- ═══════════════ ARCHIWUM ═══════════════ -->
+    <div class="form-section" id="fs-archiwum">
+      <div class="card">
+        <div class="card-title"><span class="num" style="background:var(--gold)">🗄</span>Archiwum podpisanych umów</div>
+        <div class="info-box" style="margin-bottom:16px;"><span>ℹ️</span><span>Tutaj przechowujesz <strong>zaakceptowane i podpisane</strong> umowy. Możesz zapisać wygenerowany dokument lub wgrać plik z dysku (skan, PDF, Word).<br><strong>222 dokumentów</strong> zostało zaimportowanych z Twojego archiwum (metadane). Oryginalne pliki możesz dołączyć klikając „Wgraj" przy danym rekordzie.</span></div>
+
+        <!-- Upload manual -->
+        <div class="sl">Wgraj podpisany dokument z dysku</div>
+        <div class="upload-zone" onclick="document.getElementById('arch-file-input').click()" id="arch-drop-zone">
+          <div style="font-size:32px;">📁</div>
+          <strong>Kliknij lub przeciągnij plik</strong>
+          <p>PDF, DOC, DOCX, JPG, PNG — max 10 MB</p>
+          <input type="file" id="arch-file-input" style="display:none" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" onchange="archUploadFile(this)">
+        </div>
+        <div id="arch-upload-meta" style="display:none;margin-top:14px;background:#f9f6f0;border:1px solid var(--border);border-radius:10px;padding:16px;">
+          <div class="sl">Dane dokumentu</div>
+          <div class="form-row">
+            <div class="field"><label>Tytuł dokumentu</label><input type="text" id="arch-meta-title" placeholder="np. Umowa najmu — Kowalski Jan / Turystyczna 19/8"></div>
+            <div class="field"><label>Typ dokumentu</label>
+              <select id="arch-meta-type">
+                <option value="fiz">Umowa — osoba fizyczna</option>
+                <option value="firma">Umowa ramowa — firma</option>
+                <option value="zam">Zamówienie</option>
+                <option value="protokol">Protokół zdawczo-odbiorczy</option>
+                <option value="inne">Inne</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Najemca / Firma</label><input type="text" id="arch-meta-najemca" placeholder="Imię Nazwisko lub Nazwa Sp. z o.o."></div>
+            <div class="field"><label>Lokal</label><input type="text" id="arch-meta-lokal" placeholder="np. Turystyczna 19/8, Nadarzyn"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Data podpisania</label><input type="date" id="arch-meta-date"></div>
+            <div class="field"><label>Uwagi</label><input type="text" id="arch-meta-uwagi" placeholder="opcjonalne"></div>
+            <div class="field"><label>Data zakończenia umowy</label><input type="date" id="arch-meta-enddate"></div>
+            <div class="field"><label>Data płatności kaucji</label><input type="date" id="arch-meta-kaucjadate"></div>
+            <div class="field"><label>E-mail najemcy (do wysyłki)</label><input type="email" id="arch-meta-email" placeholder="najemca@firma.pl"></div>
+          </div>
+          <button onclick="archSaveUpload()" style="padding:10px 22px;background:var(--green);border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:#fff;cursor:pointer;margin-top:4px;">💾 Zapisz w archiwum</button>
+          <button onclick="archCancelUpload()" style="padding:10px 16px;background:transparent;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;margin-left:8px;">Anuluj</button>
+        </div>
+      </div>
+
+      <!-- Stats bar -->
+      <div id="arch-stats" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;"></div>
+
+      <!-- Archive list -->
+      <div class="card">
+        <div class="card-title"><span class="num">📄</span>Dokumenty w archiwum <span id="arch-count" style="font-size:13px;font-family:'DM Sans',sans-serif;font-weight:400;color:var(--muted);margin-left:8px;"></span></div>
+        <div class="arch-filter">
+          <input type="text" id="arch-search" placeholder="🔍 Szukaj po nazwie, najemcy..." oninput="archRender()">
+          <select id="arch-filter-type" onchange="archRender()">
+            <option value="">Wszystkie typy</option>
+            <option value="fiz">Umowa fizyczna</option>
+            <option value="firma">Umowa ramowa</option>
+            <option value="zam">Zamówienie</option>
+            <option value="protokol">Protokół</option>
+            <option value="aneks">Aneks</option>
+            <option value="rozwiazanie">Rozwiązanie</option>
+            <option value="draft">Draft</option>
+            <option value="wygenerowany">Wygenerowany</option>
+            <option value="inne">Inne</option>
+          </select>
+        </div>
+        <div id="arch-grid"></div>
+      </div>
+    </div><!-- /fs-archiwum -->
+
   </div><!-- /form-area -->
- 
+
+  <!-- EMAIL SEND MODAL -->
+  <div id="email-send-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,27,45,.65);z-index:9999;align-items:center;justify-content:center;padding:20px;">
+    <div style="background:#fff;border-radius:16px;padding:32px;max-width:520px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3);">
+      <div style="font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--navy);margin-bottom:20px;display:flex;align-items:center;gap:10px;">✉ Wyślij e-mailem</div>
+      <div class="field" style="margin-bottom:12px;">
+        <label>Do (adres e-mail)</label>
+        <input type="email" id="email-to" placeholder="najemca@firma.pl">
+      </div>
+      <div class="field" style="margin-bottom:12px;">
+        <label>Temat</label>
+        <input type="text" id="email-subject">
+      </div>
+      <div class="field" style="margin-bottom:18px;">
+        <label>Treść</label>
+        <textarea id="email-body" rows="8" style="font-size:13px;line-height:1.6;"></textarea>
+      </div>
+      <div class="info-box" style="margin-bottom:16px;font-size:12px;">
+        <span>ℹ️</span><span>Kliknij „Otwórz w poczcie" — otworzy się Twój klient pocztowy (Gmail, Outlook) z wypełnionym mailem. Dołącz PDF ręcznie przed wysłaniem.</span>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button onclick="sendEmailConfirm()" style="flex:1;padding:12px;background:#d44638;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:#fff;cursor:pointer;">✉ Otwórz w poczcie</button>
+        <button onclick="sendEmailCancel()" style="padding:12px 20px;background:transparent;border:2px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;">Anuluj</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARCHIVE SAVE MODAL -->
+  <div id="arch-save-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,27,45,.6);z-index:9999;align-items:center;justify-content:center;padding:20px;">
+    <div style="background:#fff;border-radius:16px;padding:32px;max-width:500px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3);">
+      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:20px;">🗄 Zapisz do archiwum</div>
+      <div class="field" style="margin-bottom:12px;"><label>Tytuł dokumentu</label><input type="text" id="arch-modal-title"></div>
+      <div class="form-row" style="margin-bottom:12px;">
+        <div class="field"><label>Typ</label>
+          <select id="arch-modal-type">
+            <option value="wygenerowany">Wygenerowany</option>
+            <option value="fiz">Umowa fizyczna</option>
+            <option value="firma">Umowa ramowa</option>
+            <option value="zam">Zamówienie</option>
+            <option value="protokol">Protokół</option>
+          </select>
+        </div>
+        <div class="field"><label>Data podpisania</label><input type="date" id="arch-modal-date"></div>
+      </div>
+      <div class="form-row" style="margin-bottom:12px;">
+        <div class="field"><label>Najemca / Firma</label><input type="text" id="arch-modal-najemca" placeholder="Jan Kowalski"></div>
+        <div class="field"><label>Lokal</label><input type="text" id="arch-modal-lokal" placeholder="Turystyczna 19/8"></div>
+      </div>
+      <div class="form-row" style="margin-bottom:12px;">
+        <div class="field"><label>Data zakończenia umowy</label><input type="date" id="arch-modal-enddate" title="Do przypomnienia o wygaśnięciu"></div>
+        <div class="field"><label>Data płatności kaucji</label><input type="date" id="arch-modal-kaucjadate" title="Do przypomnienia o kaucji"></div>
+      </div>
+      <div class="field" style="margin-bottom:12px;"><label>E-mail najemcy</label><input type="email" id="arch-modal-email" placeholder="najemca@firma.pl"></div>
+      <div class="field" style="margin-bottom:18px;"><label>Uwagi</label><input type="text" id="arch-modal-uwagi" placeholder="opcjonalne"></div>
+      <div style="display:flex;gap:12px;">
+        <button onclick="archModalSave()" style="flex:1;padding:12px;background:var(--green);border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:#fff;cursor:pointer;">💾 Zapisz</button>
+        <button onclick="archModalCancel()" style="padding:12px 20px;background:transparent;border:2px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;">Anuluj</button>
+      </div>
+    </div>
+  </div>
+
   <div id="preview-area" style="display:none;">
     <div class="print-btns">
-      <button class="btn-print" onclick="window.print()">🖨 Drukuj / Zapisz PDF</button>
+      <button class="btn-print" onclick="savePDF()">📄 Zapisz PDF</button>
+      <button class="btn-print" style="background:var(--green);" onclick="saveWord()">📝 Zapisz Word (.doc)</button>
+      <button class="btn-print" style="background:#6c3483;" onclick="archSaveGenerated()">🗄 Zapisz do archiwum</button>
       <button class="btn-new" onclick="startNew()">← Nowy dokument</button>
+      <button class="btn-email" onclick="sendEmailFromPreview()" id="btn-send-email">✉ Wyślij e-mailem</button>
     </div>
     <div id="out"></div>
   </div>
 </div>
- 
+
 <script>
 // ─── STATE ────────────────────────────────────────────────────────────────────
 const fst={signer:'Prezesem Arnold Hertfelder',pred:'lokal',kaucja:'jed',sklad:'3'};
 const rst={signer:'Prezesa Zarządu – Arnold Hertfelder',typ:'posrednik'};
 const zst={signer:'Prezesa Zarządu – Arnold Hertfelder',typ:'posrednik'};
 let fDorosli=[],fDzieci=[],fBedTypes={};
- 
+
 // Wszystkie domy - stałe
 const WSZYSTKIE_DOMY='9, 9a, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45';
-const WSZYSTKIE_DOMY_TEKST='budynkach mieszkalnych nr 9, 9a, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43 i 45 przy ul. Turystycznej w miejscowości Nadarzyn';
- 
+const WSZYSTKIE_DOMY_TEKST='budynkach mieszkalnych nr 15, 17, 19, 21, 23, 25, 27 i 29 przy ul. Turystycznej w miejscowości Nadarzyn';
+
 // ─── FORMULARZ ZAMÓWIENIA (reusable HTML) ────────────────────────────────────
 function zamFormHTML(prefix){
   return `
   <div class="info-box"><span>📋</span><span>Czynsz: <strong>6 000 zł</strong> — lokal 3-pokojowy (6–7 osób) &nbsp;|&nbsp; <strong>4 000 zł</strong> — lokal 2-pokojowy (4 osoby). Wpisz kwotę ręcznie lub skorzystaj z sugestii.</span></div>
   <div class="form-row">
-    <div class="field"><label>Numer zamówienia</label><input type="text" id="${prefix}zamNr" placeholder="np. 01.09.2025"></div>
+    <div class="field"><label>Numer zamówienia <span style="font-size:10px;color:var(--muted);font-weight:400;">(auto)</span></label>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <input type="text" id="${prefix}zamNr" placeholder="np. 01.03.2026" style="flex:1;">
+        <button onclick="genZamNr('${prefix}')" style="padding:10px 14px;background:var(--navy);color:var(--gold);border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;">🔢 Auto</button>
+      </div>
+    </div>
     <div class="field"><label>Data wydania przedmiotu najmu</label><input type="date" id="${prefix}zamWydanie"></div>
   </div>
   <div class="form-row">
@@ -590,20 +836,21 @@ function zamFormHTML(prefix){
   <div class="sep"></div>
   <div class="field"><label>Uwagi ogólne do protokołu</label><textarea id="${prefix}protUwagi" rows="3" placeholder="Opcjonalne..."></textarea></div>`;
 }
- 
+
 function selectCzynsz(prefix, kwota, btn){
   document.querySelectorAll(`[id^="${prefix}co"]`).forEach(el=>el.classList.remove('sel'));
   btn.classList.add('sel');
   document.getElementById(prefix+'zamCzynsz').value=kwota;
   initZamPokoje(prefix);
 }
- 
+
 // ─── MAIN TYPE ────────────────────────────────────────────────────────────────
 function setMain(type){
   document.querySelectorAll('.main-tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('mt-'+type).classList.add('active');
   document.querySelectorAll('.form-section').forEach(s=>s.classList.remove('active'));
   document.getElementById('fs-'+type).classList.add('active');
+  if(type==='archiwum')archRender();
   if(type==='ramowa'&&!document.getElementById('r-zam-form').innerHTML){
     document.getElementById('r-zam-form').innerHTML=zamFormHTML('r-');
 initZamPokoje('r-');
@@ -613,7 +860,7 @@ initZamPokoje('r-');
     initZamPokoje('z-');
   }
 }
- 
+
 // ─── NAVIGATION ──────────────────────────────────────────────────────────────
 function fGo(n){
   document.querySelectorAll('#fs-fiz .section').forEach(s=>s.classList.remove('active'));
@@ -637,21 +884,27 @@ function zGo(n){
   }
   window.scrollTo({top:0,behavior:'smooth'});
 }
- 
+
 // ─── TOGGLES ─────────────────────────────────────────────────────────────────
 function ftg(gid,idx){document.querySelectorAll('#'+gid+' .tb').forEach((b,i)=>b.classList.toggle('on',i===idx));}
 function rtg(gid,idx){document.querySelectorAll('#'+gid+' .tb').forEach((b,i)=>b.classList.toggle('on',i===idx));}
 function ztg(gid,idx){document.querySelectorAll('#'+gid+' .tb').forEach((b,i)=>b.classList.toggle('on',i===idx));}
 function fSetPred(v){fst.pred=v;ftg('ftg-pred',v==='lokal'?0:1);document.getElementById('f-pokoj-wrap').style.display=v==='pokoj'?'':'none';}
-function fSetSklad(v){fst.sklad=v;ftg('ftg-sklad',v==='3'?0:1);fRenderPokoje();}
+function fSetSklad(v){
+  fst.sklad=v;ftg('ftg-sklad',v==='3'?0:1);fRenderPokoje();
+  // auto-suggest monthly rent based on sklad
+  const c2=document.getElementById('f-c2kw');
+  if(c2&&!c2.value){c2.value=v==='2'?3600:4000;}
+  fUpdatePrice();fAutoCalc();
+}
 function fSetKaucja(v){fst.kaucja=v;ftg('ftg-kaucja',v==='jed'?0:1);document.getElementById('f-k-jed').style.display=v==='jed'?'':'none';document.getElementById('f-k-dwie').style.display=v==='dwie'?'':'none';}
 function rSetTyp(v){rst.typ=v;rtg('rtg-typ',v==='posrednik'?0:1);}
 function zSetTyp(v){zst.typ=v;ztg('ztg-typ',v==='posrednik'?0:1);}
- 
+
 // ─── QTY ─────────────────────────────────────────────────────────────────────
 function chQ(id,d){const el=document.getElementById(id);if(!el)return;let val=parseInt(el.textContent)||0;el.textContent=Math.max(0,val+d);}
 function gq(id){const el=document.getElementById(id);return el?parseInt(el.textContent)||0:0;}
- 
+
 // ─── POKOJE PROTOKÓŁ (fiz) ───────────────────────────────────────────────────
 function fRenderPokoje(){
   const n=parseInt(fst.sklad);
@@ -684,7 +937,7 @@ function fRenderPokoje(){
 }
 function fSetBed(pid,type,btn){fBedTypes[pid]=type;document.querySelectorAll('#'+pid+'-bt .bed-opt').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');}
 function fBedText(pid){const t=fBedTypes[pid]||'tapczan2';return t==='tapczan1'?'Tapczan (1 szt.) – stan bardzo dobry':t==='tapczan3'?'Tapczan (3 szt.) – stan bardzo dobry':t==='lozko'?'Łóżko dwuosobowe (1 szt.) – stan bardzo dobry':'Tapczan (2 szt.) – stan bardzo dobry';}
- 
+
 // ─── FIZ PEOPLE ──────────────────────────────────────────────────────────────
 function fAddP(type){
   const id=Date.now()+Math.floor(Math.random()*9999);
@@ -708,13 +961,9 @@ function fRenderPeople(){
       c.appendChild(div);
     });
   });
-  const total=1+fDorosli.length;
-  const pm={1:3000,2:4000,3:4500,4:5000,5:5500,6:6000};
-  const hint=document.getElementById('f-price-hint');
-  document.getElementById('f-price-hint-txt').textContent=`Łącznie ${total} dorosł${total===1?'a':'ych'} → sugerowany czynsz: ${(pm[Math.min(total,6)]||6000).toLocaleString('pl')} PLN/mies.`;
-  hint.style.display='flex';
+  fUpdatePrice();
 }
- 
+
 // ─── SŁOWNIE ─────────────────────────────────────────────────────────────────
 function n2w(n){
   if(!n||isNaN(n))return'';n=parseInt(n);
@@ -731,13 +980,13 @@ function n2w(n){
   return r+' '+sf+' 00/100';
 }
 function upSl(inp,out){const el=document.getElementById(out);if(el)el.value=n2w(document.getElementById(inp).value);}
- 
+
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
 function v(id){const el=document.getElementById(id);return el?el.value.trim():'';}
 function sv(id){const el=document.getElementById(id);return el?el.value:'';}
 function fd(d){if(!d)return'…';const[y,m,dy]=d.split('-');return`${dy}.${m}.${y} r.`;}
 function mn(d){if(!d)return'…';const ms=['stycznia','lutego','marca','kwietnia','maja','czerwca','lipca','sierpnia','września','października','listopada','grudnia'];const[y,m]=d.split('-');return ms[parseInt(m)-1]+' '+y+' r.';}
- 
+
 // ─── ZAMÓWIENIE HTML (shared) ────────────────────────────────────────────────
 // ─── BUILD POKOJE FOR ZAMOWIENIE PROTOCOL ────────────────────────────────────
 function zamBedTypes(prefix,pid){return window['zamBed_'+prefix+pid]||'tapczan2';}
@@ -783,7 +1032,7 @@ function setZamBed(prefix,pid,type,btn){
   document.querySelectorAll('#'+prefix+pid+'-bt .bed-opt').forEach(b=>b.classList.remove('sel'));
   btn.classList.add('sel');
 }
- 
+
 function buildZamHTML(prefix, dataRamowa, sigName, firmaPelna, firmaCity, firmaAdres, firmaNIP, firmaREGON, firmaKRS, firmaRepr, firmaEmail, signerFull){
   const zamNr=v(prefix+'zamNr');
   const zamDom=v(prefix+'zamDom');
@@ -798,7 +1047,7 @@ function buildZamHTML(prefix, dataRamowa, sigName, firmaPelna, firmaCity, firmaA
   const zamInne=v(prefix+'zamInne')||'Brak';
   const m1od=v(prefix+'zamM1od'),m1do=v(prefix+'zamM1do'),m1kw=v(prefix+'zamM1kw');
   const hasM1=m1od&&m1do&&m1kw;
- 
+
   // Protocol data
   const protData=fd(v(prefix+'protData'));
   const protKlucze=v(prefix+'protKlucze')||'…';
@@ -814,9 +1063,9 @@ function buildZamHTML(prefix, dataRamowa, sigName, firmaPelna, firmaCity, firmaA
   }
   const kuchMeble=['Szafki zabudowa stała – nowe',gq(prefix+'ks')?`stół (${gq(prefix+'ks')} szt.) – stan bardzo dobry`:'',gq(prefix+'kkr')?`krzesło (${gq(prefix+'kkr')} szt.) – stan bardzo dobry`:''].filter(Boolean).join(', ');
   const kuchUrz=['Kuchenka z piekarnikiem (1 szt.) – nowa',gq(prefix+'kcz')?`czajnik (${gq(prefix+'kcz')} szt.) – stan bardzo dobry`:'',gq(prefix+'klo')?`lodówka (${gq(prefix+'klo')} szt.) – stan bardzo dobry`:'',gq(prefix+'kmi')?`kuchenka mikrofalowa (${gq(prefix+'kmi')} szt.) – stan bardzo dobry`:''].filter(Boolean).join(', ');
- 
+
   const wypowiedzenieTxt=`Każda ze Stron jest uprawniona do wypowiedzenia Zamówienia z zachowaniem miesięcznego okresu wypowiedzenia. Bieg wypowiedzenia rozpoczyna się w dniu doręczenia drugiej Stronie oświadczenia o wypowiedzeniu.<br><br>Złożenie wypowiedzenia może nastąpić zarówno w formie pisemnej, jak i za pośrednictwem poczty elektronicznej na wyłącznie następujące adresy e-mail: <strong>home4people.info@gmail.com</strong> (Wynajmujący) i <strong>${firmaEmail}</strong> (Najemca). Wypowiedzenie dokonane w formie elektronicznej uważa się za skutecznie doręczone od dnia następującego po dniu przesłania wiadomości e-mail, chyba że odbiorca oświadczenia potwierdzi jego otrzymanie wcześniej.`;
- 
+
   return `<div class="contract-preview">
 <h2>Zamówienie nr ${zamNr}</h2>
 <p class="sub">do umowy ramowej najmu zawartej dnia ${fd(dataRamowa)} w Łodzi</p>
@@ -872,7 +1121,7 @@ ${v(prefix+'protUwagi')?`<p class="sh">UWAGI OGÓLNE</p><p>${v(prefix+'protUwagi
 </tr></table>
 </div>`;
 }
- 
+
 // ─── FIZ GENERATE ────────────────────────────────────────────────────────────
 function fGenerate(){
   const isPokoj=fst.pred==='pokoj';
@@ -883,8 +1132,8 @@ function fGenerate(){
   const najAdr=`Nadarzyn, ul. Turystyczna ${dom}/${mNr}, adres e-mail: ${najEmail}, tel. ${v('f-nTel')}`;
   const sigName=fst.signer==='Prezesem Arnold Hertfelder'?'Arnold Hertfelder':'Olena Dziubenko';
   let kaucjaTxt='';
-  if(fst.kaucja==='jed'){kaucjaTxt=`Najemca zapłaci Wynajmującemu kaucję w wysokości ${v('f-k1kw')} PLN (słownie: ${v('f-k1sl')}) do dnia ${fd(v('f-k1dt'))} na rachunek bankowy o nr 61 1090 1304 0000 0001 6041 2841.`;}
-  else{kaucjaTxt=`Najemca zapłaci Wynajmującemu kaucję w dwóch ratach:<br>– I rata: ${v('f-k2akw')} PLN (${v('f-k2asl')}) do dnia ${fd(v('f-k2adt'))};<br>– II rata: ${v('f-k2bkw')} PLN (${v('f-k2bsl')}) do dnia ${fd(v('f-k2bdt'))}<br>na rachunek bankowy o nr 61 1090 1304 0000 0001 6041 2841.`;}
+  if(fst.kaucja==='jed'){kaucjaTxt=`Najemca zapłaci Wynajmującemu kaucję w wysokości ${v('f-k1kw')} PLN (słownie: ${v('f-k1sl')}) do dnia ${fd(v('f-k1dt'))} na rachunek bankowy o nr 49 1140 1108 0000 7107 5200 1001.`;}
+  else{kaucjaTxt=`Najemca zapłaci Wynajmującemu kaucję w dwóch ratach:<br>– I rata: ${v('f-k2akw')} PLN (${v('f-k2asl')}) do dnia ${fd(v('f-k2adt'))};<br>– II rata: ${v('f-k2bkw')} PLN (${v('f-k2bsl')}) do dnia ${fd(v('f-k2bdt'))}<br>na rachunek bankowy o nr 49 1140 1108 0000 7107 5200 1001.`;}
   let wspolArr=[];
   fDorosli.forEach(id=>{wspolArr.push(`${document.getElementById('fpn'+id)?.value||'…'}, PESEL: ${document.getElementById('fpi'+id)?.value||'…'}`);});
   fDzieci.forEach(id=>{wspolArr.push(`${document.getElementById('fpn'+id)?.value||'…'} (dziecko, ur./PESEL: ${document.getElementById('fpi'+id)?.value||'…'})`);});
@@ -903,7 +1152,7 @@ function fGenerate(){
   }
   const kuchMeble=['Szafki zabudowa stała – nowe',gq('f-ks')?`stół (${gq('f-ks')} szt.) – stan bardzo dobry`:'',gq('f-kkr')?`krzesło (${gq('f-kkr')} szt.) – stan bardzo dobry`:''].filter(Boolean).join(', ');
   const kuchUrz=['Kuchenka z piekarnikiem (1 szt.) – nowa',gq('f-kcz')?`czajnik (${gq('f-kcz')} szt.) – stan bardzo dobry`:'',gq('f-klo')?`lodówka (${gq('f-klo')} szt.) – stan bardzo dobry`:'',gq('f-kmi')?`kuchenka mikrofalowa (${gq('f-kmi')} szt.) – stan bardzo dobry`:''].filter(Boolean).join(', ');
- 
+
   const html=`<div class="contract-preview">
 <h2>Umowa najmu</h2><p class="sub">zawarta dnia ${fd(dataZaw)} w Łodzi, zwana dalej: „<strong>Umową</strong>"</p>
 <p>pomiędzy:</p>
@@ -916,7 +1165,15 @@ function fGenerate(){
 <p class="sh">§ 2. [Przedmiot Umowy]</p>
 <ol><li>${predTxt}</li>${isPokoj?`<li>Najemca jest uprawniony do wspólnego korzystania z pomieszczeń: ${v('f-wspolne')||'…'}.</li>`:'<li>Najemca oświadcza, że Lokal będzie wykorzystywany wyłącznie w celach mieszkaniowych.</li>'}<li>Każdorazowo wydanie Przedmiotu Najmu zostanie potwierdzone protokołem zdawczo-odbiorczym.</li></ol>
 <p class="sh">§ 3. [Czynsz]</p>
-<ol><li>Najemca zapłaci Wynajmującemu czynsz w okresie ${fd(v('f-c1od'))} – ${fd(v('f-c1do'))} w wysokości: ${c1kwFmt}.</li><li>Najemca będzie płacił Wynajmującemu miesięczny czynsz od ${mn(v('f-c2od'))} w wysokości ${c2kwFmt}.</li><li>Czynsz za niepełny miesiąc jest obliczany proporcjonalnie do liczby dni zakwaterowania.</li><li>Czynsz płatny jest z góry, w terminie 14 dni od wysłania faktury na e-mail: ${eF}. W przypadku pierwszego miesiąca — w terminie 7 dni od zawarcia Umowy.</li><li>Wysokość czynszu zawiera opłaty eksploatacyjne w wysokości 200 zł/os. W sytuacji przekroczenia limitu Wynajmujący ma prawo przenieść nadwyżkę na Najemcę.</li><li>Za dzień dokonania płatności uznaje się dzień uznania rachunku bankowego Wynajmującego.</li></ol>
+<ol><li>Najemca zapłaci Wynajmującemu czynsz w okresie ${fd(v('f-c1od'))} – ${fd(v('f-c1do'))} w wysokości: ${c1kwFmt}${(()=>{
+  const od=v('f-c1od'),doD=v('f-c1do'),mies=parseFloat(v('f-c2kw'))||0;
+  if(od&&doD&&mies){
+    const d1=new Date(od),d2=new Date(doD);
+    const days=Math.round((d2-d1)/(1000*60*60*24))+1;
+    const dim=new Date(d1.getFullYear(),d1.getMonth()+1,0).getDate();
+    return ` (${days} dni × ${mies.toLocaleString('pl')} zł ÷ ${dim} dni = ${Math.round(mies/dim*days).toLocaleString('pl')} zł)`;
+  }return '';
+})()}.</li><li>Najemca będzie płacił Wynajmującemu miesięczny czynsz od ${mn(v('f-c2od'))} w wysokości ${c2kwFmt}.</li><li>Czynsz za niepełny miesiąc jest obliczany proporcjonalnie do liczby dni zakwaterowania.</li><li>Czynsz płatny jest z góry, w terminie 14 dni od wysłania faktury na e-mail: ${eF}. W przypadku pierwszego miesiąca — w terminie 7 dni od zawarcia Umowy.</li><li>Wysokość czynszu zawiera opłaty eksploatacyjne w wysokości 200 zł/os. W sytuacji przekroczenia limitu Wynajmujący ma prawo przenieść nadwyżkę na Najemcę.</li><li>Za dzień dokonania płatności uznaje się dzień uznania rachunku bankowego Wynajmującego.</li></ol>
 <p class="sh">§ 4. [Obowiązki Wynajmującego]</p>
 <ol><li>Wynajmujący zobowiązuje się do: umożliwienia niezakłóconego korzystania z Przedmiotu Najmu; niezwłocznego informowania o okolicznościach wpływających na prawo najmu; wykonywania napraw obciążających Wynajmującego.</li></ol>
 <p class="sh">§ 5. [Obowiązki Najemcy]</p>
@@ -924,7 +1181,7 @@ function fGenerate(){
 <p class="sh">§ 6. [Kaucja]</p>
 <ol><li>${kaucjaTxt}</li><li>Kaucja jest pobierana jako zabezpieczenie roszczeń Wynajmującego.</li><li>Kaucja nie podlega waloryzacji ani oprocentowaniu.</li><li>W przypadku wykorzystania kaucji Najemca uzupełni ją w terminie 7 dni od wezwania.</li><li>Kaucja podlega zwrotowi w terminie 14 dni od daty zwrotu Przedmiotu Najmu, gdy Wynajmujący nie ma roszczeń.</li></ol>
 <p class="sh">§ 7. [Podnajem]</p>
-<ol><li>Najemcy nie przysługuje prawo podnajmu bez zgody Wynajmującego.</li><li>Wynajmujący wyraża zgodę na wspólne zamieszkiwanie Najemcy z: ${wspolArr.length?wspolArr.join('; '):'…'}.</li></ol>
+<ol><li>Najemcy nie przysługuje prawo podnajmu bez zgody Wynajmującego.</li><li>Wynajmujący wyraża zgodę na wspólne zamieszkiwanie Najemcy z: ${wspolArr.length?wspolArr.join('; '):'nie dotyczy'}.</li></ol>
 <p class="sh">§ 8. [Czas trwania i rozwiązanie Umowy]</p>
 <ol><li>Umowa zostaje zawarta na czas nieokreślony.</li><li>Strony mogą wypowiedzieć Umowę z zachowaniem miesięcznego okresu wypowiedzenia.</li><li>Wynajmujący może rozwiązać Umowę z zachowaniem 7-dniowego okresu wypowiedzenia w przypadku opóźnienia w zapłacie czynszu powyżej 30 dni lub używania Lokalu niezgodnie z Umową.</li><li>W przypadku rozwiązania Umowy Najemca zwróci Przedmiot Najmu w stanie niepogorszonym.</li><li>Dalsze korzystanie po upływie okresu najmu nie stanowi przedłużenia stosunku najmu (wyłączenie art. 674 k.c.).</li></ol>
 <p class="sh">§ 9. [Odpowiedzialność i kary umowne]</p>
@@ -950,9 +1207,14 @@ ${v('f-protUwagi')?`<p class="sh">UWAGI OGÓLNE</p><p>${v('f-protUwagi')}</p>`:'
 <p style="margin-top:16px;">Strony protokół sporządziły po szczegółowych oględzinach lokalu.</p>
 <table class="sig-table"><tr><td><div class="sig-line">___________________________<br>Wynajmujący</div></td><td><div class="sig-line">___________________________<br>Najemca</div></td></tr></table>
 </div>`;
-  showPreview(html);
+  const fMeta={
+    title:(v('f-nImie')||'Najemca')+' — Turystyczna '+(v('f-nrDomu')||'')+'/'+(v('f-nrMiesz')||''),
+    najemca:v('f-nImie'), lokal:'Turystyczna '+(v('f-nrDomu')||'')+'/'+(v('f-nrMiesz')||''),
+    type:'fiz', email:v('f-nEmail')||v('f-emailFakt')
+  };
+  showPreview(html, fMeta);
 }
- 
+
 // ─── RAMOWA GENERATE ─────────────────────────────────────────────────────────
 function rGenerate(){
   const dataZaw=v('r-dataZaw');
@@ -963,12 +1225,17 @@ function rGenerate(){
   const firmaKap=v('r-firmaKap'),firmaRepr=v('r-firmaRepr'),firmaEmail=v('r-firmaEmail'),firmaKores=v('r-firmaKores');
   const stawka=rst.typ==='posrednik'?'900,00':'1.000,00';
   const isPosrednik=rst.typ==='posrednik';
- 
+
   const umowaTxt=buildUmowaRamowa(dataZaw,sigName,firmaPelna,firmaCity,firmaAdres,firmaSad,firmaKRS,firmaNIP,firmaREGON,firmaKap,firmaRepr,firmaEmail,firmaKores,stawka,isPosrednik,rst.signer);
   const zamTxt=buildZamHTML('r-',dataZaw,sigName,firmaPelna,firmaCity,firmaAdres,firmaNIP,firmaREGON,firmaKRS,firmaRepr,firmaEmail,rst.signer);
-  showPreview(umowaTxt+'<div style="height:40px;"></div>'+zamTxt);
+  const rMeta={
+    title:(v('r-firma')||'Firma')+' — Umowa ramowa',
+    najemca:v('r-firma'), lokal:'Turystyczna (wiele lokali)',
+    type:'firma', email:v('r-firmaEmail')
+  };
+  showPreview(umowaTxt+'<div style="height:40px;"></div>'+zamTxt, rMeta);
 }
- 
+
 function buildUmowaRamowa(dataZaw,sigName,firmaPelna,firmaCity,firmaAdres,firmaSad,firmaKRS,firmaNIP,firmaREGON,firmaKap,firmaRepr,firmaEmail,firmaKores,stawka,isPosrednik,signerFull){
   return `<div class="contract-preview">
 <h2>Umowa ramowa najmu</h2><p class="sub">zawarta dnia ${fd(dataZaw)} w Łodzi, zwana dalej: „<strong>Umową</strong>"</p>
@@ -1004,7 +1271,7 @@ ${isPosrednik?`<p class="sh">§ 9. [Zasady konkurencji]</p>
 <table class="sig-table"><tr><td><div class="sig-line">___________________________<br>za Wynajmującego<br><small>${sigName}</small></div></td><td><div class="sig-line">___________________________<br>za Najemcę<br><small>${firmaRepr}</small></div></td></tr></table>
 </div>`;
 }
- 
+
 // ─── TYLKO ZAMÓWIENIE GENERATE ────────────────────────────────────────────────
 function zGenerate(){
   const sigName=zst.signer.includes('Arnold')?'Arnold Hertfelder':'Olena Dziubenko';
@@ -1015,15 +1282,17 @@ function zGenerate(){
   const firmaEmail=v('z-firmaEmail');
   const firmaNIP=v('z-firmaNIP'),firmaREGON=v('z-firmaREGON'),firmaKRS=v('z-firmaKRS');
   const html=buildZamHTML('z-',dataRamowa,sigName,firmaPelna,firmaAdresCity,'',firmaNIP,firmaREGON,firmaKRS,firmaRepr,firmaEmail,zst.signer);
-  showPreview(html);
+  const zMeta={title:(v('z-firma')||'Firma')+' — Zamówienie',najemca:v('z-firma'),lokal:v('z-firmaAdres'),type:'zam'};
+  showPreview(html, zMeta);
 }
- 
+
 // ─── PREVIEW / NEW ────────────────────────────────────────────────────────────
-function showPreview(html){
+function showPreview(html, meta){
   document.getElementById('out').innerHTML=html;
   document.getElementById('form-area').style.display='none';
   document.getElementById('preview-area').style.display='block';
   document.getElementById('main-tabs').style.display='none';
+  window._docMeta=meta||{};
   window.scrollTo({top:0,behavior:'smooth'});
 }
 function startNew(){
@@ -1032,10 +1301,10 @@ function startNew(){
   document.getElementById('main-tabs').style.display='';
   window.scrollTo({top:0,behavior:'smooth'});
 }
- 
+
 // ─── CLIENT DATABASE ─────────────────────────────────────────────────────────
 const DB_KEY = 'h4p_clients_v1';
- 
+
 const INITIAL_CLIENTS = [
   // --- OSOBY FIZYCZNE ---
   {type:'fiz', name:'Asinskaya Antanina', pesel:'', dowod:'', adres:'', tel:'', email:'tonya080975@gmail.com'},
@@ -1084,7 +1353,7 @@ const INITIAL_CLIENTS = [
   {type:'firma', nazwa:'URBAN GROUP POLAND Sp. z o.o.', pelna:'URBAN GROUP POLAND SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ', city:'Łódź (91-408)', adres:'ul. Pomorska 40', sad:'', krs:'0000819527', nip:'7252295725', regon:'385093842', kap:'', repr:'Andrzej', email:'ksiegowosc@urbangroup.pl', kores:'ul. Pomorska 40, 91-408 Łódź'},
   {type:'firma', nazwa:'WE GO JOB Sp. z o.o.', pelna:'WE GO JOB SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ', city:'Piotrków Trybunalski (97-300)', adres:'ul. Gen. Stefana Grota-Roweckiego 7/C,D', sad:'', krs:'0001037935', nip:'7712925488', regon:'52538203800000', kap:'', repr:'Norbert Latocha – Prezes Zarządu', email:'', kores:'ul. Gen. Stefana Grota-Roweckiego 7/C,D, 97-300 Piotrków Trybunalski'},
 ];
- 
+
 function loadClients(){
   try{
     const saved=localStorage.getItem(DB_KEY);
@@ -1096,7 +1365,7 @@ function saveClients(clients){
   try{localStorage.setItem(DB_KEY,JSON.stringify(clients));}catch(e){}
 }
 let clients=loadClients();
- 
+
 // ─── CLIENT SELECTOR WIDGET ───────────────────────────────────────────────────
 // mode: 'fiz' | 'firma'
 function buildClientSelector(containerId, mode, fillFn){
@@ -1124,7 +1393,7 @@ function buildClientSelector(containerId, mode, fillFn){
     </div>`;
   wrap._fillFn=fillFn;
 }
- 
+
 function onClientSelect(containerId, mode){
   const sel=document.getElementById(containerId+'-sel');
   const chosen=sel.value;
@@ -1133,7 +1402,7 @@ function onClientSelect(containerId, mode){
   if(!c||!document.getElementById(containerId)._fillFn)return;
   document.getElementById(containerId)._fillFn(c);
 }
- 
+
 function openAddClient(containerId, mode){
   const panel=document.getElementById(containerId+'-add-panel');
   panel.style.display='block';
@@ -1166,9 +1435,9 @@ function openAddClient(containerId, mode){
       </div>`;
   }
 }
- 
+
 function nv(id){const el=document.getElementById(id);return el?el.value.trim():'';}
- 
+
 function saveNewClient(containerId, mode){
   let newC;
   if(mode==='fiz'){
@@ -1190,7 +1459,7 @@ function saveNewClient(containerId, mode){
   document.getElementById(containerId+'-add-panel').style.display='none';
   alert('✅ Zapisano w bazie!');
 }
- 
+
 // ─── INIT ALL SELECTORS ──────────────────────────────────────────────────────
 function initAllSelectors(){
   // Fizyczna - step 2
@@ -1214,9 +1483,535 @@ function initAllSelectors(){
     setVal('z-firmaRepr',c.repr);setVal('z-firmaEmail',c.email);
   });
 }
- 
+
 function setVal(id, val){const el=document.getElementById(id);if(el&&val!==undefined)el.value=val;}
- 
+
+// ─── AUTO CALC CZYNSZ §3.1 ───────────────────────────────────────────────────
+function fAutoCalc(){
+  const od=document.getElementById('f-c1od')?.value;
+  const doD=document.getElementById('f-c1do')?.value;
+  const mies=parseFloat(document.getElementById('f-c2kw')?.value)||0;
+  const info=document.getElementById('f-calc-info');
+  if(!od||!doD||!mies){if(info)info.style.display='none';return;}
+  const d1=new Date(od),d2=new Date(doD);
+  if(d2<=d1){if(info)info.style.display='none';return;}
+  // days inclusive
+  const days=Math.round((d2-d1)/(1000*60*60*24))+1;
+  // days in that month
+  const daysInMonth=new Date(d1.getFullYear(),d1.getMonth()+1,0).getDate();
+  const kwota=Math.round((mies/daysInMonth)*days);
+  const kwotaEl=document.getElementById('f-c1kw');
+  if(kwotaEl){kwotaEl.value=kwota;upSl('f-c1kw','f-c1sl');}
+  if(info){
+    info.style.display='block';
+    info.textContent=`${days} dni × (${mies.toLocaleString('pl')} zł ÷ ${daysInMonth} dni w miesiącu) = ${kwota.toLocaleString('pl')} zł`;
+  }
+}
+
+// ─── PRICE SUGGESTION WITH SKLAD ─────────────────────────────────────────────
+function fUpdatePrice(){
+  const total=1+fDorosli.length;
+  const pm={1:3000,2:4000,3:4500,4:5000,5:5500,6:6000};
+  const sklad=fst.sklad;
+  const hint=document.getElementById('f-price-hint');
+  let msg='';
+  if(sklad==='2'){
+    // 2 rooms flat rate
+    msg=`Lokal 2-pokojowy → czynsz: 3 600 zł/mies. (niezależnie od liczby osób)`;
+  } else {
+    const price=pm[Math.min(total,6)]||6000;
+    msg=`${total} dorosł${total===1?'a':'ych'} osob${total===1?'a':'y'} · lokal 3-pokojowy → sugerowany czynsz: ${price.toLocaleString('pl')} PLN/mies.`;
+  }
+  document.getElementById('f-price-hint-txt').textContent=msg;
+  hint.style.display='flex';
+}
+
+// ─── SAVE AS WORD ─────────────────────────────────────────────────────────────
+function saveWord(){
+  const content=document.getElementById('out').innerHTML;
+  const html=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head><meta charset="UTF-8">
+<style>
+body{font-family:Arial,sans-serif;font-size:11pt;line-height:1.6;color:#000;}
+h2{font-size:14pt;text-align:center;text-transform:uppercase;margin:12pt 0 4pt;}
+p{margin:4pt 0;}
+ol{margin:4pt 0;padding-left:20pt;}
+ol li{margin:3pt 0;}
+table{width:100%;border-collapse:collapse;}
+td{padding:6pt 8pt;border:1pt solid #ccc;font-size:10pt;}
+.sig-line{border-top:1pt solid #000;margin-top:36pt;padding-top:6pt;text-align:center;}
+</style>
+</head><body>${content}</body></html>`;
+  const blob=new Blob(['﻿'+html],{type:'application/msword'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;
+  const d=new Date();
+  a.download=`H4P_Umowa_${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}.doc`;
+  a.click();URL.revokeObjectURL(url);
+}
+
+// ─── SAVE AS PDF ──────────────────────────────────────────────────────────────
+function savePDF(){
+  window.print();
+}
+
+// ─── ARCHIVE ─────────────────────────────────────────────────────────────────
+const ARCH_KEY='h4p_archive_v1';
+let archCurrentFile=null; // {name, dataUrl, type}
+
+const INITIAL_ARCHIVE=[{"id": 1, "title": "protokół 15_3", "type": "protokol", "najemca": "", "lokal": "Turystyczna 15/3", "date": "2026-01-28", "folder": "PDF/protokół zdawczo-odbiorczy", "filename": "protokół 15_3.pdf", "source": "import", "savedAt": "2026-01-28T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 2, "title": "Protokół 19 m.7", "type": "protokol", "najemca": "19 m.7", "lokal": "Turystyczna 19", "date": "2026-02-25", "folder": "Osoby fizyczne /Turystyczna 19/Protokoły ", "filename": "Protokół 19 m.7.docx", "source": "import", "savedAt": "2026-02-25T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 3, "title": "protokół zdawczo-odbiorczy KPB", "type": "protokol", "najemca": "", "lokal": "", "date": "2025-12-10", "folder": "PDF/protokół zdawczo-odbiorczy", "filename": "protokół zdawczo-odbiorczy KPB.pdf", "source": "import", "savedAt": "2025-12-10T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 4, "title": "protokół zdawczo-odbiorczy 21 m.9", "type": "protokol", "najemca": "21 m.9", "lokal": "", "date": "2025-10-24", "folder": "PDF/protokół zdawczo-odbiorczy", "filename": "protokół zdawczo-odbiorczy 21 m.9.pdf", "source": "import", "savedAt": "2025-10-24T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 5, "title": "Protokół Spectrum Group 11_15", "type": "protokol", "najemca": "Spectrum Group", "lokal": "Turystyczna 11/15", "date": "2026-01-26", "folder": "PDF/protokół zdawczo-odbiorczy", "filename": "Protokół Spectrum Group 11_15.pdf", "source": "import", "savedAt": "2026-01-26T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 6, "title": "protokół 15_6", "type": "protokol", "najemca": "", "lokal": "Turystyczna 15/6", "date": "2026-01-28", "folder": "PDF/protokół zdawczo-odbiorczy", "filename": "protokół 15_6.pdf", "source": "import", "savedAt": "2026-01-28T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 7, "title": "zamówienie Spectrum Group", "type": "zam", "najemca": "Spectrum Group", "lokal": "", "date": "2026-01-26", "folder": "PDF/Zamówienia ", "filename": "zamówienie Spectrum Group.pdf", "source": "import", "savedAt": "2026-01-26T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 8, "title": "19 m.5", "type": "protokol", "najemca": "19 m.5", "lokal": "", "date": "2025-12-11", "folder": "PDF/protokół zdawczo-odbiorczy", "filename": "19 m.5.pdf", "source": "import", "savedAt": "2025-12-11T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 9, "title": "Protokół 19 m. 4", "type": "protokol", "najemca": "19 m. 4", "lokal": "", "date": "2025-12-09", "folder": "PDF/protokół zdawczo-odbiorczy", "filename": "Protokół 19 m. 4.pdf", "source": "import", "savedAt": "2025-12-09T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 10, "title": "protokół 21 m.6", "type": "protokol", "najemca": "21 m.6", "lokal": "", "date": "2025-11-04", "folder": "PDF/protokół zdawczo-odbiorczy", "filename": "protokół 21 m.6.pdf", "source": "import", "savedAt": "2025-11-04T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 11, "title": "protokół Job Contract m.12 19", "type": "protokol", "najemca": "Job Contract m.12 19", "lokal": "", "date": "2026-01-16", "folder": "PDF/protokół zdawczo-odbiorczy", "filename": "protokół Job Contract m.12 19.pdf", "source": "import", "savedAt": "2026-01-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 12, "title": "Regulamin_zakwaterowania_pracowników[1]", "type": "draft", "najemca": "Regulamin_zakwaterowania_pracowników[1]", "lokal": "", "date": "2025-10-28", "folder": "Drafty puste", "filename": "Regulamin_zakwaterowania_pracowników[1].docx", "source": "import", "savedAt": "2025-10-28T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 13, "title": "Aneks do umowy ramowej JOB CONTRACT", "type": "aneks", "najemca": "do umowy JOB CONTRACT", "lokal": "", "date": "2026-02-20", "folder": "Agencje/Aneksy ", "filename": "Aneks do umowy ramowej JOB CONTRACT.docx", "source": "import", "savedAt": "2026-02-20T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 14, "title": "Aneks do umowy ramowej Folga Out", "type": "aneks", "najemca": "do umowy Folga Out", "lokal": "", "date": "2026-02-25", "folder": "Agencje/Aneksy ", "filename": "Aneks do umowy ramowej Folga Out.docx", "source": "import", "savedAt": "2026-02-25T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 15, "title": "Protokół Nazar 19_10", "type": "protokol", "najemca": "Nazar", "lokal": "Turystyczna 19/10", "date": "2026-03-26", "folder": "Osoby fizyczne /Turystyczna 19/Protokoły ", "filename": "Protokół Nazar 19_10.docx", "source": "import", "savedAt": "2026-03-26T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 16, "title": "Zamówienie POLONIA 21_11", "type": "zam", "najemca": "POLONIA", "lokal": "Turystyczna 21/11", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "Zamówienie POLONIA 21_11.pdf", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 17, "title": "Aneks KBP Budownictwo 19_3", "type": "aneks", "najemca": "KBP Budownictwo", "lokal": "Turystyczna 19/3", "date": "2026-03-31", "folder": "Agencje/Aneksy ", "filename": "Aneks KBP Budownictwo 19_3.docx", "source": "import", "savedAt": "2026-03-31T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 18, "title": "Aneks We Go Job do zamów. nr 02.10.2025 (21_7)", "type": "aneks", "najemca": "We Go Job do zamów. nr 02.10.2025 ()", "lokal": "Turystyczna 21/7", "date": "2026-03-27", "folder": "Agencje/Aneksy ", "filename": "Aneks We Go Job do zamów. nr 02.10.2025 (21_7).docx", "source": "import", "savedAt": "2026-03-27T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 19, "title": "Zamówienie Synergie 19_1 _ 17_4", "type": "zam", "najemca": "Synergie", "lokal": "Turystyczna 19/1", "date": "2026-02-26", "folder": "Agencje/Zamówienia", "filename": "Zamówienie Synergie 19_1 _ 17_4.docx", "source": "import", "savedAt": "2026-02-26T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 20, "title": "251210 aneks TOP HIRE Partners nr 2", "type": "aneks", "najemca": "251210 TOP HIRE Partners nr 2", "lokal": "", "date": "2026-02-25", "folder": "Agencje/Aneksy ", "filename": "251210 aneks TOP HIRE Partners nr 2.docx", "source": "import", "savedAt": "2026-02-25T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 21, "title": "Zamówienie WE GO JOB 21_9", "type": "zam", "najemca": "WE GO JOB", "lokal": "Turystyczna 21/9", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "Zamówienie WE GO JOB 21_9.docx", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 22, "title": "Umowa Diakiv 21_6", "type": "fiz", "najemca": "Diakiv", "lokal": "Turystyczna 21/6", "date": "2026-01-30", "folder": "PDF/Umowa ", "filename": "Umowa Diakiv 21_6.pdf", "source": "import", "savedAt": "2026-01-30T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 23, "title": "pusty draft os. fiz", "type": "draft", "najemca": "os. fiz", "lokal": "", "date": "2025-12-11", "folder": "PDF", "filename": "pusty draft os. fiz.pdf", "source": "import", "savedAt": "2025-12-11T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 24, "title": "Umowa Oleg_Yaroslav 15_1", "type": "fiz", "najemca": "Oleg_Yaroslav", "lokal": "Turystyczna 15/1", "date": "2026-01-30", "folder": "PDF/Umowa ", "filename": "Umowa Oleg_Yaroslav 15_1.pdf", "source": "import", "savedAt": "2026-01-30T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 25, "title": "Umowa Iryna_Tetiana 15_1", "type": "zam", "najemca": "Iryna_Tetiana", "lokal": "Turystyczna 15/1", "date": "2026-01-30", "folder": "PDF/Zamówienia ", "filename": "Umowa Iryna_Tetiana 15_1.pdf", "source": "import", "savedAt": "2026-01-30T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 26, "title": "Umowa Volodymyr_Natalia 15_1", "type": "fiz", "najemca": "Volodymyr_Natalia", "lokal": "Turystyczna 15/1", "date": "2026-01-30", "folder": "PDF/Umowa ", "filename": "Umowa Volodymyr_Natalia 15_1.pdf", "source": "import", "savedAt": "2026-01-30T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 27, "title": "Umowa Yuliia 21_6", "type": "fiz", "najemca": "Yuliia", "lokal": "Turystyczna 21/6", "date": "2026-01-29", "folder": "PDF/Umowa ", "filename": "Umowa Yuliia 21_6.pdf", "source": "import", "savedAt": "2026-01-29T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 28, "title": "Umowa 17_8", "type": "fiz", "najemca": "", "lokal": "Turystyczna 17/8", "date": "2026-01-29", "folder": "PDF/Umowa ", "filename": "Umowa 17_8.pdf", "source": "import", "savedAt": "2026-01-29T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 29, "title": "draft umowy ramowej pusty (1)", "type": "firma", "najemca": "umowy (1)", "lokal": "", "date": "2026-03-27", "folder": "PDF", "filename": "draft umowy ramowej pusty (1).pdf", "source": "import", "savedAt": "2026-03-27T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 30, "title": "Umowa Nazar 19_10", "type": "fiz", "najemca": "Nazar", "lokal": "Turystyczna 19/10", "date": "2026-02-25", "folder": "Osoby fizyczne /Turystyczna 19/Umowy", "filename": "Umowa Nazar 19_10.docx", "source": "import", "savedAt": "2026-02-25T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 31, "title": "draft 19 m.7", "type": "draft", "najemca": "19 m.7", "lokal": "Turystyczna 19", "date": "2026-02-25", "folder": "Osoby fizyczne /Turystyczna 19/Umowy", "filename": "draft 19 m.7.docx", "source": "import", "savedAt": "2026-02-25T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 32, "title": "Umowa 15_3", "type": "fiz", "najemca": "", "lokal": "Turystyczna 15/3", "date": "2026-01-28", "folder": "PDF/Umowa ", "filename": "Umowa 15_3.pdf", "source": "import", "savedAt": "2026-01-28T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 33, "title": "Umowa 15_6", "type": "fiz", "najemca": "", "lokal": "Turystyczna 15/6", "date": "2026-01-28", "folder": "PDF/Umowa ", "filename": "Umowa 15_6.pdf", "source": "import", "savedAt": "2026-01-28T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 34, "title": "Umowa najmu 19 m. 2", "type": "fiz", "najemca": "19 m. 2", "lokal": "", "date": "2025-12-08", "folder": "PDF/Umowa ", "filename": "Umowa najmu 19 m. 2.pdf", "source": "import", "savedAt": "2025-12-08T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 35, "title": "draft umowy ramowej", "type": "firma", "najemca": "umowy", "lokal": "", "date": "2025-12-09", "folder": "PDF", "filename": "draft umowy ramowej.pdf", "source": "import", "savedAt": "2025-12-09T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 36, "title": "draft umowy ramowej pusty", "type": "firma", "najemca": "umowy", "lokal": "", "date": "2025-12-11", "folder": "PDF/Umowa ", "filename": "draft umowy ramowej pusty.pdf", "source": "import", "savedAt": "2025-12-11T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 37, "title": "KPB", "type": "fiz", "najemca": "", "lokal": "", "date": "2025-12-10", "folder": "PDF/Umowa ", "filename": "KPB.pdf", "source": "import", "savedAt": "2025-12-10T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 38, "title": "Umowa ramowa najmu HP4 Draft TOP HIRE PARTNERS", "type": "firma", "najemca": "TOP HIRE PARTNERS", "lokal": "", "date": "2025-11-04", "folder": "PDF/Umowa ", "filename": "Umowa ramowa najmu HP4 Draft TOP HIRE PARTNERS.pdf", "source": "import", "savedAt": "2025-11-04T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 39, "title": "Zamówienie Emolan Draft 15-7", "type": "zam", "najemca": "Emolan 15-7", "lokal": "", "date": "2026-03-05", "folder": "Agencje/Zamówienia", "filename": "Zamówienie Emolan Draft 15-7.docx", "source": "import", "savedAt": "2026-03-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 40, "title": "ZAMÓWIENIE, umowa i protokół ", "type": "protokol", "najemca": ", i", "lokal": "", "date": "2025-10-14", "folder": "PDF/Umowa ", "filename": "ZAMÓWIENIE, umowa i protokół .pdf", "source": "import", "savedAt": "2025-10-14T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 41, "title": "Umowa Ramowa Spectrum Group", "type": "firma", "najemca": "Spectrum Group", "lokal": "", "date": "2026-01-26", "folder": "PDF/Umowa ", "filename": "Umowa Ramowa Spectrum Group.pdf", "source": "import", "savedAt": "2026-01-26T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 42, "title": "Folga Out draft", "type": "fiz", "najemca": "Folga Out", "lokal": "", "date": "2025-12-09", "folder": "PDF/Umowa ", "filename": "Folga Out draft.pdf", "source": "import", "savedAt": "2025-12-09T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 43, "title": "Umowa Ramowa Emolan", "type": "firma", "najemca": "Emolan", "lokal": "", "date": "2026-03-05", "folder": "Agencje/Umowy ramowe ", "filename": "Umowa Ramowa Emolan.odt", "source": "import", "savedAt": "2026-03-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 44, "title": "Folga Out", "type": "fiz", "najemca": "Folga Out", "lokal": "", "date": "2025-12-09", "folder": "PDF/Umowa ", "filename": "Folga Out.pdf", "source": "import", "savedAt": "2025-12-09T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 45, "title": "Regulamin porządku domowego", "type": "draft", "najemca": "Regulamin porządku domowego", "lokal": "", "date": "2025-09-09", "folder": "Drafty puste", "filename": "Regulamin porządku domowego.docx", "source": "import", "savedAt": "2025-09-09T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 46, "title": "Umowa Job Contract Sp. z o.o.", "type": "firma", "najemca": "Job Contract Sp. z o.o.", "lokal": "", "date": "2025-11-28", "folder": "Agencje/Umowy ramowe ", "filename": "Umowa Job Contract Sp. z o.o..docx", "source": "import", "savedAt": "2025-11-28T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 47, "title": "Zamówienie Emolan Draft 17-7", "type": "zam", "najemca": "Emolan 17-7", "lokal": "", "date": "2026-03-05", "folder": "Agencje/Zamówienia", "filename": "Zamówienie Emolan Draft 17-7.docx", "source": "import", "savedAt": "2026-03-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 48, "title": "Umowa ramowa HP4 czas określony HAL DACH", "type": "firma", "najemca": "czas określony HAL DACH", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Umowy ramowe ", "filename": "Umowa ramowa HP4 czas określony HAL DACH.docx", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 49, "title": "Umowa ramowa HP4 czas nieokreślony Ralen(1)", "type": "firma", "najemca": "czas nieokreślony Ralen(1)", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Umowy ramowe ", "filename": "Umowa ramowa HP4 czas nieokreślony Ralen(1).docx", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 50, "title": "Umowa ramowa HP4 czas nieokreślony Ralen", "type": "firma", "najemca": "czas nieokreślony Ralen", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Umowy ramowe ", "filename": "Umowa ramowa HP4 czas nieokreślony Ralen.docx", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 51, "title": "1. Umowa ramowa najmu HP4 a POLONIA PROPERTIES", "type": "firma", "najemca": "1. a POLONIA PROPERTIES", "lokal": "", "date": "2026-04-20", "folder": "Agencje/Umowy ramowe ", "filename": "1. Umowa ramowa najmu HP4 a POLONIA PROPERTIES.docx", "source": "import", "savedAt": "2026-04-20T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 52, "title": "2. Załącznik nr.1 do ramowej umowy najmu", "type": "firma", "najemca": "2. Załącznik nr.1 do umowy", "lokal": "", "date": "2025-10-17", "folder": "Drafty puste", "filename": "2. Załącznik nr.1 do ramowej umowy najmu.docx", "source": "import", "savedAt": "2025-10-17T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 53, "title": "251210 aneks nr 1 Beata Wrona", "type": "aneks", "najemca": "251210 nr 1 Beata Wrona", "lokal": "", "date": "2025-12-11", "folder": "Agencje/Aneksy ", "filename": "251210 aneks nr 1 Beata Wrona.docx", "source": "import", "savedAt": "2025-12-11T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 54, "title": "251112 aneks do u. ramowej najmu HP4_klient końcowy (1)", "type": "aneks", "najemca": "251112 do u. HP4_klient końcowy (1)", "lokal": "", "date": "2025-12-30", "folder": "Drafty puste", "filename": "251112 aneks do u. ramowej najmu HP4_klient końcowy (1).docx", "source": "import", "savedAt": "2025-12-30T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 55, "title": "251112 aneks do u. ramowej najmu HP4_pośrednik (1)", "type": "aneks", "najemca": "251112 do u. HP4_pośrednik (1)", "lokal": "", "date": "2025-12-30", "folder": "Drafty puste", "filename": "251112 aneks do u. ramowej najmu HP4_pośrednik (1).docx", "source": "import", "savedAt": "2025-12-30T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 56, "title": "Protokół 21 m.1", "type": "protokol", "najemca": "21 m.1", "lokal": "Turystyczna 21", "date": "2025-10-23", "folder": "Osoby fizyczne /Turystyczna 21/Protokoły", "filename": "Protokół 21 m.1.odt", "source": "import", "savedAt": "2025-10-23T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 57, "title": "protokół Job Contract 15_2 (01.03.2026)", "type": "protokol", "najemca": "Job Contract (01.03.2026)", "lokal": "Turystyczna 15/2", "date": "2026-03-09", "folder": "Agencje/Protokoły ", "filename": "protokół Job Contract 15_2 (01.03.2026).odt", "source": "import", "savedAt": "2026-03-09T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 58, "title": "Rozwiązanie Oleksii 15_3", "type": "rozwiazanie", "najemca": "Oleksii", "lokal": "Turystyczna 15/3", "date": "2026-03-16", "folder": "Osoby fizyczne /Turystyczna 15/Rozwiązania ", "filename": "Rozwiązanie Oleksii 15_3.odt", "source": "import", "savedAt": "2026-03-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 59, "title": "Protokół Oleksii 17_1", "type": "protokol", "najemca": "Oleksii", "lokal": "Turystyczna 17/1", "date": "2026-03-16", "folder": "Osoby fizyczne /Turystyczna 17/Protokoły", "filename": "Protokół Oleksii 17_1.odt", "source": "import", "savedAt": "2026-03-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 60, "title": "protokół buniatov 19_10", "type": "protokol", "najemca": "buniatov", "lokal": "Turystyczna 19/10", "date": "2026-01-23", "folder": "Osoby fizyczne /Turystyczna 19/Protokoły ", "filename": "protokół buniatov 19_10.odt", "source": "import", "savedAt": "2026-01-23T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 61, "title": "Protokół Folga 21_7", "type": "protokol", "najemca": "Folga", "lokal": "Turystyczna 21/7", "date": "2026-03-27", "folder": "Agencje/Protokoły ", "filename": "Protokół Folga 21_7.odt", "source": "import", "savedAt": "2026-03-27T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 62, "title": "251015 Umowa najmu HP4_os. fiz._pokój", "type": "fiz", "najemca": "251015 HP4_os. fiz._pokój", "lokal": "", "date": "2025-10-16", "folder": "Drafty puste", "filename": "251015 Umowa najmu HP4_os. fiz._pokój.docx", "source": "import", "savedAt": "2025-10-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 63, "title": "251210 u. poręczenia dla os. fiz.", "type": "draft", "najemca": "251210 u. poręczenia dla os. fiz.", "lokal": "", "date": "2025-12-11", "folder": "Drafty puste", "filename": "251210 u. poręczenia dla os. fiz..docx", "source": "import", "savedAt": "2025-12-11T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 64, "title": "Protokół JOB CONTRACT 21 m.2", "type": "protokol", "najemca": "JOB CONTRACT 21 m.2", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Protokoły ", "filename": "Protokół JOB CONTRACT 21 m.2.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 65, "title": "protokół TOP HIRE 21 m.6", "type": "protokol", "najemca": "TOP HIRE 21 m.6", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Protokoły ", "filename": "protokół TOP HIRE 21 m.6.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 66, "title": "protokół 21 JOB CONTRACT m.3", "type": "protokol", "najemca": "21 JOB CONTRACT m.3", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Protokoły ", "filename": "protokół 21 JOB CONTRACT m.3.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 67, "title": "protokół JOB CONTRACT 21 m.3", "type": "protokol", "najemca": "JOB CONTRACT 21 m.3", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Protokoły ", "filename": "protokół JOB CONTRACT 21 m.3.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 68, "title": "protokół Job Contract m.12 19", "type": "protokol", "najemca": "Job Contract m.12 19", "lokal": "", "date": "2026-01-16", "folder": "Agencje/Protokoły ", "filename": "protokół Job Contract m.12 19.odt", "source": "import", "savedAt": "2026-01-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 69, "title": "Protokół Folga 15_8", "type": "protokol", "najemca": "Folga", "lokal": "Turystyczna 15/8", "date": "2026-02-05", "folder": "Agencje/Protokoły ", "filename": "Protokół Folga 15_8.odt", "source": "import", "savedAt": "2026-02-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 70, "title": "Protokół Maksym 15_7", "type": "protokol", "najemca": "Maksym", "lokal": "Turystyczna 15/7", "date": "2026-02-05", "folder": "Osoby fizyczne /Turystyczna 15/Protokoły ", "filename": "Protokół Maksym 15_7.odt", "source": "import", "savedAt": "2026-02-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 71, "title": "Protokół KBP Budownictwo 15_3", "type": "protokol", "najemca": "KBP Budownictwo", "lokal": "Turystyczna 15/3", "date": "2026-03-31", "folder": "Agencje/Protokoły ", "filename": "Protokół KBP Budownictwo 15_3.odt", "source": "import", "savedAt": "2026-03-31T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 72, "title": "protokół KPB 19_3", "type": "protokol", "najemca": "", "lokal": "Turystyczna 19/3", "date": "2026-02-16", "folder": "Agencje/Protokoły ", "filename": "protokół KPB 19_3.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 73, "title": "19 m.5", "type": "protokol", "najemca": "19 m.5", "lokal": "Turystyczna 19", "date": "2025-12-11", "folder": "Osoby fizyczne /Turystyczna 19/Protokoły ", "filename": "19 m.5.odt", "source": "import", "savedAt": "2025-12-11T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 74, "title": "Protokół Iryna 17_8", "type": "protokol", "najemca": "Iryna", "lokal": "Turystyczna 17/8", "date": "2026-02-25", "folder": "Osoby fizyczne /Turystyczna 17/Protokoły", "filename": "Protokół Iryna 17_8.odt", "source": "import", "savedAt": "2026-02-25T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 75, "title": "Protokół Dariia 15_4", "type": "protokol", "najemca": "Dariia", "lokal": "Turystyczna 15/4", "date": "2026-02-23", "folder": "Osoby fizyczne /Turystyczna 15/Protokoły ", "filename": "Protokół Dariia 15_4.odt", "source": "import", "savedAt": "2026-02-23T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 76, "title": "Protokół Antanina 15_4", "type": "protokol", "najemca": "Antanina", "lokal": "Turystyczna 15/4", "date": "2026-02-05", "folder": "Osoby fizyczne /Turystyczna 15/Protokoły ", "filename": "Protokół Antanina 15_4.odt", "source": "import", "savedAt": "2026-02-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 77, "title": "Protokół Liubov Nelha 15_4", "type": "protokol", "najemca": "Liubov Nelha", "lokal": "Turystyczna 15/4", "date": "2026-03-10", "folder": "Osoby fizyczne /Turystyczna 15/Protokoły ", "filename": "Protokół Liubov Nelha 15_4.odt", "source": "import", "savedAt": "2026-03-10T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 78, "title": "Protokół odbiorczy Top Hire 15_4", "type": "protokol", "najemca": "Top Hire", "lokal": "Turystyczna 15/4", "date": "2026-03-18", "folder": "Osoby fizyczne /Turystyczna 15/Protokoły ", "filename": "Protokół odbiorczy Top Hire 15_4.odt", "source": "import", "savedAt": "2026-03-18T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 79, "title": "Protokół Top Hire 15_4", "type": "protokol", "najemca": "Top Hire", "lokal": "Turystyczna 15/4", "date": "2026-02-27", "folder": "Agencje/Protokoły ", "filename": "Protokół Top Hire 15_4.odt", "source": "import", "savedAt": "2026-02-27T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 80, "title": "Protokół Vladyslav 21_6", "type": "protokol", "najemca": "Vladyslav", "lokal": "Turystyczna 21/6", "date": "2026-02-16", "folder": "Osoby fizyczne /Turystyczna 21/Protokoły", "filename": "Protokół Vladyslav 21_6.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 81, "title": "zamówienie draft pusty (nowe konto m-bank)", "type": "zam", "najemca": "(nowe konto m-bank)", "lokal": "", "date": "2026-04-15", "folder": "Drafty puste", "filename": "zamówienie draft pusty (nowe konto m-bank).odt", "source": "import", "savedAt": "2026-04-15T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 82, "title": "Protokół Oksana Blonska 19_10", "type": "protokol", "najemca": "Oksana Blonska", "lokal": "Turystyczna 19/10", "date": "2026-04-08", "folder": "Osoby fizyczne /Turystyczna 19/Protokoły ", "filename": "Protokół Oksana Blonska 19_10.odt", "source": "import", "savedAt": "2026-04-08T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 83, "title": "Protokół Roman Pavlovskyi 19_10", "type": "protokol", "najemca": "Roman Pavlovskyi", "lokal": "Turystyczna 19/10", "date": "2026-03-31", "folder": "Osoby fizyczne /Turystyczna 19/Protokoły ", "filename": "Protokół Roman Pavlovskyi 19_10.odt", "source": "import", "savedAt": "2026-03-31T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 84, "title": "Protokół Kamila 15_4", "type": "protokol", "najemca": "Kamila", "lokal": "Turystyczna 15/4", "date": "2026-02-05", "folder": "Osoby fizyczne /Turystyczna 15/Protokoły ", "filename": "Protokół Kamila 15_4.odt", "source": "import", "savedAt": "2026-02-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 85, "title": "Protokół FOLGA 19 m. 4", "type": "protokol", "najemca": "FOLGA 19 m. 4", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Protokoły ", "filename": "Protokół FOLGA 19 m. 4.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 86, "title": "protokół 15_6", "type": "protokol", "najemca": "", "lokal": "Turystyczna 15/6", "date": "2026-01-28", "folder": "Osoby fizyczne /Turystyczna 15/Protokoły ", "filename": "protokół 15_6.odt", "source": "import", "savedAt": "2026-01-28T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 87, "title": "Protokół RALEN 21 m.1(1)", "type": "protokol", "najemca": "RALEN 21 m.1(1)", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Protokoły ", "filename": "Protokół RALEN 21 m.1(1).odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 88, "title": "Protokół RALEN 21 m.1", "type": "protokol", "najemca": "RALEN 21 m.1", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Protokoły ", "filename": "Protokół RALEN 21 m.1.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 89, "title": "Rozwiązanie Danylo Lahernyi 19_9", "type": "rozwiazanie", "najemca": "Danylo Lahernyi", "lokal": "Turystyczna 19/9", "date": "2026-04-17", "folder": "Osoby fizyczne /Turystyczna 19/Rozwiązania ", "filename": "Rozwiązanie Danylo Lahernyi 19_9.odt", "source": "import", "savedAt": "2026-04-17T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 90, "title": "Rozwiązanie Nazar 19_10", "type": "rozwiazanie", "najemca": "Nazar", "lokal": "Turystyczna 19/10", "date": "2026-02-25", "folder": "Osoby fizyczne /Turystyczna 19/Rozwiązania ", "filename": "Rozwiązanie Nazar 19_10.odt", "source": "import", "savedAt": "2026-02-25T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 91, "title": "Protokół Trans-Ziem Sp. z o.o.", "type": "protokol", "najemca": "Trans-Ziem Sp. z o.o.", "lokal": "", "date": "2026-02-27", "folder": "Agencje/Protokoły ", "filename": "Protokół Trans-Ziem Sp. z o.o..odt", "source": "import", "savedAt": "2026-02-27T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 92, "title": "Protokół FOLGA 17_6", "type": "protokol", "najemca": "FOLGA", "lokal": "Turystyczna 17/6", "date": "2026-03-05", "folder": "Agencje/Protokoły ", "filename": "Protokół FOLGA 17_6.odt", "source": "import", "savedAt": "2026-03-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 93, "title": "Protokół JOB CONTRACT 17 m.10", "type": "protokol", "najemca": "JOB CONTRACT 17 m.10", "lokal": "", "date": "2026-02-20", "folder": "Agencje/Protokoły ", "filename": "Protokół JOB CONTRACT 17 m.10.odt", "source": "import", "savedAt": "2026-02-20T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 94, "title": "protokół WE GO JOB 21 m. 4", "type": "protokol", "najemca": "WE GO JOB 21 m. 4", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Protokoły ", "filename": "protokół WE GO JOB 21 m. 4.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 95, "title": "protokół 15_3", "type": "protokol", "najemca": "", "lokal": "Turystyczna 15/3", "date": "2026-01-28", "folder": "Osoby fizyczne /Turystyczna 15/Protokoły ", "filename": "protokół 15_3.odt", "source": "import", "savedAt": "2026-01-28T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 96, "title": "Protokół EUROPAV 17_3", "type": "protokol", "najemca": "EUROPAV", "lokal": "Turystyczna 17/3", "date": "2026-03-20", "folder": "Agencje/Protokoły ", "filename": "Protokół EUROPAV 17_3.odt", "source": "import", "savedAt": "2026-03-20T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 97, "title": "Protokół odbiorczy We Go Job 21_7", "type": "protokol", "najemca": "We Go Job", "lokal": "Turystyczna 21/7", "date": "2026-03-27", "folder": "Agencje/Protokoły ", "filename": "Protokół odbiorczy We Go Job 21_7.odt", "source": "import", "savedAt": "2026-03-27T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 98, "title": "Protokół zdawczo-odbiorczy Ihor Nester 23_8", "type": "protokol", "najemca": "Ihor Nester", "lokal": "Turystyczna 23/8", "date": "2026-04-19", "folder": "Osoby fizyczne /Turystyczna 23/Protokoły ", "filename": "Protokół zdawczo-odbiorczy Ihor Nester 23_8.odt", "source": "import", "savedAt": "2026-04-19T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 99, "title": "Protokół Synergie 02.03.2026 (21_12)", "type": "protokol", "najemca": "Synergie 02.03.2026 ()", "lokal": "Turystyczna 21/12", "date": "2026-03-05", "folder": "Agencje/Protokoły ", "filename": "Protokół Synergie 02.03.2026 (21_12).odt", "source": "import", "savedAt": "2026-03-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 100, "title": "Protokół Emolan 15_7", "type": "protokol", "najemca": "Emolan", "lokal": "Turystyczna 15/7", "date": "2026-03-05", "folder": "Agencje/Protokoły ", "filename": "Protokół Emolan 15_7.odt", "source": "import", "savedAt": "2026-03-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 101, "title": "Protokół odbiorczy KBP Budownictwo 19_3", "type": "protokol", "najemca": "KBP Budownictwo", "lokal": "Turystyczna 19/3", "date": "2026-03-31", "folder": "Agencje/Protokoły ", "filename": "Protokół odbiorczy KBP Budownictwo 19_3.odt", "source": "import", "savedAt": "2026-03-31T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 102, "title": "Protokół Emolan 17_7", "type": "protokol", "najemca": "Emolan", "lokal": "Turystyczna 17/7", "date": "2026-03-05", "folder": "Agencje/Protokoły ", "filename": "Protokół Emolan 17_7.odt", "source": "import", "savedAt": "2026-03-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 103, "title": "Protokół zdawczo-odbiorczy 19 m.2", "type": "protokol", "najemca": "19 m.2", "lokal": "Turystyczna 19", "date": "2025-12-08", "folder": "Osoby fizyczne /Turystyczna 19/Protokoły ", "filename": "Protokół zdawczo-odbiorczy 19 m.2.odt", "source": "import", "savedAt": "2025-12-08T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 104, "title": "Protokół Synergie 19_1_17_4", "type": "protokol", "najemca": "Synergie", "lokal": "Turystyczna 19/1", "date": "2026-02-26", "folder": "Agencje/Protokoły ", "filename": "Protokół Synergie 19_1_17_4.odt", "source": "import", "savedAt": "2026-02-26T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 105, "title": "Protokół WE GO JOB 21_9", "type": "protokol", "najemca": "WE GO JOB", "lokal": "Turystyczna 21/9", "date": "2026-02-16", "folder": "Agencje/Protokoły ", "filename": "Protokół WE GO JOB 21_9.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 106, "title": "protokół POLONIA 21 m.9", "type": "protokol", "najemca": "POLONIA 21 m.9", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Protokoły ", "filename": "protokół POLONIA 21 m.9.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 107, "title": "Protokół Spectrum Group 11_15", "type": "protokol", "najemca": "Spectrum Group", "lokal": "Turystyczna 11/15", "date": "2026-01-26", "folder": "Agencje/Protokoły ", "filename": "Protokół Spectrum Group 11_15.odt", "source": "import", "savedAt": "2026-01-26T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 108, "title": "Protokół Synergie 03.03.2026 (19_11)", "type": "protokol", "najemca": "Synergie 03.03.2026 ()", "lokal": "Turystyczna 19/11", "date": "2026-03-05", "folder": "Agencje/Protokoły ", "filename": "Protokół Synergie 03.03.2026 (19_11).odt", "source": "import", "savedAt": "2026-03-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 109, "title": "Protokół FOLGA 17_9", "type": "protokol", "najemca": "FOLGA", "lokal": "Turystyczna 17/9", "date": "2026-02-25", "folder": "Agencje/Protokoły ", "filename": "Protokół FOLGA 17_9.odt", "source": "import", "savedAt": "2026-02-25T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 110, "title": "Zamówienie POLONIA 21 m.9", "type": "zam", "najemca": "POLONIA 21 m.9", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "Zamówienie POLONIA 21 m.9.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 111, "title": "protokół HAL-DACH 21 m.5", "type": "protokol", "najemca": "HAL-DACH 21 m.5", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Protokoły ", "filename": "protokół HAL-DACH 21 m.5.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 112, "title": "Rozwiązanie Vladyslav 19_11", "type": "rozwiazanie", "najemca": "Vladyslav", "lokal": "Turystyczna 19/11", "date": "2026-02-16", "folder": "Osoby fizyczne /Turystyczna 19/Rozwiązania ", "filename": "Rozwiązanie Vladyslav 19_11.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 113, "title": "Protokół zdawczo-odbiorczy Clean HR", "type": "protokol", "najemca": "Clean HR", "lokal": "", "date": "2026-04-17", "folder": "Agencje/Protokoły ", "filename": "Protokół zdawczo-odbiorczy Clean HR.odt", "source": "import", "savedAt": "2026-04-17T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 114, "title": "Protokól odbiorczy Lahernyi Danylo 19_9", "type": "protokol", "najemca": "Protokól Lahernyi Danylo", "lokal": "Turystyczna 19/9", "date": "2026-04-17", "folder": "Osoby fizyczne /Turystyczna 19/Protokoły ", "filename": "Protokól odbiorczy Lahernyi Danylo 19_9.odt", "source": "import", "savedAt": "2026-04-17T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 115, "title": "Protokół Dzmitry 19.11", "type": "protokol", "najemca": "Dzmitry 19.11", "lokal": "Turystyczna 19", "date": "2025-12-31", "folder": "Osoby fizyczne /Turystyczna 19/Protokoły ", "filename": "Protokół Dzmitry 19.11.odt", "source": "import", "savedAt": "2025-12-31T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 116, "title": "Rozwiązanie Drzmitry 19_11", "type": "rozwiazanie", "najemca": "Drzmitry", "lokal": "Turystyczna 19/11", "date": "2026-02-16", "folder": "Osoby fizyczne /Turystyczna 19/Rozwiązania ", "filename": "Rozwiązanie Drzmitry 19_11.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 117, "title": "Rozwiązanie Vladyslav 21.1", "type": "rozwiazanie", "najemca": "Vladyslav 21.1", "lokal": "Turystyczna 21", "date": "2025-12-16", "folder": "Osoby fizyczne /Turystyczna 21/Rozwiązania", "filename": "Rozwiązanie Vladyslav 21.1.odt", "source": "import", "savedAt": "2025-12-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 118, "title": "Rozwiązanie Dzmitry 21.1", "type": "rozwiazanie", "najemca": "Dzmitry 21.1", "lokal": "Turystyczna 21", "date": "2025-12-16", "folder": "Osoby fizyczne /Turystyczna 21/Rozwiązania", "filename": "Rozwiązanie Dzmitry 21.1.odt", "source": "import", "savedAt": "2025-12-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 119, "title": "Zamówienie POLONIA 17_2", "type": "zam", "najemca": "POLONIA", "lokal": "Turystyczna 17/2", "date": "2026-03-09", "folder": "Agencje/Zamówienia", "filename": "Zamówienie POLONIA 17_2.odt", "source": "import", "savedAt": "2026-03-09T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 120, "title": "Protokół Vladyslav 19.11", "type": "protokol", "najemca": "Vladyslav 19.11", "lokal": "Turystyczna 19", "date": "2025-12-16", "folder": "Osoby fizyczne /Turystyczna 19/Protokoły ", "filename": "Protokół Vladyslav 19.11.odt", "source": "import", "savedAt": "2025-12-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 121, "title": "Protokół Beumer Installation 17_6", "type": "protokol", "najemca": "Beumer Installation", "lokal": "Turystyczna 17/6", "date": "2026-03-06", "folder": "Agencje/Protokoły ", "filename": "Protokół Beumer Installation 17_6.odt", "source": "import", "savedAt": "2026-03-06T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 122, "title": "Protokół Nadiia 19_10", "type": "protokol", "najemca": "Nadiia", "lokal": "Turystyczna 19/10", "date": "2026-01-07", "folder": "Osoby fizyczne /Turystyczna 19/Protokoły ", "filename": "Protokół Nadiia 19_10.odt", "source": "import", "savedAt": "2026-01-07T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 123, "title": "Protokół POLONIA 17_2", "type": "protokol", "najemca": "POLONIA", "lokal": "Turystyczna 17/2", "date": "2026-03-09", "folder": "Agencje/Protokoły ", "filename": "Protokół POLONIA 17_2.odt", "source": "import", "savedAt": "2026-03-09T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 124, "title": "Protokół Dzmitry 21.1", "type": "protokol", "najemca": "Dzmitry 21.1", "lokal": "Turystyczna 21", "date": "2025-12-30", "folder": "Osoby fizyczne /Turystyczna 21/Protokoły", "filename": "Protokół Dzmitry 21.1.odt", "source": "import", "savedAt": "2025-12-30T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 125, "title": "Zamówienie JOB CONTRACT 21 m2", "type": "zam", "najemca": "JOB CONTRACT 21 m2", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "Zamówienie JOB CONTRACT 21 m2.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 126, "title": "Umowa ramowa najmu HP4 Draft umowy", "type": "firma", "najemca": "umowy", "lokal": "", "date": "2025-10-17", "folder": "Drafty puste", "filename": "Umowa ramowa najmu HP4 Draft umowy.docx", "source": "import", "savedAt": "2025-10-17T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 127, "title": "Zamówienie JOB CONTRACT 17 m. 10", "type": "zam", "najemca": "JOB CONTRACT 17 m. 10", "lokal": "", "date": "2026-02-20", "folder": "Agencje/Zamówienia", "filename": "Zamówienie JOB CONTRACT 17 m. 10.odt", "source": "import", "savedAt": "2026-02-20T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 128, "title": "Zamówienie INPOLMON 19 m. 5", "type": "zam", "najemca": "INPOLMON 19 m. 5", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "Zamówienie INPOLMON 19 m. 5.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 129, "title": "Zamówienie WE GO JOB 21 m. 4", "type": "zam", "najemca": "WE GO JOB 21 m. 4", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "Zamówienie WE GO JOB 21 m. 4.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 130, "title": "Zamówienie Folga 17_6", "type": "zam", "najemca": "Folga", "lokal": "Turystyczna 17/6", "date": "2026-03-05", "folder": "Agencje/Zamówienia", "filename": "Zamówienie Folga 17_6.odt", "source": "import", "savedAt": "2026-03-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 131, "title": "zamówienie TOP HIRE 21 m.6", "type": "zam", "najemca": "TOP HIRE 21 m.6", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "zamówienie TOP HIRE 21 m.6.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 132, "title": "zamówienie KPB 19_3", "type": "zam", "najemca": "", "lokal": "Turystyczna 19/3", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "zamówienie KPB 19_3.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 133, "title": "Draft protokółu odbiorczego z uwagami", "type": "protokol", "najemca": "protokółu odbiorczego z uwagami", "lokal": "", "date": "2026-03-03", "folder": "Drafty puste", "filename": "Draft protokółu odbiorczego z uwagami.odt", "source": "import", "savedAt": "2026-03-03T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 134, "title": "Zamówienie JOB CONTRACT 21 m. 3(1)", "type": "zam", "najemca": "JOB CONTRACT 21 m. 3(1)", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "Zamówienie JOB CONTRACT 21 m. 3(1).odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 135, "title": "Zamówienie JOB CONTRACT 21 m. 3", "type": "zam", "najemca": "JOB CONTRACT 21 m. 3", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "Zamówienie JOB CONTRACT 21 m. 3.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 136, "title": "zamówienie INPOLMON 19_5", "type": "zam", "najemca": "INPOLMON", "lokal": "Turystyczna 19/5", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "zamówienie INPOLMON 19_5.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 137, "title": "Zamówienie KBP Budownictwo 15_3", "type": "zam", "najemca": "KBP Budownictwo", "lokal": "Turystyczna 15/3", "date": "2026-03-31", "folder": "Agencje/Zamówienia", "filename": "Zamówienie KBP Budownictwo 15_3.odt", "source": "import", "savedAt": "2026-03-31T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 138, "title": "Zamówienie Job Contract m.12 19", "type": "zam", "najemca": "Job Contract m.12 19", "lokal": "", "date": "2026-01-16", "folder": "Agencje/Zamówienia", "filename": "Zamówienie Job Contract m.12 19.odt", "source": "import", "savedAt": "2026-01-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 139, "title": "zamówienie HAL - DACH 21 m.5", "type": "zam", "najemca": "HAL - DACH 21 m.5", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "zamówienie HAL - DACH 21 m.5.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 140, "title": "Zamówienie Folga 15_8", "type": "zam", "najemca": "Folga", "lokal": "Turystyczna 15/8", "date": "2026-02-05", "folder": "Agencje/Zamówienia", "filename": "Zamówienie Folga 15_8.odt", "source": "import", "savedAt": "2026-02-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 141, "title": "Protokół Danylo 19_9", "type": "protokol", "najemca": "Danylo", "lokal": "Turystyczna 19/9", "date": "2026-01-08", "folder": "Osoby fizyczne /Turystyczna 19/Protokoły ", "filename": "Protokół Danylo 19_9.odt", "source": "import", "savedAt": "2026-01-08T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 142, "title": "zamówienie Trans-Ziem 01.03.2026", "type": "zam", "najemca": "Trans-Ziem 01.03.2026", "lokal": "", "date": "2026-02-27", "folder": "Agencje/Zamówienia", "filename": "zamówienie Trans-Ziem 01.03.2026.odt", "source": "import", "savedAt": "2026-02-27T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 143, "title": "zamówienie Ralen 21_1", "type": "zam", "najemca": "Ralen", "lokal": "Turystyczna 21/1", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "zamówienie Ralen 21_1.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 144, "title": "zamówienie Spectrum Group 15_11", "type": "zam", "najemca": "Spectrum Group", "lokal": "Turystyczna 15/11", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "zamówienie Spectrum Group 15_11.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 145, "title": "Zamówienie Synergie 02.03.2026", "type": "zam", "najemca": "Synergie 02.03.2026", "lokal": "", "date": "2026-03-05", "folder": "Agencje/Zamówienia", "filename": "Zamówienie Synergie 02.03.2026.odt", "source": "import", "savedAt": "2026-03-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 146, "title": "Zamówienie Synergie 03.03.2026", "type": "zam", "najemca": "Synergie 03.03.2026", "lokal": "", "date": "2026-03-05", "folder": "Agencje/Zamówienia", "filename": "Zamówienie Synergie 03.03.2026.odt", "source": "import", "savedAt": "2026-03-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 147, "title": "Protokół odbiorczy We Go Job 21_12", "type": "protokol", "najemca": "We Go Job", "lokal": "Turystyczna 21/12", "date": "2026-03-03", "folder": "Agencje/Protokoły ", "filename": "Protokół odbiorczy We Go Job 21_12.odt", "source": "import", "savedAt": "2026-03-03T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 148, "title": "Zamówienie EUROPAV 01.03.2026 (17_3)", "type": "zam", "najemca": "EUROPAV 01.03.2026 ()", "lokal": "Turystyczna 17/3", "date": "2026-03-20", "folder": "Agencje/Zamówienia", "filename": "Zamówienie EUROPAV 01.03.2026 (17_3).odt", "source": "import", "savedAt": "2026-03-20T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 149, "title": "zamówienie Top Hire 01.03.2026", "type": "zam", "najemca": "Top Hire 01.03.2026", "lokal": "", "date": "2026-03-02", "folder": "Agencje/Zamówienia", "filename": "zamówienie Top Hire 01.03.2026.odt", "source": "import", "savedAt": "2026-03-02T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 150, "title": "Zamówienie FOLGA 17_9", "type": "zam", "najemca": "FOLGA", "lokal": "Turystyczna 17/9", "date": "2026-02-25", "folder": "Agencje/Zamówienia", "filename": "Zamówienie FOLGA 17_9.odt", "source": "import", "savedAt": "2026-02-25T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 151, "title": "zamówienie Job Contract 17_12", "type": "zam", "najemca": "Job Contract", "lokal": "Turystyczna 17/12", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "zamówienie Job Contract 17_12.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 152, "title": "Protokół odbiorczy Oleksii Skichko 15_3", "type": "protokol", "najemca": "Oleksii Skichko", "lokal": "Turystyczna 15/3", "date": "2026-03-16", "folder": "Osoby fizyczne /Turystyczna 15/Protokoły ", "filename": "Protokół odbiorczy Oleksii Skichko 15_3.odt", "source": "import", "savedAt": "2026-03-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 153, "title": "Zamówienie Clean HR 01.04.2026", "type": "zam", "najemca": "Clean HR 01.04.2026", "lokal": "", "date": "2026-04-17", "folder": "Agencje/Zamówienia", "filename": "Zamówienie Clean HR 01.04.2026.odt", "source": "import", "savedAt": "2026-04-17T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 154, "title": "Umowa ramowa", "type": "firma", "najemca": "", "lokal": "", "date": "2025-10-14", "folder": "PDF/Umowa ", "filename": "Umowa ramowa.pdf", "source": "import", "savedAt": "2025-10-14T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 155, "title": "Zamówienie Beumer Installation 17_6", "type": "zam", "najemca": "Beumer Installation", "lokal": "Turystyczna 17/6", "date": "2026-03-06", "folder": "Agencje/Zamówienia", "filename": "Zamówienie Beumer Installation 17_6.odt", "source": "import", "savedAt": "2026-03-06T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 156, "title": "Zamówienie Folga 01.03.2026 21_7", "type": "zam", "najemca": "Folga 01.03.2026", "lokal": "Turystyczna 21/7", "date": "2026-03-27", "folder": "Agencje/Zamówienia", "filename": "Zamówienie Folga 01.03.2026 21_7.odt", "source": "import", "savedAt": "2026-03-27T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 157, "title": "zamówienie Job Contract 15_2 (01.03.2026)", "type": "zam", "najemca": "Job Contract (01.03.2026)", "lokal": "Turystyczna 15/2", "date": "2026-03-09", "folder": "Agencje/Zamówienia", "filename": "zamówienie Job Contract 15_2 (01.03.2026).odt", "source": "import", "savedAt": "2026-03-09T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 158, "title": "Zamówienie FOLGA 19 m.4", "type": "zam", "najemca": "FOLGA 19 m.4", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "Zamówienie FOLGA 19 m.4.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 159, "title": "Protokół POLONIA PROPERTIES 21_11", "type": "protokol", "najemca": "POLONIA PROPERTIES", "lokal": "Turystyczna 21/11", "date": "2026-02-16", "folder": "Agencje/Protokoły ", "filename": "Protokół POLONIA PROPERTIES 21_11.doc", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 160, "title": "Załącznik nr.1 do ramowej umowy", "type": "firma", "najemca": "Załącznik nr.1 do umowy", "lokal": "", "date": "2025-10-17", "folder": "PDF", "filename": "Załącznik nr.1 do ramowej umowy.pdf", "source": "import", "savedAt": "2025-10-17T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 161, "title": "Umowa Roman 15_5", "type": "fiz", "najemca": "Roman", "lokal": "Turystyczna 15/5", "date": "2026-02-17", "folder": "Osoby fizyczne /Turystyczna 15/Umowy", "filename": "Umowa Roman 15_5.odt", "source": "import", "savedAt": "2026-02-17T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 162, "title": "pusty draft os. fiz(1)", "type": "draft", "najemca": "os. fiz(1)", "lokal": "", "date": "2025-12-11", "folder": "Drafty puste", "filename": "pusty draft os. fiz(1).odt", "source": "import", "savedAt": "2025-12-11T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 163, "title": "pusty draft os. fiz", "type": "draft", "najemca": "os. fiz", "lokal": "", "date": "2025-12-11", "folder": "Drafty puste", "filename": "pusty draft os. fiz.odt", "source": "import", "savedAt": "2025-12-11T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 164, "title": "Nowa umowa Vladyslav 21_6", "type": "fiz", "najemca": "Nowa Vladyslav", "lokal": "Turystyczna 21/6", "date": "2026-02-16", "folder": "Osoby fizyczne /Turystyczna 21/Umowy", "filename": "Nowa umowa Vladyslav 21_6.odt", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 165, "title": "draft umowy ramowej pusty z bud. 23,25,27,29 ", "type": "firma", "najemca": "umowy z bud. 23,25,27,29", "lokal": "", "date": "2026-04-15", "folder": "Drafty puste", "filename": "draft umowy ramowej pusty z bud. 23,25,27,29 .odt", "source": "import", "savedAt": "2026-04-15T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 166, "title": "Umowa Dariia 15_4", "type": "fiz", "najemca": "Dariia", "lokal": "Turystyczna 15/4", "date": "2026-02-23", "folder": "Osoby fizyczne /Turystyczna 15/Umowy", "filename": "Umowa Dariia 15_4.odt", "source": "import", "savedAt": "2026-02-23T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 167, "title": "Umowa Kamila 15_4", "type": "fiz", "najemca": "Kamila", "lokal": "Turystyczna 15/4", "date": "2026-02-05", "folder": "Osoby fizyczne /Turystyczna 15/Umowy", "filename": "Umowa Kamila 15_4.odt", "source": "import", "savedAt": "2026-02-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 168, "title": "Umowa Liubov Nelha 15_4", "type": "fiz", "najemca": "Liubov Nelha", "lokal": "Turystyczna 15/4", "date": "2026-03-10", "folder": "Osoby fizyczne /Turystyczna 15/Umowy", "filename": "Umowa Liubov Nelha 15_4.odt", "source": "import", "savedAt": "2026-03-10T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 169, "title": "Umowa Oksana Blonska 19_10", "type": "fiz", "najemca": "Oksana Blonska", "lokal": "Turystyczna 19/10", "date": "2026-04-09", "folder": "Osoby fizyczne /Turystyczna 19/Umowy", "filename": "Umowa Oksana Blonska 19_10.odt", "source": "import", "savedAt": "2026-04-09T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 170, "title": "Umowa Roman Pavlovskyi 19_10", "type": "fiz", "najemca": "Roman Pavlovskyi", "lokal": "Turystyczna 19/10", "date": "2026-04-01", "folder": "Osoby fizyczne /Turystyczna 19/Umowy", "filename": "Umowa Roman Pavlovskyi 19_10.odt", "source": "import", "savedAt": "2026-04-01T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 171, "title": "Umowa Antanina 15_4", "type": "fiz", "najemca": "Antanina", "lokal": "Turystyczna 15/4", "date": "2026-02-05", "folder": "Osoby fizyczne /Turystyczna 15/Umowy", "filename": "Umowa Antanina 15_4.odt", "source": "import", "savedAt": "2026-02-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 172, "title": "Umowa wraz z zamówieniem i protokołem", "type": "protokol", "najemca": "wraz z zamówieniem i protokołem", "lokal": "", "date": "2025-10-14", "folder": "PDF/Umowa ", "filename": "Umowa wraz z zamówieniem i protokołem.pdf", "source": "import", "savedAt": "2025-10-14T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 173, "title": "Umowa 19_9", "type": "fiz", "najemca": "", "lokal": "Turystyczna 19/9", "date": "2026-01-08", "folder": "Osoby fizyczne /Turystyczna 19/Umowy", "filename": "Umowa 19_9.odt", "source": "import", "savedAt": "2026-01-08T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 174, "title": "Umowa Ihor Nester 23_8", "type": "fiz", "najemca": "Ihor Nester", "lokal": "Turystyczna 23/8", "date": "2026-04-20", "folder": "Osoby fizyczne /Turystyczna 23/Umowy ", "filename": "Umowa Ihor Nester 23_8.odt", "source": "import", "savedAt": "2026-04-20T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 175, "title": "Umowa Nadiia 19_10", "type": "fiz", "najemca": "Nadiia", "lokal": "Turystyczna 19/10", "date": "2026-01-08", "folder": "Osoby fizyczne /Turystyczna 19/Umowy", "filename": "Umowa Nadiia 19_10.odt", "source": "import", "savedAt": "2026-01-08T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 176, "title": "Umowa Vladyslav 19.11", "type": "fiz", "najemca": "Vladyslav 19.11", "lokal": "Turystyczna 19", "date": "2025-12-16", "folder": "Osoby fizyczne /Turystyczna 19/Umowy", "filename": "Umowa Vladyslav 19.11.odt", "source": "import", "savedAt": "2025-12-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 177, "title": "Umowa Dzmitry 19.11", "type": "fiz", "najemca": "Dzmitry 19.11", "lokal": "Turystyczna 19", "date": "2025-12-16", "folder": "Osoby fizyczne /Turystyczna 19/Umowy", "filename": "Umowa Dzmitry 19.11.odt", "source": "import", "savedAt": "2025-12-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 178, "title": "draft umowy ramowej pusty ze zniżką 10_ za 5 lokali ", "type": "firma", "najemca": "umowy ze zniżką 10_ za 5 lokali", "lokal": "", "date": "2025-12-31", "folder": "Drafty puste", "filename": "draft umowy ramowej pusty ze zniżką 10_ za 5 lokali .odt", "source": "import", "savedAt": "2025-12-31T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 179, "title": "Umowa Oleksii 17_1", "type": "fiz", "najemca": "Oleksii", "lokal": "Turystyczna 17/1", "date": "2026-03-16", "folder": "Osoby fizyczne /Turystyczna 17/Umowy", "filename": "Umowa Oleksii 17_1.odt", "source": "import", "savedAt": "2026-03-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 180, "title": "Umowa Savchenko", "type": "fiz", "najemca": "Savchenko", "lokal": "Turystyczna 15", "date": "2026-01-22", "folder": "Osoby fizyczne /Turystyczna 15/Umowy", "filename": "Umowa Savchenko.odt", "source": "import", "savedAt": "2026-01-22T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 181, "title": "Umowa Buniatov", "type": "fiz", "najemca": "Buniatov", "lokal": "Turystyczna 15", "date": "2026-01-23", "folder": "Osoby fizyczne /Turystyczna 15/Umowy", "filename": "Umowa Buniatov.odt", "source": "import", "savedAt": "2026-01-23T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 182, "title": "Umowa Buniatov_15-9", "type": "fiz", "najemca": "Buniatov_15-9", "lokal": "Turystyczna 15/15", "date": "2026-01-23", "folder": "Osoby fizyczne /Turystyczna 15/Umowy", "filename": "Umowa Buniatov_15-9.odt", "source": "import", "savedAt": "2026-01-23T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 183, "title": "Umowa Yuliia 21_6", "type": "fiz", "najemca": "Yuliia", "lokal": "Turystyczna 21/6", "date": "2026-01-29", "folder": "Osoby fizyczne /Turystyczna 21/Umowy", "filename": "Umowa Yuliia 21_6.odt", "source": "import", "savedAt": "2026-01-29T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 184, "title": "Umowa Diakiv 21_6", "type": "fiz", "najemca": "Diakiv", "lokal": "Turystyczna 21/6", "date": "2026-01-30", "folder": "Osoby fizyczne /Turystyczna 21/Umowy", "filename": "Umowa Diakiv 21_6.odt", "source": "import", "savedAt": "2026-01-30T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 185, "title": "Umowa Iryna_Tetiana 15_1", "type": "fiz", "najemca": "Iryna_Tetiana", "lokal": "Turystyczna 15/1", "date": "2026-01-30", "folder": "Osoby fizyczne /Turystyczna 15/Umowy", "filename": "Umowa Iryna_Tetiana 15_1.odt", "source": "import", "savedAt": "2026-01-30T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 186, "title": "Umowa Volodymyr_Natalia 15_1", "type": "fiz", "najemca": "Volodymyr_Natalia", "lokal": "Turystyczna 15/1", "date": "2026-01-30", "folder": "Osoby fizyczne /Turystyczna 15/Umowy", "filename": "Umowa Volodymyr_Natalia 15_1.odt", "source": "import", "savedAt": "2026-01-30T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 187, "title": "Umowa Oleg_Yaroslav 15_1", "type": "fiz", "najemca": "Oleg_Yaroslav", "lokal": "Turystyczna 15/1", "date": "2026-01-30", "folder": "Osoby fizyczne /Turystyczna 15/Umowy", "filename": "Umowa Oleg_Yaroslav 15_1.odt", "source": "import", "savedAt": "2026-01-30T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 188, "title": "Umowa Maksym 15_7", "type": "fiz", "najemca": "Maksym", "lokal": "Turystyczna 15/7", "date": "2026-02-05", "folder": "Osoby fizyczne /Turystyczna 15/Umowy", "filename": "Umowa Maksym 15_7.odt", "source": "import", "savedAt": "2026-02-05T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 189, "title": "KPB", "type": "firma", "najemca": "", "lokal": "", "date": "2025-12-11", "folder": "Agencje/Umowy ramowe ", "filename": "KPB.odt", "source": "import", "savedAt": "2025-12-11T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 190, "title": "Umowa 15_6", "type": "fiz", "najemca": "", "lokal": "Turystyczna 15/6", "date": "2026-01-28", "folder": "Osoby fizyczne /Turystyczna 15/Umowy", "filename": "Umowa 15_6.odt", "source": "import", "savedAt": "2026-01-28T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 191, "title": "Umowa 15_3", "type": "fiz", "najemca": "", "lokal": "Turystyczna 15/3", "date": "2026-01-28", "folder": "Osoby fizyczne /Turystyczna 15/Umowy", "filename": "Umowa 15_3.odt", "source": "import", "savedAt": "2026-01-28T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 192, "title": "ZAMÓWIENIE, umowa i protokół 21_12 WE GO JOB", "type": "protokol", "najemca": ", i WE GO JOB", "lokal": "Turystyczna 21/12", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "ZAMÓWIENIE, umowa i protokół 21_12 WE GO JOB.docx", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 193, "title": "Umowa 17_8", "type": "fiz", "najemca": "", "lokal": "Turystyczna 17/8", "date": "2026-01-29", "folder": "Osoby fizyczne /Turystyczna 17/Umowy", "filename": "Umowa 17_8.odt", "source": "import", "savedAt": "2026-01-29T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 194, "title": "Draft umowy ramowej Clean HR", "type": "firma", "najemca": "umowy Clean HR", "lokal": "", "date": "2026-04-15", "folder": "Agencje/Umowy ramowe ", "filename": "Draft umowy ramowej Clean HR.odt", "source": "import", "savedAt": "2026-04-15T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 195, "title": "Umowa ramowa najmu EUROPAV", "type": "firma", "najemca": "EUROPAV", "lokal": "", "date": "2026-03-20", "folder": "Agencje/Umowy ramowe ", "filename": "Umowa ramowa najmu EUROPAV.odt", "source": "import", "savedAt": "2026-03-20T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 196, "title": "draft umowy ramowej Synergie Sp. z o.o.", "type": "firma", "najemca": "umowy Synergie Sp. z o.o.", "lokal": "", "date": "2026-02-26", "folder": "Agencje/Umowy ramowe ", "filename": "draft umowy ramowej Synergie Sp. z o.o..odt", "source": "import", "savedAt": "2026-02-26T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 197, "title": "draft umowy ramowej Trans-Ziem", "type": "firma", "najemca": "umowy Trans-Ziem", "lokal": "", "date": "2026-02-27", "folder": "Agencje/Umowy ramowe ", "filename": "draft umowy ramowej Trans-Ziem.odt", "source": "import", "savedAt": "2026-02-27T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 198, "title": "Umowa ramowa Beumer Installation", "type": "firma", "najemca": "Beumer Installation", "lokal": "", "date": "2026-03-06", "folder": "Agencje/Umowy ramowe ", "filename": "Umowa ramowa Beumer Installation.odt", "source": "import", "savedAt": "2026-03-06T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 199, "title": "Folga Out", "type": "firma", "najemca": "Folga Out", "lokal": "", "date": "2025-12-09", "folder": "Agencje/Umowy ramowe ", "filename": "Folga Out.odt", "source": "import", "savedAt": "2025-12-09T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 200, "title": "Zamówienie i protokół WE GO JOB 21_7", "type": "protokol", "najemca": "i WE GO JOB", "lokal": "Turystyczna 21/7", "date": "2026-02-16", "folder": "Agencje/Zamówienia", "filename": "Zamówienie i protokół WE GO JOB 21_7.pdf", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 201, "title": "Umowa Ramowa Spectrum Group", "type": "firma", "najemca": "Spectrum Group", "lokal": "", "date": "2026-01-26", "folder": "Agencje/Umowy ramowe ", "filename": "Umowa Ramowa Spectrum Group.odt", "source": "import", "savedAt": "2026-01-26T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 202, "title": "Aneks 1.01.2026 Folga Out", "type": "aneks", "najemca": "1.01.2026 Folga Out", "lokal": "", "date": "2026-02-25", "folder": "Agencje/Aneksy ", "filename": "Aneks 1.01.2026 Folga Out.docx", "source": "import", "savedAt": "2026-02-25T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 203, "title": "Aneks 1.02.2026 Folga Out", "type": "aneks", "najemca": "1.02.2026 Folga Out", "lokal": "", "date": "2026-02-25", "folder": "Agencje/Aneksy ", "filename": "Aneks 1.02.2026 Folga Out.docx", "source": "import", "savedAt": "2026-02-25T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 204, "title": "aneks TOP HIRE Partners nr 2", "type": "aneks", "najemca": "TOP HIRE Partners nr 2", "lokal": "", "date": "2026-01-28", "folder": "Agencje/Aneksy ", "filename": "aneks TOP HIRE Partners nr 2.docx", "source": "import", "savedAt": "2026-01-28T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 205, "title": "Protokól Nazar 19_10", "type": "protokol", "najemca": "Protokól Nazar", "lokal": "Turystyczna 19/10", "date": "2026-02-02", "folder": "PDF/Umowa ", "filename": "Protokól Nazar 19_10.pdf", "source": "import", "savedAt": "2026-02-02T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 206, "title": "Aneks 1.12.2025 Folga Out", "type": "aneks", "najemca": "1.12.2025 Folga Out", "lokal": "", "date": "2026-02-25", "folder": "Agencje/Aneksy ", "filename": "Aneks 1.12.2025 Folga Out.docx", "source": "import", "savedAt": "2026-02-25T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 207, "title": "Aneks do umowy ramowej najmu Folga", "type": "aneks", "najemca": "do umowy Folga", "lokal": "", "date": "2026-03-27", "folder": "Agencje/Aneksy ", "filename": "Aneks do umowy ramowej najmu Folga.docx", "source": "import", "savedAt": "2026-03-27T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 208, "title": "Aneks Liubov Nelha 15_4", "type": "aneks", "najemca": "Liubov Nelha", "lokal": "Turystyczna 15/4", "date": "2026-03-27", "folder": "Osoby fizyczne /Turystyczna 15/Aneksy", "filename": "Aneks Liubov Nelha 15_4.docx", "source": "import", "savedAt": "2026-03-27T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 209, "title": "251210 aneks TOP HIRE Partners nr 1", "type": "aneks", "najemca": "251210 TOP HIRE Partners nr 1", "lokal": "", "date": "2025-12-11", "folder": "PDF/Aneksy ", "filename": "251210 aneks TOP HIRE Partners nr 1.pdf", "source": "import", "savedAt": "2025-12-11T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 210, "title": "Protokół Danylo 19_9", "type": "protokol", "najemca": "Danylo", "lokal": "Turystyczna 19/9", "date": "2026-01-13", "folder": "Osoby fizyczne /Turystyczna 19/Protokoły ", "filename": "Protokół Danylo 19_9.docx", "source": "import", "savedAt": "2026-01-13T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 211, "title": "Regulamin porządku domowego(1)", "type": "draft", "najemca": "Regulamin porządku domowego(1)", "lokal": "", "date": "2024-11-06", "folder": "Drafty puste", "filename": "Regulamin porządku domowego(1).docx", "source": "import", "savedAt": "2024-11-06T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 212, "title": "251210 aneks nr 1 Beata Wrona", "type": "aneks", "najemca": "251210 nr 1 Beata Wrona", "lokal": "", "date": "2025-12-11", "folder": "PDF/Aneksy ", "filename": "251210 aneks nr 1 Beata Wrona.pdf", "source": "import", "savedAt": "2025-12-11T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 213, "title": "zamówienie draft pusty", "type": "zam", "najemca": "", "lokal": "", "date": "2026-03-27", "folder": "PDF", "filename": "zamówienie draft pusty.pdf", "source": "import", "savedAt": "2026-03-27T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 214, "title": "zamówienie inpolmon", "type": "zam", "najemca": "inpolmon", "lokal": "", "date": "2025-12-11", "folder": "PDF/Zamówienia ", "filename": "zamówienie inpolmon.pdf", "source": "import", "savedAt": "2025-12-11T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 215, "title": "Zamówienie Job Contract m.12 19", "type": "zam", "najemca": "Job Contract m.12 19", "lokal": "", "date": "2026-01-16", "folder": "PDF/Zamówienia ", "filename": "Zamówienie Job Contract m.12 19.pdf", "source": "import", "savedAt": "2026-01-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 216, "title": "zamówienie KPB", "type": "zam", "najemca": "", "lokal": "", "date": "2025-12-10", "folder": "PDF/Zamówienia ", "filename": "zamówienie KPB.pdf", "source": "import", "savedAt": "2025-12-10T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 217, "title": "Zamówienie 21 m. 6", "type": "zam", "najemca": "21 m. 6", "lokal": "", "date": "2025-12-12", "folder": "PDF/Zamówienia ", "filename": "Zamówienie 21 m. 6.pdf", "source": "import", "savedAt": "2025-12-12T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 218, "title": "zamówienie 03 (21 m. 4)", "type": "zam", "najemca": "03 (21 m. 4)", "lokal": "", "date": "2025-10-23", "folder": "PDF/Zamówienia ", "filename": "zamówienie 03 (21 m. 4).pdf", "source": "import", "savedAt": "2025-10-23T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 219, "title": "Zamówienie 19 m.4", "type": "zam", "najemca": "19 m.4", "lokal": "", "date": "2025-12-09", "folder": "PDF/Zamówienia ", "filename": "Zamówienie 19 m.4.pdf", "source": "import", "savedAt": "2025-12-09T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 220, "title": "aneks nr2 We Go Job", "type": "aneks", "najemca": "nr2 We Go Job", "lokal": "", "date": "2026-02-16", "folder": "Agencje/Aneksy ", "filename": "aneks nr2 We Go Job.pdf", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 221, "title": "Protokół JOB CONTRACT 17_12", "type": "protokol", "najemca": "JOB CONTRACT", "lokal": "Turystyczna 17/12", "date": "2026-02-16", "folder": "Agencje/Protokoły ", "filename": "Protokół JOB CONTRACT 17_12.docx", "source": "import", "savedAt": "2026-02-16T00:00:00Z", "dataUrl": null, "htmlContent": null}, {"id": 222, "title": "Zamówienie 21 m.9", "type": "zam", "najemca": "21 m.9", "lokal": "", "date": "2025-10-24", "folder": "PDF/Zamówienia ", "filename": "Zamówienie 21 m.9.pdf", "source": "import", "savedAt": "2025-10-24T00:00:00Z", "dataUrl": null, "htmlContent": null}];
+function archLoad(){
+  try{
+    const s=localStorage.getItem(ARCH_KEY);
+    const userDocs=s?JSON.parse(s):[];
+    const userIds=new Set(userDocs.map(d=>d.id));
+    const imported=INITIAL_ARCHIVE.filter(d=>!userIds.has(d.id));
+    return [...userDocs,...imported];
+  }catch(e){return INITIAL_ARCHIVE;}
+}
+function archSave(arr){try{localStorage.setItem(ARCH_KEY,JSON.stringify(arr));}catch(e){alert('Błąd zapisu archiwum — localStorage może być pełny.');}}
+
+function archTypeLabel(t){return{fiz:'Umowa fizyczna',firma:'Umowa ramowa',zam:'Zamówienie',protokol:'Protokół',wygenerowany:'Wygenerowany',aneks:'Aneks',rozwiazanie:'Rozwiązanie',draft:'Draft',inne:'Inne',import:'Importowany'}[t]||t;}
+function archTypeBadge(t){return{fiz:'badge-fiz',firma:'badge-firma',zam:'badge-zam',protokol:'badge-fiz',wygenerowany:'badge-manual',aneks:'badge-zam',rozwiazanie:'badge-manual',draft:'badge-manual',inne:'badge-manual',import:'badge-firma'}[t]||'badge-manual';}
+
+function archRender(){
+  const arr=archLoad();
+  // Stats
+  const statsEl=document.getElementById('arch-stats');
+  if(statsEl){
+    const counts={};
+    arr.forEach(d=>{counts[d.type]=(counts[d.type]||0)+1;});
+    const colors={fiz:'#1a5276',firma:'#1a6b3c',zam:'#7d6608',protokol:'#6c3483',aneks:'#7d6608',rozwiazanie:'#922b21',draft:'#5d6d7e',wygenerowany:'#6c3483',inne:'#666'};
+    statsEl.innerHTML=`<span style="font-size:12px;font-weight:600;color:var(--muted);align-self:center;">Razem: <strong>${arr.length}</strong></span>`
+      +Object.entries(counts).sort((a,b)=>b[1]-a[1]).map(([t,n])=>
+        `<span style="padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;background:${colors[t]||'#666'}22;color:${colors[t]||'#666'};border:1px solid ${colors[t]||'#666'}44">${archTypeLabel(t)}: ${n}</span>`
+      ).join('');
+  }
+  const search=(document.getElementById('arch-search')?.value||'').toLowerCase();
+  const ftype=document.getElementById('arch-filter-type')?.value||'';
+  let filtered=arr.filter(d=>{
+    const matchT=!ftype||d.type===ftype;
+    const matchS=!search||(d.title||'').toLowerCase().includes(search)||(d.najemca||'').toLowerCase().includes(search)||(d.lokal||'').toLowerCase().includes(search);
+    return matchT&&matchS;
+  });
+  const grid=document.getElementById('arch-grid');
+  const countEl=document.getElementById('arch-count');
+  if(countEl)countEl.textContent=`(${arr.length})`;
+  if(!grid)return;
+  if(filtered.length===0){
+    grid.innerHTML=`<div class="arch-empty"><div class="ae-icon">📂</div><strong>Brak dokumentów</strong><p style="margin-top:8px;">${arr.length===0?'Zapisz pierwszy podpisany dokument używając przycisku powyżej.':'Nie znaleziono pasujących dokumentów.'}</p></div>`;
+    return;
+  }
+  grid.innerHTML='<div class="arch-grid">'+filtered.map((d,i)=>{
+    const realIdx=arr.indexOf(d);
+    return `<div class="arch-card">
+      <div class="ac-type"><span class="badge ${archTypeBadge(d.type)}">${archTypeLabel(d.type)}</span></div>
+      <div class="ac-title">${d.title||'Bez tytułu'}</div>
+      <div class="ac-meta">
+        ${d.najemca?`👤 ${d.najemca}<br>`:''}
+        ${d.lokal?`🏠 ${d.lokal}<br>`:''}
+        📅 ${d.date?new Date(d.date).toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit',year:'numeric'}):'—'}
+        ${d.enddate?`<br>⏳ Koniec: ${archDaysLeft(d.enddate)}`:''}
+        ${d.kaucjadate?`<br>💰 Kaucja: ${archDaysLeft(d.kaucjadate)}`:''}
+        ${d.uwagi?`<br>📝 ${d.uwagi}`:''}
+      </div>
+      <div class="ac-btns">
+        ${d.dataUrl?`<button class="ac-btn arch-btn-view" onclick="archView(${realIdx})">👁 Podgląd</button>`:''}
+        ${d.htmlContent?`<button class="ac-btn arch-btn-view" onclick="archViewHTML(${realIdx})">👁 Podgląd</button>`:''}
+        ${d.dataUrl?`<button class="ac-btn arch-btn-dl" onclick="archDownload(${realIdx})">⬇ Pobierz</button>`:''}
+        ${d.htmlContent?`<button class="ac-btn arch-btn-dl" onclick="archDownloadWord(${realIdx})">📝 Word</button>`:''}
+        ${!d.dataUrl&&!d.htmlContent?`<button class="ac-btn arch-btn-dl" onclick="archAttachFile(${realIdx})">📎 Dołącz plik</button>`:''}
+        ${d.email?`<button class="ac-btn" style="background:#fdecea;color:#c0392b;border:1px solid #f5b8b2;" onclick="sendEmail('${d.email}','${encodeURIComponent(d.title||'')}','${encodeURIComponent(d.najemca||'')}')">✉ Email</button>`:''}
+        <button class="ac-btn arch-btn-del" onclick="archDelete(${realIdx})">🗑</button>
+      </div>
+    </div>`;
+  }).join('')+'</div>';
+}
+
+function archView(idx){
+  const arr=archLoad();
+  const d=arr[idx];
+  if(!d||!d.dataUrl)return;
+  window.open(d.dataUrl,'_blank');
+}
+
+function archViewHTML(idx){
+  const arr=archLoad();
+  const d=arr[idx];
+  if(!d||!d.htmlContent)return;
+  const w=window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${d.title||'Dokument'}</title>
+  <style>body{font-family:Arial,sans-serif;max-width:900px;margin:40px auto;padding:20px;font-size:12pt;line-height:1.7;}
+  h2{text-align:center;text-transform:uppercase;font-size:16pt;margin:20px 0 6px;}
+  table{width:100%;border-collapse:collapse;}td{border:1px solid #ccc;padding:8px;}
+  .sig-line{border-top:1px solid #333;margin-top:40px;padding-top:8px;}
+  .sig-table td{border:none;text-align:center;}</style></head><body>${d.htmlContent}</body></html>`);
+  w.document.close();
+}
+
+function archDownload(idx){
+  const arr=archLoad();
+  const d=arr[idx];
+  if(!d||!d.dataUrl)return;
+  const a=document.createElement('a');a.href=d.dataUrl;a.download=d.filename||'dokument';a.click();
+}
+
+function archDownloadWord(idx){
+  const arr=archLoad();
+  const d=arr[idx];
+  if(!d||!d.htmlContent)return;
+  const html=`<html xmlns:o="urn:schemas-microsoft-com:office:office"><head><meta charset="UTF-8"><style>body{font-family:Arial,sans-serif;font-size:11pt;line-height:1.6;}h2{font-size:14pt;text-align:center;text-transform:uppercase;}table{width:100%;border-collapse:collapse;}td{padding:6pt;border:1pt solid #ccc;}</style></head><body>${d.htmlContent}</body></html>`;
+  const blob=new Blob(['﻿'+html],{type:'application/msword'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=(d.title||'dokument').replace(/[^a-zA-Z0-9_\-\.ąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]/g,'_')+'.doc';
+  a.click();URL.revokeObjectURL(url);
+}
+
+function archAttachFile(idx){
+  const input=document.createElement('input');
+  input.type='file';input.accept='.pdf,.doc,.docx,.jpg,.jpeg,.png';
+  input.onchange=e=>{
+    const file=e.target.files[0];if(!file)return;
+    if(file.size>10*1024*1024){alert('Plik za duży (max 10MB)');return;}
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      const arr=archLoad();
+      // find in user storage or copy from initial
+      let userArr;try{const s=localStorage.getItem(ARCH_KEY);userArr=s?JSON.parse(s):[];}catch(e){userArr=[];}
+      const allArr=archLoad();
+      const doc=allArr[idx];
+      // check if already in user storage
+      const uIdx=userArr.findIndex(d=>d.id===doc.id);
+      const updated={...doc,dataUrl:ev.target.result,filename:file.name,source:'upload'};
+      if(uIdx>=0)userArr[uIdx]=updated;
+      else userArr.unshift(updated);
+      try{localStorage.setItem(ARCH_KEY,JSON.stringify(userArr));archRender();alert('✅ Plik dołączony!');}
+      catch(e){alert('Błąd zapisu — plik może być za duży.');}
+    };
+    reader.readAsDataURL(file);
+  };
+  input.click();
+}
+
+function archDelete(idx){
+  if(!confirm('Usunąć ten dokument z archiwum?'))return;
+  const arr=archLoad();arr.splice(idx,1);archSave(arr);archRender();
+}
+
+// Upload file from disk
+function archUploadFile(input){
+  const file=input.files[0];
+  if(!file)return;
+  if(file.size>10*1024*1024){alert('Plik jest za duży (max 10 MB).');return;}
+  const reader=new FileReader();
+  reader.onload=e=>{
+    archCurrentFile={name:file.name,dataUrl:e.target.result,type:file.type};
+    document.getElementById('arch-upload-meta').style.display='block';
+    // Auto-fill title from filename
+    const titleEl=document.getElementById('arch-meta-title');
+    if(titleEl&&!titleEl.value)titleEl.value=file.name.replace(/\.[^/.]+$/,'').replace(/_/g,' ');
+    const dateEl=document.getElementById('arch-meta-date');
+    if(dateEl&&!dateEl.value)dateEl.value=new Date().toISOString().split('T')[0];
+  };
+  reader.readAsDataURL(file);
+}
+
+function archSaveUpload(){
+  if(!archCurrentFile){alert('Brak pliku.');return;}
+  const title=document.getElementById('arch-meta-title')?.value||archCurrentFile.name;
+  const type=document.getElementById('arch-meta-type')?.value||'inne';
+  const najemca=document.getElementById('arch-meta-najemca')?.value||'';
+  const lokal=document.getElementById('arch-meta-lokal')?.value||'';
+  const date=document.getElementById('arch-meta-date')?.value||'';
+  const uwagi=document.getElementById('arch-meta-uwagi')?.value||'';
+  const enddate=document.getElementById('arch-meta-enddate')?.value||'';
+  const kaucjadate=document.getElementById('arch-meta-kaucjadate')?.value||'';
+  const arr=archLoad();
+  const archEmail=document.getElementById('arch-meta-email')?.value||'';
+  arr.unshift({id:Date.now(),title,type,najemca,lokal,date,uwagi,enddate,kaucjadate,email:archEmail,filename:archCurrentFile.name,dataUrl:archCurrentFile.dataUrl,source:'upload',savedAt:new Date().toISOString()});
+  try{
+    archSave(arr);
+    archCurrentFile=null;
+    document.getElementById('arch-upload-meta').style.display='none';
+    document.getElementById('arch-file-input').value='';
+    ['arch-meta-title','arch-meta-najemca','arch-meta-lokal','arch-meta-date','arch-meta-uwagi'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+    archRender();
+    alert('✅ Dokument zapisany w archiwum!');
+  }catch(e){
+    alert('Błąd zapisu — plik może być za duży dla localStorage. Spróbuj pliku mniejszego niż 2 MB.');
+  }
+}
+
+function archCancelUpload(){
+  archCurrentFile=null;
+  document.getElementById('arch-upload-meta').style.display='none';
+  document.getElementById('arch-file-input').value='';
+}
+
+// Save generated document to archive
+let _lastGeneratedHTML='';
+function archSaveGenerated(){
+  const html=document.getElementById('out')?.innerHTML||'';
+  if(!html){alert('Brak wygenerowanego dokumentu.');return;}
+  document.getElementById('arch-save-modal').style.display='flex';
+  const meta=window._docMeta||{};
+  document.getElementById('arch-modal-title').value=meta.title||('Umowa — '+new Date().toLocaleDateString('pl'));
+  if(meta.najemca)document.getElementById('arch-modal-najemca').value=meta.najemca;
+  if(meta.lokal)document.getElementById('arch-modal-lokal').value=meta.lokal;
+  if(meta.type)document.getElementById('arch-modal-type').value=meta.type;
+  if(meta.email)document.getElementById('arch-modal-email').value=meta.email;
+  document.getElementById('arch-modal-date').value=new Date().toISOString().split('T')[0];
+  window._pendingArchiveHTML=html;
+}
+function archModalSave(){
+  const html=window._pendingArchiveHTML||'';
+  const title=document.getElementById('arch-modal-title').value||'Bez tytułu';
+  const type=document.getElementById('arch-modal-type').value||'wygenerowany';
+  const najemca=document.getElementById('arch-modal-najemca').value||'';
+  const lokal=document.getElementById('arch-modal-lokal').value||'';
+  const date=document.getElementById('arch-modal-date').value||'';
+  const uwagi=document.getElementById('arch-modal-uwagi').value||'';
+  const enddate=document.getElementById('arch-modal-enddate')?.value||'';
+  const kaucjadate=document.getElementById('arch-modal-kaucjadate')?.value||'';
+  const arr=archLoad();
+  let userArr;try{const s=localStorage.getItem(ARCH_KEY);userArr=s?JSON.parse(s):[];}catch(e){userArr=[];}
+  const archModalEmail=document.getElementById('arch-modal-email')?.value||'';
+  userArr.unshift({id:Date.now(),title,type,najemca,lokal,date,uwagi,enddate,kaucjadate,email:archModalEmail,htmlContent:html,source:'generated',savedAt:new Date().toISOString()});
+  archSave(userArr);
+  document.getElementById('arch-save-modal').style.display='none';
+  window._pendingArchiveHTML=null;
+  // show confirmation in print-btns area
+  const btn=document.querySelector('[onclick="archSaveGenerated()"]');
+  if(btn){const orig=btn.innerHTML;btn.innerHTML='✅ Zapisano!';btn.style.background='var(--green)';setTimeout(()=>{btn.innerHTML=orig;btn.style.background='#6c3483';},2000);}
+}
+function archModalCancel(){
+  document.getElementById('arch-save-modal').style.display='none';
+  window._pendingArchiveHTML=null;
+}
+
+// Handle drag & drop
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    const archModal=document.getElementById('arch-save-modal');
+    if(archModal&&archModal.style.display!=='none')archModalCancel();
+    const emailModal=document.getElementById('email-send-modal');
+    if(emailModal&&emailModal.style.display!=='none')sendEmailCancel();
+  }
+});
+document.addEventListener('DOMContentLoaded',()=>{
+  const zone=document.getElementById('arch-drop-zone');
+  if(!zone)return;
+  zone.addEventListener('dragover',e=>{e.preventDefault();zone.style.background='#fef8ec';});
+  zone.addEventListener('dragleave',()=>{zone.style.background='';});
+  zone.addEventListener('drop',e=>{
+    e.preventDefault();zone.style.background='';
+    const file=e.dataTransfer?.files[0];
+    if(file){const inp=document.getElementById('arch-file-input');const dt=new DataTransfer();dt.items.add(file);inp.files=dt.files;archUploadFile(inp);}
+  });
+});
+
+// ─── ZAMÓWIENIE AUTO-NUMBER ──────────────────────────────────────────────────
+function genZamNr(prefix){
+  const today=new Date();
+  const mm=String(today.getMonth()+1).padStart(2,'0');
+  const yyyy=today.getFullYear();
+  // Count existing zamowienia this month from archive
+  const arr=archLoad();
+  const thisMonth=arr.filter(d=>{
+    if(!d.date)return false;
+    const [y,m]=d.date.split('-');
+    return m===mm&&y===String(yyyy)&&(d.type==='zam'||d.type==='firma');
+  }).length;
+  const nn=String(thisMonth+1).padStart(2,'0');
+  const el=document.getElementById(prefix+'zamNr');
+  if(el)el.value=`${nn}.${mm}.${yyyy}`;
+}
+
+// ─── DAYS LEFT HELPER ────────────────────────────────────────────────────────
+function archDaysLeft(dateStr){
+  if(!dateStr)return '';
+  const diff=Math.ceil((new Date(dateStr)-new Date())/(1000*60*60*24));
+  if(diff<0)return `<span style="color:var(--red);font-weight:700;">⚠ +${Math.abs(diff)}d po terminie</span>`;
+  if(diff===0)return `<span style="color:var(--red);font-weight:700;">⚠ DZIŚ!</span>`;
+  if(diff<=7)return `<span style="color:var(--red);font-weight:700;">za ${diff} dni</span>`;
+  if(diff<=30)return `<span style="color:#e67e22;font-weight:600;">za ${diff} dni</span>`;
+  const d=new Date(dateStr);
+  return d.toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit',year:'numeric'});
+}
+
+// ─── REMINDERS ───────────────────────────────────────────────────────────────
+function checkReminders(){
+  const arr=archLoad();
+  const today=new Date();
+  const items=[];
+  arr.forEach((d,idx)=>{
+    if(d.enddate){
+      const diff=Math.ceil((new Date(d.enddate)-today)/(1000*60*60*24));
+      if(diff<=30){
+        const urgency=diff<=0?'ri-urgent':diff<=7?'ri-urgent':'';
+        const msg=diff<=0?`Umowa wygasła ${Math.abs(diff)}d temu!`:`Umowa kończy się za ${diff} dni`;
+        items.push({icon:'⏳',urgency,title:d.title||'Bez tytułu',najemca:d.najemca||'',msg,idx});
+      }
+    }
+    if(d.kaucjadate){
+      const diff=Math.ceil((new Date(d.kaucjadate)-today)/(1000*60*60*24));
+      if(diff<=14&&diff>-30){
+        const urgency=diff<=3?'ri-urgent':'';
+        const msg=diff<=0?`Kaucja powinna być zapłacona ${Math.abs(diff)}d temu!`:`Kaucja należna za ${diff} dni`;
+        items.push({icon:'💰',urgency,title:d.title||'Bez tytułu',najemca:d.najemca||'',msg,idx});
+      }
+    }
+  });
+  const bar=document.getElementById('reminder-bar');
+  const list=document.getElementById('reminder-list');
+  if(!bar||!list)return;
+  if(items.length===0){bar.classList.remove('has-items');return;}
+  bar.classList.add('has-items');
+  list.innerHTML=items.map(item=>`
+    <div class="reminder-item">
+      <span class="ri-icon">${item.icon}</span>
+      <div>
+        <span class="${item.urgency}">${item.msg}</span>
+        <div style="font-size:11px;margin-top:2px;">${item.title}${item.najemca?' · '+item.najemca:''}</div>
+      </div>
+      <button class="ri-btn" onclick="setMain('archiwum');archRender()">Pokaż</button>
+    </div>`).join('');
+}
+
+// ─── GLOBAL SEARCH ───────────────────────────────────────────────────────────
+function globalSearch(query){
+  const drop=document.getElementById('global-search-results');
+  if(!drop)return;
+  if(!query||query.trim().length<2){drop.classList.remove('open');return;}
+  const q=query.toLowerCase();
+  const sections=[];
+
+  // Search clients
+  const clientResults=clients.filter(cl=>{
+    const name=(cl.type==='fiz'?cl.name:cl.nazwa)||'';
+    const email=(cl.email||'');
+    const nip=(cl.nip||'');
+    return name.toLowerCase().includes(q)||email.toLowerCase().includes(q)||nip.includes(q);
+  }).slice(0,5);
+  if(clientResults.length){
+    sections.push(`<div class="sr-section">👥 Klienci</div>`);
+    clientResults.forEach(cl=>{
+      const name=cl.type==='fiz'?cl.name:cl.nazwa;
+      const sub=cl.type==='fiz'?`${cl.email||''} ${cl.tel||''}`:`${cl.nip||''} · ${cl.email||''}`;
+      const icon=cl.type==='fiz'?'🏠':'🏢';
+      sections.push(`<div class="sr-item" onclick="globalSearchSelectClient('${cl.type}','${(name||'').replace(/'/g,"\'")}')">
+        <span class="sri-icon">${icon}</span>
+        <div><div class="sri-main">${name}</div><div class="sri-sub">${sub.trim()}</div></div>
+      </div>`);
+    });
+  }
+
+  // Search archive
+  const archResults=archLoad().filter(d=>{
+    const t=(d.title||'').toLowerCase();
+    const n=(d.najemca||'').toLowerCase();
+    const l=(d.lokal||'').toLowerCase();
+    return t.includes(q)||n.includes(q)||l.includes(q);
+  }).slice(0,5);
+  if(archResults.length){
+    sections.push(`<div class="sr-section">🗄 Archiwum</div>`);
+    archResults.forEach(d=>{
+      const icon={fiz:'📄',firma:'🏢',zam:'📋',protokol:'📑',aneks:'📎',rozwiazanie:'❌',draft:'📝',wygenerowany:'⚡'}[d.type]||'📄';
+      sections.push(`<div class="sr-item" onclick="globalSearchOpenArchive()">
+        <span class="sri-icon">${icon}</span>
+        <div>
+          <div class="sri-main">${d.title||'Bez tytułu'}</div>
+          <div class="sri-sub">${d.najemca||''} ${d.lokal?'· '+d.lokal:''} · ${d.date||''}</div>
+        </div>
+      </div>`);
+    });
+  }
+
+  if(sections.length===0){
+    drop.innerHTML=`<div class="sr-empty">Brak wyników dla „${query}"</div>`;
+  } else {
+    drop.innerHTML=sections.join('');
+  }
+  drop.classList.add('open');
+}
+
+function globalSearchSelectClient(type, name){
+  closeGlobalSearch();
+  document.getElementById('global-search-input').value='';
+  if(type==='fiz'){
+    setMain('fiz');
+    // go to step 2 and select client
+    fGo(2);
+    const sel=document.getElementById('f-client-selector-wrap-sel');
+    if(sel){sel.value=name;onClientSelect('f-client-selector-wrap','fiz');}
+  } else {
+    setMain('ramowa');
+    rGo(2);
+    const sel=document.getElementById('r-client-selector-wrap-sel');
+    if(sel){sel.value=name;onClientSelect('r-client-selector-wrap','firma');}
+  }
+}
+
+function globalSearchOpenArchive(){
+  closeGlobalSearch();
+  const q=document.getElementById('global-search-input').value;
+  setMain('archiwum');
+  const archSearch=document.getElementById('arch-search');
+  if(archSearch){archSearch.value=q;archRender();}
+  document.getElementById('global-search-input').value='';
+}
+
+function closeGlobalSearch(){
+  const drop=document.getElementById('global-search-results');
+  if(drop)drop.classList.remove('open');
+}
+
+// ─── EMAIL / MAILTO ──────────────────────────────────────────────────────────
+function sendEmail(email, titleEncoded, najemcaEncoded){
+  const title=decodeURIComponent(titleEncoded||'');
+  window._docMeta={title,email,najemca:decodeURIComponent(najemcaEncoded||'')};
+  document.getElementById('email-send-modal').style.display='flex';
+  document.getElementById('email-to').value=email;
+  document.getElementById('email-subject').value='H4P — '+title;
+  const archDocType=window._docMeta?.type||'firma';
+  document.getElementById('email-body').value=(archDocType==='fiz')?'Dzień dobry,\nw nawiązaniu do naszej rozmowy przesyłam draft umowy oraz protokołu zdawczo-odbiorczego. Uprzejmie proszę o zapoznanie się z dokumentami i ich weryfikację.\n\nPozostajemy w kontakcie.\n\nPozdrawiam,\nH4P Sp. z o.o.\nhome4people.info@gmail.com\n+48 503 987 171':'Dzień dobry,\nw nawiązaniu do naszej rozmowy przesyłam drafty dokumentów. Uprzejmie proszę o zapoznanie się z nimi — jeśli wszystko będzie w porządku, proszę o podpisanie oraz odesłanie skanów, a także oryginałów na adres:\n\nul. Wólczańska 66, lok. C311, 90-514 Łódź\nlub o pozostawienie ich w Nadarzynie na ul. Turystycznej.\n\nPozdrawiam,\nH4P Sp. z o.o.\nhome4people.info@gmail.com\n+48 503 987 171';
+}
+
+function sendEmailFromPreview(){
+  const meta=window._docMeta||{};
+  let email='';
+  // get email from meta or active form
+  email=meta.email||'';
+  if(!email){
+    const activeType=document.querySelector('.main-tab.active')?.id?.replace('mt-','');
+    if(activeType==='fiz') email=document.getElementById('f-nEmail')?.value||document.getElementById('f-emailFakt')?.value||'';
+    else if(activeType==='ramowa') email=document.getElementById('r-firmaEmail')?.value||'';
+    else if(activeType==='zamowienie') email=document.getElementById('z-firmaEmail')?.value||'';
+  }
+
+  // show email modal instead of prompt
+  document.getElementById('email-send-modal').style.display='flex';
+  document.getElementById('email-to').value=email;
+  document.getElementById('email-subject').value='H4P — '+(meta.title||'Dokument do podpisania');
+  const isFizType=(meta.type==='fiz');
+  document.getElementById('email-body').value=isFizType
+    ? "Dzień dobry,\nw nawiązaniu do naszej rozmowy przesyłam draft umowy oraz protokołu zdawczo-odbiorczego. Uprzejmie proszę o zapoznanie się z dokumentami i ich weryfikację.\n\nPozostajemy w kontakcie.\n\nPozdrawiam,\nH4P Sp. z o.o.\nhome4people.info@gmail.com\n+48 503 987 171"
+    : "Dzień dobry,\nw nawiązaniu do naszej rozmowy przesyłam drafty dokumentów. Uprzejmie proszę o zapoznanie się z nimi — jeśli wszystko będzie w porządku, proszę o podpisanie oraz odesłanie skanów, a także oryginałów na adres:\n\nul. Wólczańska 66, lok. C311, 90-514 Łódź\nlub o pozostawienie ich w Nadarzynie na ul. Turystycznej.\n\nPozdrawiam,\nH4P Sp. z o.o.\nhome4people.info@gmail.com\n+48 503 987 171";
+}
+
+function sendEmailConfirm(){
+  const addr=document.getElementById('email-to').value.trim();
+  if(!addr){alert('Wpisz adres e-mail!');return;}
+  const subject=encodeURIComponent(document.getElementById('email-subject').value);
+  const body=encodeURIComponent(document.getElementById('email-body').value);
+  document.getElementById('email-send-modal').style.display='none';
+  location.href=`mailto:${addr}?subject=${subject}&body=${body}`;
+}
+
+function sendEmailCancel(){
+  document.getElementById('email-send-modal').style.display='none';
+}
+
 // ─── INIT ────────────────────────────────────────────────────────────────────
 document.getElementById('f-dataZaw').value=new Date().toISOString().split('T')[0];
 document.getElementById('f-protData').value=new Date().toISOString().split('T')[0];
@@ -1224,8 +2019,16 @@ document.getElementById('r-dataZaw').value=new Date().toISOString().split('T')[0
 fRenderPokoje();
 // Pre-render ramowa zam form
 document.getElementById('r-zam-form').innerHTML=zamFormHTML('r-');
+initZamPokoje('r-');
 // Init client selectors
 initAllSelectors();
+// Check reminders on load
+checkReminders();
+// Auto-number zamowienie
+setTimeout(()=>{
+  const rNr=document.getElementById('r-zamNr');
+  if(rNr&&!rNr.value)genZamNr('r-');
+},600);
 </script>
 </body>
 </html>
