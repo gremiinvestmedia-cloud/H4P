@@ -651,8 +651,8 @@ input[readonly]{background:#f0ebe0;color:#888;}
 
   <!-- EMAIL SEND MODAL -->
   <div id="email-send-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,27,45,.65);z-index:9999;align-items:center;justify-content:center;padding:20px;">
-    <div style="background:#fff;border-radius:16px;padding:32px;max-width:520px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3);">
-      <div style="font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--navy);margin-bottom:20px;display:flex;align-items:center;gap:10px;">✉ Wyślij e-mailem</div>
+    <div style="background:#fff;border-radius:16px;padding:32px;max-width:560px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3);">
+      <div style="font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--navy);margin-bottom:20px;">✉ Wyślij e-mailem</div>
       <div class="field" style="margin-bottom:12px;">
         <label>Do (adres e-mail)</label>
         <input type="email" id="email-to" placeholder="najemca@firma.pl">
@@ -661,17 +661,20 @@ input[readonly]{background:#f0ebe0;color:#888;}
         <label>Temat</label>
         <input type="text" id="email-subject">
       </div>
-      <div class="field" style="margin-bottom:18px;">
+      <div class="field" style="margin-bottom:14px;">
         <label>Treść</label>
-        <textarea id="email-body" rows="8" style="font-size:13px;line-height:1.6;"></textarea>
+        <textarea id="email-body" rows="7" style="font-size:13px;line-height:1.6;"></textarea>
       </div>
-      <div class="info-box" style="margin-bottom:16px;font-size:12px;">
-        <span>ℹ️</span><span>Kliknij „Otwórz w poczcie" — otworzy się Twój klient pocztowy (Gmail, Outlook) z wypełnionym mailem. Dołącz PDF ręcznie przed wysłaniem.</span>
+      <!-- BUTTONS -->
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <a id="gmail-link" href="#" target="_blank" onclick="return openGmail()" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:13px;background:#d44638;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:#fff;text-decoration:none;cursor:pointer;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.910 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+          Otwórz w Gmail
+        </a>
+        <button onclick="copyEmailText()" style="padding:12px;background:#1a6b3c;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:#fff;cursor:pointer;">📋 Skopiuj treść do schowka</button>
+        <button onclick="sendEmailCancel()" style="padding:11px;background:transparent;border:2px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;color:var(--navy);">Zamknij</button>
       </div>
-      <div style="display:flex;gap:10px;">
-        <button onclick="sendEmailConfirm()" style="flex:1;padding:12px;background:#d44638;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;color:#fff;cursor:pointer;">✉ Otwórz w poczcie</button>
-        <button onclick="sendEmailCancel()" style="padding:12px 20px;background:transparent;border:2px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;">Anuluj</button>
-      </div>
+      <div id="email-copy-ok" style="display:none;margin-top:10px;padding:10px;background:#eafaf1;border-radius:8px;font-size:13px;color:#1a6b3c;text-align:center;">✅ Skopiowano! Otwórz Gmail i wklej treść (Ctrl+V)</div>
     </div>
   </div>
 
@@ -2131,19 +2134,40 @@ function sendEmailFromPreview(){
     : "Dzień dobry,\nw nawiązaniu do naszej rozmowy przesyłam drafty dokumentów. Uprzejmie proszę o zapoznanie się z nimi — jeśli wszystko będzie w porządku, proszę o podpisanie oraz odesłanie skanów, a także oryginałów na adres:\n\nul. Wólczańska 66, lok. C311, 90-514 Łódź\nlub o pozostawienie ich w Nadarzynie na ul. Turystycznej.\n\nPozdrawiam,\nH4P Sp. z o.o.\nhome4people.info@gmail.com\n+48 503 987 171";
 }
 
-function sendEmailConfirm(){
+function openGmail(){
   const addr=document.getElementById('email-to').value.trim();
-  if(!addr){alert('Wpisz adres e-mail!');return;}
+  if(!addr){alert('Wpisz adres e-mail!');return false;}
   const subject=encodeURIComponent(document.getElementById('email-subject').value);
   const body=encodeURIComponent(document.getElementById('email-body').value);
-  document.getElementById('email-send-modal').style.display='none';
-  // Use invisible anchor - works in all browsers including GitHub Pages
-  const a=document.createElement('a');
-  a.href=`mailto:${addr}?subject=${subject}&body=${body}`;
-  a.style.display='none';
-  document.body.appendChild(a);
-  a.click();
-  setTimeout(()=>document.body.removeChild(a),1000);
+  // Try Gmail web first, fallback to mailto
+  // authuser=home4people.info@gmail.com forces Gmail to open that specific account
+  const gmailUrl='https://mail.google.com/mail/u/home4people.info@gmail.com/?view=cm&fs=1&to='+encodeURIComponent(addr)+'&su='+subject+'&body='+body;
+  window.open(gmailUrl,'_blank');
+  return false;
+}
+function sendEmailConfirm(){
+  openGmail();
+}
+function copyEmailText(){
+  const addr=document.getElementById('email-to').value.trim();
+  const subject=document.getElementById('email-subject').value;
+  const body=document.getElementById('email-body').value;
+  const full='Do: '+addr+'\nTemat: '+subject+'\n\n'+body;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(full).then(()=>{
+      const ok=document.getElementById('email-copy-ok');
+      ok.style.display='block';
+      setTimeout(()=>ok.style.display='none',3000);
+    });
+  } else {
+    // fallback
+    const ta=document.createElement('textarea');
+    ta.value=full;document.body.appendChild(ta);ta.select();
+    document.execCommand('copy');document.body.removeChild(ta);
+    const ok=document.getElementById('email-copy-ok');
+    ok.style.display='block';
+    setTimeout(()=>ok.style.display='none',3000);
+  }
 }
 
 function sendEmailCancel(){
