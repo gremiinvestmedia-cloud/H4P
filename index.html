@@ -2109,7 +2109,7 @@ function sendEmail(email, titleEncoded, najemcaEncoded){
   document.getElementById('email-to').value=email;
   document.getElementById('email-subject').value='H4P — '+title;
   const archDocType=window._docMeta?.type||'firma';
-  document.getElementById('email-body').value=(archDocType==='fiz')?'Dzień dobry,\nw nawiązaniu do naszej rozmowy przesyłam draft umowy oraz protokołu zdawczo-odbiorczego. Uprzejmie proszę o zapoznanie się z dokumentami i ich weryfikację.\n\nPozostajemy w kontakcie.\n\nPozdrawiam,\nH4P Sp. z o.o.\nhome4people.info@gmail.com\n+48 503 987 171':'Dzień dobry,\nw nawiązaniu do naszej rozmowy przesyłam drafty dokumentów. Uprzejmie proszę o zapoznanie się z nimi — jeśli wszystko będzie w porządku, proszę o podpisanie oraz odesłanie skanów, a także oryginałów na adres:\n\nul. Wólczańska 66, lok. C311, 90-514 Łódź\nlub o pozostawienie ich w Nadarzynie na ul. Turystycznej.\n\nPozdrawiam,\nH4P Sp. z o.o.\nhome4people.info@gmail.com\n+48 503 987 171';
+  document.getElementById('email-body').value=(archDocType==='fiz')?'Dzień dobry,\nw nawiązaniu do naszej rozmowy przesyłam draft umowy oraz protokołu zdawczo-odbiorczego. Uprzejmie proszę o zapoznanie się z dokumentami i ich weryfikację.\n\nPozostajemy w kontakcie.\n\nPozdrawiam,\nH4P Sp. z o.o.\nhome4people.info@gmail.com\n+48 503 987 171':'Dzień dobry,\nw nawiązaniu do naszej rozmowy przesyłam drafty dokumentów.Uprzejmie proszę o ich weryfikację. W przypadku braku uwag proszę o podpisanie dokumentów oraz przesłanie skanów, a następnie oryginałów na adres:\n\nul. Wólczańska 66, lok. C311, 90-514 Łódź\nlub o pozostawienie ich w Nadarzynie na ul. Turystycznej.\n\nPozdrawiam,\nH4P Sp. z o.o.\nhome4people.info@gmail.com\n+48 503 987 171';
 }
 
 function sendEmailFromPreview(){
