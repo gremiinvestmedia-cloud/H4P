@@ -60,7 +60,7 @@ land-footer{text-align:center;font-size:12px;color:var(--muted);padding:18px 24p
 :root{--navy:#0f1b2d;--gold:#c9a84c;--gold2:#e8c97a;--cream:#f5f0e8;--cream2:#ede6d8;--red:#c0392b;--green:#1a6b3c;--border:#d4c8b0;--text:#1a1a2e;--muted:#6b6453;--white:#fff;--shadow:0 4px 24px rgba(15,27,45,.13);}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
-header{background:var(--navy);padding:22px 40px;display:flex;align-items:center;gap:18px;box-shadow:0 2px 16px rgba(0,0,0,.22);}
+#h4p-app header{background:var(--navy);padding:22px 40px;display:flex;align-items:center;gap:18px;box-shadow:0 2px 16px rgba(0,0,0,.22);}
 .logo-circle{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--navy);flex-shrink:0;}
 header h1{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#fff;letter-spacing:.02em;}
 header p{font-size:13px;color:var(--gold);margin-top:2px;letter-spacing:.06em;text-transform:uppercase;}
@@ -87,12 +87,12 @@ header p{font-size:13px;color:var(--gold);margin-top:2px;letter-spacing:.06em;te
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
 .form-row.s{grid-template-columns:1fr;}
 .form-row.t{grid-template-columns:1fr 1fr 1fr;}
-.field{display:flex;flex-direction:column;gap:5px;}
-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
-input,select,textarea{padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:var(--cream);transition:border-color .2s;width:100%;}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.15);background:#fff;}
-select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6453' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:30px;}
-input[readonly]{background:#f0ebe0;color:#888;}
+#h4p-app .field{display:flex;flex-direction:column;gap:5px;}
+#h4p-app label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+#h4p-app input,#h4p-app select,#h4p-app textarea{padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text);background:var(--cream);transition:border-color .2s;width:100%;}
+#h4p-app input:focus,#h4p-app select:focus,#h4p-app textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.15);background:#fff;}
+#h4p-app select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6453' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:30px;}
+#h4p-app input[readonly]{background:#f0ebe0;color:#888;}
 .tg{display:flex;border-radius:8px;overflow:hidden;border:1.5px solid var(--border);}
 .tb{flex:1;padding:9px 12px;background:var(--cream);border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;border-right:1px solid var(--border);}
 .tb:last-child{border-right:none;}
@@ -276,10 +276,10 @@ body{font-family:'Times New Roman',Times,serif;font-size:11pt;line-height:1.6;}h
     --shadow: 0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.05);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Georgia', serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  #gremi-app { font-family: 'Georgia', serif; background: var(--bg); color: var(--text); min-height: 100vh; }
   
   /* HEADER */
-  header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
+  #gremi-app header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
   .logo { font-size: 15px; font-weight: 700; letter-spacing: 0.04em; font-family: 'Georgia', serif; }
   .logo span { color: var(--muted); font-weight: 400; }
   .header-tag { font-size: 11px; background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; color: var(--muted); font-family: sans-serif; }
@@ -365,7 +365,7 @@ body{font-family:'Times New Roman',Times,serif;font-size:11pt;line-height:1.6;}h
   .panel.active { display: block; }
 
   /* FOOTER */
-  footer { text-align: center; font-size: 12px; color: var(--muted); font-family: sans-serif; padding: 2rem 1rem 1rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+  #gremi-app footer { text-align: center; font-size: 12px; color: var(--muted); font-family: sans-serif; padding: 2rem 1rem 1rem; border-top: 1px solid var(--border); margin-top: 2rem; }
 
 </style>
 </head>
@@ -1183,21 +1183,23 @@ body{font-family:'Times New Roman',Times,serif;font-size:11pt;line-height:1.6;}h
       <div class="card-sub">Uzupełnij czynsz przejściowy (opcjonalnie) i czynsz miesięczny</div>
 
       <div class="sec">Czynsz przejściowy (opcjonalnie)</div>
+      <div class="info-hint" style="font-size:12px;color:#888;margin-bottom:8px;">🧮 Wpisz daty i kwotę miesięczną poniżej — kwota za okres przejściowy obliczy się automatycznie (proporcjonalnie do liczby dni).</div>
       <div class="grid g3">
         <div class="field">
           <label>Okres od</label>
-          <input type="date" id="cz1_od">
+          <input type="date" id="cz1_od" onchange="gremiAutoCalc()">
         </div>
         <div class="field">
           <label>Okres do</label>
-          <input type="date" id="cz1_do">
+          <input type="date" id="cz1_do" onchange="gremiAutoCalc()">
         </div>
         <div class="field">
           <label>Kwota (PLN)</label>
-          <input type="number" id="cz1_kw" placeholder="800" oninput="updateWordHint('cz1_kw','cz1_sl')">
+          <input type="number" id="cz1_kw" placeholder="auto lub wpisz ręcznie" oninput="updateWordHint('cz1_kw','cz1_sl')">
           <span class="word-hint" id="cz1_sl"></span>
         </div>
       </div>
+      <div id="cz1_calc_info" style="display:none;background:#f0f7f2;border:1px solid #b8d9c4;border-radius:8px;padding:8px 12px;font-size:12px;color:#2d6a2d;margin-bottom:8px;"></div>
 
       <hr class="divider">
       <div class="sec">Czynsz miesięczny</div>
@@ -1208,7 +1210,7 @@ body{font-family:'Times New Roman',Times,serif;font-size:11pt;line-height:1.6;}h
         </div>
         <div class="field">
           <label>Kwota miesięczna (PLN)</label>
-          <input type="number" id="cz_kw" placeholder="6200" oninput="updateWordHint('cz_kw','cz_sl')">
+          <input type="number" id="cz_kw" placeholder="6200" oninput="updateWordHint('cz_kw','cz_sl');gremiAutoCalc()">
           <span class="word-hint" id="cz_sl"></span>
         </div>
       </div>
@@ -1260,6 +1262,29 @@ body{font-family:'Times New Roman',Times,serif;font-size:11pt;line-height:1.6;}h
                 <label>Kwota miesięczna (PLN)</label>
                 <input type="number" id="kf_kw2" placeholder="5985" oninput="updateWordHint('kf_kw2','kf_sl2')">
                 <span class="word-hint" id="kf_sl2"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="border:1px solid var(--border);border-radius:8px;background:#fafafa;overflow:hidden">
+          <label style="display:flex;align-items:flex-start;gap:10px;padding:12px;cursor:pointer">
+            <input type="checkbox" id="kl_kaucja" style="margin-top:3px;flex-shrink:0" onchange="toggleKaucjaFields()">
+            <div>
+              <div style="font-size:13px;font-weight:500;margin-bottom:2px">Kaucja</div>
+              <div style="font-size:12px;color:#666">Zaznacz, jeśli umowa ma zawierać kaucję zabezpieczającą, zwracaną po zakończeniu najmu (jeśli brak roszczeń).</div>
+            </div>
+          </label>
+          <div id="kaucjaFields" style="display:none;padding:0 12px 14px;border-top:1px solid #eee">
+            <div class="grid g2" style="margin-top:10px">
+              <div class="field">
+                <label>Wysokość kaucji (PLN)</label>
+                <input type="number" id="kc_kw" placeholder="6200" oninput="updateWordHint('kc_kw','kc_sl')">
+                <span class="word-hint" id="kc_sl"></span>
+              </div>
+              <div class="field">
+                <label>Termin zapłaty kaucji</label>
+                <input type="date" id="kc_termin">
               </div>
             </div>
           </div>
@@ -3176,16 +3201,17 @@ const PROPS = [
   {o:"Soltrex",a:"(06-500) Mława, ul. Osiedle Młodych 13 m. 7",kw:"PL1M/00057743/6",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"61,30",s:"Sąd Rejonowy w Mławie IV Wydział Ksiąg Wieczystych"},
   {o:"Bixen",a:"(41-300) Dąbrowa Górnicza, Zygmunta Krasińskiego 33/9a",kw:"KA1D/00021356/8",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"62,20",s:"Sąd Rejonowy w Dąbrowie Górniczej VI Wydział Ksiąg Wieczystych"},
   {o:"Bixen",a:"(86-050) Solec Kujawski, Żwirki i Wigury 16/65",kw:"BY1B/00158555/4",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"53,54",s:"Sąd Rejonowy w Bydgoszczy X Wydział Ksiąg Wieczystych"},
-  {o:"Gremi",a:"(90-514) Łódź, al. Kościuszki 53, m. 24",kw:"LD1M/00154180/3",r:"",ar:"",s:""},
+  {o:"Gremi",a:"(90-514) Łódź, al. Kościuszki 53, m. 24",kw:"LD1M/00154180/3",r:"2 pokoi, kuchnia, łazienka i korytarz",ar:"88,14",s:"Sąd Rejonowy Łódź - Śródmieście XVI Wydział Ksiąg Wieczystych"},
   {o:"Gremi",a:"(86-050) Solec Kujawski, Toruńska 64A/34",kw:"BY1B/00242788/2",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"65,40",s:"Sąd Rejonowy w Bydgoszczy X Wydział Ksiąg Wieczystych"},
   {o:"Gremi",a:"(85-796) Bydgoszcz, Wojciecha Łochowskiego 7",kw:"BY1B/00159162/9",r:"4 pokoi, kuchni, łazienki i przedpokoju",ar:"74,00",s:"Sąd Rejonowy w Bydgoszczy X Wydział Ksiąg Wieczystych"},
   {o:"Gremi",a:"(85-200) Bydgoszcz, Maksymiliana Jackowskiego 10/17",kw:"BY1B/00232719/5",r:"4 pokoi, kuchni, łazienki, toalety i przedpokoju",ar:"72,20",s:"Sąd Rejonowy w Bydgoszczy X Wydział Ksiąg Wieczystych"},
   {o:"Gremi",a:"(85-863) Bydgoszcz, Bohaterów Kragujewca 13/9",kw:"BY1B/00146768/3",r:"4 pokoi, kuchni, łazienki, toalety i przedpokoju",ar:"61,81",s:"Sąd Rejonowy w Bydgoszczy X Wydział Ksiąg Wieczystych"},
   {o:"Gremi",a:"(85-825) Bydgoszcz, Generalska 6, m.34",kw:"BY1B/00108190/2",r:"4 pokoi, kuchni, łazienki, toalety i przedpokoju",ar:"63,70",s:"Sąd Rejonowy w Bydgoszczy X Wydział Ksiąg Wieczystych"},
-  {o:"Gremi",a:"(85-825) Bydgoszcz, Generalska 6, m.22",kw:"BY1B/00224666/9",r:"",ar:"",s:"Sąd Rejonowy w Bydgoszczy X Wydział Ksiąg Wieczystych"},
-  {o:"Gremi",a:"(90-514) Łódź, al. Kościuszki 53, m. 15",kw:"LD1M/00099774/0",r:"",ar:"",s:""},
+  {o:"Gremi",a:"(85-825) Bydgoszcz, Generalska 6, m.22",kw:"BY1B/00224666/9",r:"4 pokoi, kuchnia, łazienka, WC i przedpokój",ar:"66,99",s:"Sąd Rejonowy Bydgoszczy X Wydział Ksiąg Wieczystych"},
+  {o:"Gremi",a:"(90-514) Łódź, al. Kościuszki 53, m. 15",kw:"LD1M/00099774/0",r:"3 pokoi, kuchnia, łazienka i korytarz",ar:"83,59",s:"Sąd Rejonowy Łódź - Śródmieście XVI Wydział Ksiąg Wieczystych"},
   {o:"Gremi",a:"(85-733) Bydgoszcz, Marii Skłodowskiej Curie 96/10",kw:"BY1B/00069756/2",r:"4 pokoi, kuchni, łazienki i przedpokoju",ar:"74,10",s:"Sąd Rejonowy w Bydgoszczy X Wydział Ksiąg Wieczystych"},
-  {o:"Gremi",a:"(85-733) Bydgoszcz, Marii Skłodowskiej Curie 80/34",kw:"BY1B/00145437/7",r:"4 pokoi, kuchni, łazienki i przedpokoju",ar:"",s:"Sąd Rejonowy w Bydgoszczy X Wydział Ksiąg Wieczystych"},
+  {o:"Gremi",a:"(86-050) Solec Kujawski, Żwirki i Wigury 3/59",kw:"",r:"2 pokoi, kuchnia, łazienka, WC i przedpokój",ar:"42,95",s:"Sąd Rejonowy w Bydgoszczy X Wydział Ksiąg Wieczystych"},
+  {o:"Gremi",a:"(85-733) Bydgoszcz, Marii Skłodowskiej Curie 80/34",kw:"BY1B/00145437/7",r:"4 pokoi, kuchnia, łazienka, WC i przedpokój",ar:"68,75",s:"Sąd Rejonowy w Bydgoszczy X Wydział Ksiąg Wieczystych"},
   {o:"Gremi",a:"(88-140) Gniewkowo, ul. 700-lecia 20/35",kw:"BY1I/00062215/6",r:"4 pokoi, kuchni, łazienki i przedpokoju",ar:"60,12",s:"Sąd Rejonowy w Inowrocławiu V Wydział Ksiąg Wieczystych"},
   {o:"Gremi",a:"(88-140) Gniewkowo, dr. Jana Dreckiego 9/33",kw:"BY1I/00063186/0",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"64,06",s:"Sąd Rejonowy w Inowrocławiu V Wydział Ksiąg Wieczystych"},
   {o:"Gremi",a:"(92-508) Łódź, ul. Ćwiklińskiej 2/6",kw:"LD1M/00181243/1",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"72,28",s:"Sąd Rejonowy w Łodzi XVI Wydział Ksiąg Wieczystych"},
@@ -3197,10 +3223,10 @@ const PROPS = [
   {o:"Gremi",a:"(42-400) Zawiercie, Piłsudskiego 69/28",kw:"CZ1Z/00058200/5",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"66,10",s:"Sąd Rejonowy w Zawierciu V Wydział Ksiąg Wieczystych"},
   {o:"Gremi",a:"(95-100) Zgierz, Romualda Mielczarskiego 15/17, m 11",kw:"LD1G/00093553/7",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"61,47",s:"Sąd Rejonowy w Zgierzu V Wydział Ksiąg Wieczystych"},
   {o:"Gremi",a:"(86-050) Solec Kujawski, Żwirki i Wigury 3/59",kw:"BY1B/00165842/5",r:"2 pokoi, kuchni, łazienki i przedpokoju",ar:"",s:"Sąd Rejonowy w Bydgoszczy X Wydział Ksiąg Wieczystych"},
-  {o:"Gremi",a:"(62-800) Kalisz, Stawiszyńska 34A, m. 4-5",kw:"KZ1A/00089384/0",r:"",ar:"",s:""},
+  {o:"Gremi",a:"(62-800) Kalisz, Stawiszyńska 34A, m. 4-5",kw:"KZ1A/00089384/0",r:"3 pokoi, kuchnia, łazienka i korytarz",ar:"73,95",s:"Sąd Rejonowy w Kaliszu Wydział Ksiąg Wieczystych"},
   {o:"Gremi",a:"(86-300) Grudziądz, ul. Anny Walentynowicz 1-11/7",kw:"T01U/00056448/0",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"48,17",s:"Sąd Rejonowy w Bydgoszczy X Wydział Ksiąg Wieczystych"},
   {o:"Gremi",a:"(39-300) Mielec, Szafera 4/7",kw:"TB1M/00093313/0",r:"4 pokoi, kuchni, łazienki i przedpokoju",ar:"72,10",s:"Sąd Rejonowy w Mielcu V Wydział Ksiąg Wieczystych"},
-  {o:"Gremi",a:"(06-500) Mława, ul. Napoleońska 23A/15",kw:"PL1M/00072609/6",r:"",ar:"",s:""},
+  {o:"Gremi",a:"(06-500) Mława, ul. Napoleońska 23A/15",kw:"PL1M/00072609/6",r:"2 pokoi, kuchnia, łazienka i przedpokój",ar:"49",s:"Sąd Rejonowy w Mławie IV Wydział Ksiąg Wieczystych"},
   {o:"Gremi",a:"(06-500) Mława, ul. Osiedle Młodych 13 m. 14",kw:"PL1M/00042333/1",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"61,30",s:"Sąd Rejonowy w Mławie IV Wydział Ksiąg Wieczystych"},
   {o:"Gremi",a:"(46-020) Opole, Bielska 44/10",kw:"OP1O/00103610/6",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"69,95",s:"Sąd Rejonowy w Opolu V Wydział Ksiąg Wieczystych"},
   {o:"Gremi",a:"(14-100) Ostróda, ul. Grunwaldzka 25/5",kw:"EL1O/00041660/6",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"65,00",s:"Sąd Rejonowy w Ostródzie V Wydział Ksiąg Wieczystych"},
@@ -3215,23 +3241,23 @@ const PROPS = [
   {o:"Gremi Personal",a:"Bydgoszcz, Dunikowskiego 7/20",kw:"BY1B/00121994/5",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"55,72",s:"Sąd Rejonowy w Bydgoszczy X Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"Bydgoszcz, Siedleckiego 4/60",kw:"BY1B/00154515/4",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"56,18",s:"Sąd Rejonowy w Bydgoszczy X Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"(42-400) Zawiercie, Wierzbowa 6/70",kw:"CZ1Z/00057684/4",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"66,26",s:"Sąd Rejonowy w Zawierciu V Wydział Ksiąg Wieczystych"},
-  {o:"Gremi Personal",a:"(95-100) Zgierz, ul. Plac Targowy 9A/4",kw:"LD1G/00050869/2",r:"",ar:"",s:""},
+  {o:"Gremi Personal",a:"(95-100) Zgierz, ul. Plac Targowy 9A/4",kw:"LD1G/00050869/2",r:"4 pokoi, kuchnia, łazienka, WC i przedpokój",ar:"72,37",s:"Sąd Rejonowy w Zgierzu V Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"(42-400) Zawiercie, Dojazd 21/10",kw:"CZ1Z/00057178/4",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"61,50",s:"Sąd Rejonowy w Zawierciu V Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"(41-700) Ruda Śląska, Wolności 23A/6",kw:"GL1S/00035842/6",r:"2 pokoi, kuchni, łazienki i przedpokoju",ar:"51,52",s:"Sąd Rejonowy w Rudzie Śląskiej V Wydział Ksiąg Wieczystych"},
-  {o:"Gremi Personal",a:"(06-500) Mława, ul. Osiedle Młodych 15 m. 9",kw:"PL1M/00058609/2",r:"",ar:"",s:""},
-  {o:"Gremi Personal",a:"(16-400) Suwałki, ul. Wojska Polskiego 110/15",kw:"SU1S/00054065/9",r:"",ar:"",s:""},
+  {o:"Gremi Personal",a:"(06-500) Mława, ul. Osiedle Młodych 15 m. 9",kw:"PL1M/00058609/2",r:"3 pokoi, kuchnia, łazienka, WC i przedpokój",ar:"61,3",s:"Sąd Rejonowy w Mławie IV Wydział Ksiąg Wieczystych"},
+  {o:"Gremi Personal",a:"(16-400) Suwałki, ul. Wojska Polskiego 110/15",kw:"SU1S/00054065/9",r:"4 pokoi, kuchnia, łazienka i korytarz",ar:"68,8",s:"Sąd Rejonowy w Suwałkach Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"(14-100) Ostróda, Stępowskiego 2/19",kw:"EL1O/00014884/4",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"63,80",s:"Sąd Rejonowy w Ostródzie V Wydział Ksiąg Wieczystych"},
-  {o:"Gremi Personal",a:"Darłowo, Moniuszki 7/5",kw:"KO1K/00057276/3",r:"",ar:"",s:""},
-  {o:"Gremi Personal",a:"Darłowo, Moniuszki 7/29",kw:"KO1K/00082796/8",r:"",ar:"",s:""},
+  {o:"Gremi Personal",a:"(76-150) Darłowo, Moniuszki 7/5",kw:"KO1K/00057276/3",r:"3 pokoi, kuchnia, łazienka i przedpokój",ar:"52,47",s:"Sąd Rejonowy w Sławnie IV Wydział Ksiąg Wieczystych"},
+  {o:"Gremi Personal",a:"(76-150) Darłowo, Moniuszki 7/29",kw:"KO1K/00082796/8",r:"3 pokoi, kuchnia, łazienka, WC i przedpokój",ar:"51,35",s:"Sąd Rejonowy w Sławnie IV Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"Ruda Śląska, Jaśminów 3/5",kw:"GL1S/00024248/2",r:"2 pokoi, kuchni, łazienki i przedpokoju",ar:"60,43",s:"Sąd Rejonowy w Rudzie Śląskiej V Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"Tychy ul. Budowlanych 56/11",kw:"KA1T/00035049/9",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"62,99",s:"Sąd Rejonowy w Tychach V Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"Iława, ul. Tadeusza Kościuszki 13A/29",kw:"EL1I/00046492/6",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"67,99",s:"Sąd Rejonowy w Iławie V Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"Ruda Śląska, Paderewskiego 3A/10",kw:"GL1S/00030087/0",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"59,44",s:"Sąd Rejonowy w Rudzie Śląskiej V Wydział Ksiąg Wieczystych"},
-  {o:"Gremi Personal",a:"Pyskowice, Szpitalna 25/9",kw:"GL1G/00095098/2",r:"",ar:"",s:""},
+  {o:"Gremi Personal",a:"Pyskowice, Szpitalna 25/9",kw:"GL1G/00095098/2",r:"2 pokoi, kuchnia, łazienka i przedpokój",ar:"48,50",s:"Sąd Rejonowy w Gliwicach VIII Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"Sosnowiec, Romana Dmowskiego 70A/41",kw:"KA1S/00039844/9",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"60,00",s:"Sąd Rejonowy w Sosnowcu V Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"Będzin, Narutowicza Gabriela 4/15",kw:"KA1B/00020903/9",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"62,85",s:"Sąd Rejonowy w Będzinie V Wydział Ksiąg Wieczystych"},
-  {o:"Gremi Personal",a:"Piekary Śląskie, Roździeńskiego 14/1",kw:"GL1T/00084989/7",r:"",ar:"",s:""},
-  {o:"Gremi Personal",a:"Krosno Odrzańskie, Poznańska 23A/2",kw:"ZG1K/00036433/7",r:"",ar:"",s:""},
+  {o:"Gremi Personal",a:"Piekary Śląskie, Roździeńskiego 14/1",kw:"GL1T/00084989/7",r:"4 pokoi, kuchnia, łazienka z WC i korytarz",ar:"91,81",s:"Sąd Rejonowy w Tarnowskich Górach V Wydział Ksiąg Wieczystych"},
+  {o:"Gremi Personal",a:"Krosno Odrzańskie, Poznańska 23A/2",kw:"ZG1K/00036433/7",r:"3 pokoi, kuchnia, łazienka, WC i przedpokój",ar:"56,10",s:"Sąd Rejonowy w Krośnie Odrzańskim V Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"Słupsk, Mikołajska 3/23",kw:"SL1S/00065145/0",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"56,61",s:"Sąd Rejonowy w Słupsku V Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"Łuków, Międzyrzecka 41/29",kw:"LU1U/00034707/2",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"61,46",s:"Sąd Rejonowy w Łukowie V Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"Pyskowice, Wieczorka Józefa 22A/9",kw:"GL1G/00100670/5",r:"2 pokoi, kuchni, łazienki i przedpokoju",ar:"53,88",s:"Sąd Rejonowy w Gliwicach VIII Wydział Ksiąg Wieczystych"},
@@ -3240,7 +3266,7 @@ const PROPS = [
   {o:"Gremi Personal",a:"Zawiercie, Wierzbowa 6/69",kw:"CZ1Z/00057683/7",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"66,08",s:"Sąd Rejonowy w Zawierciu V Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"Będzin, Kolorowa 17/13",kw:"Ka1b/00033095/5",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"77,08",s:"Sąd Rejonowy w Będzinie V Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"Słupsk, Kołłątaja 21/6",kw:"SL1S/00115604/2",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"67,26",s:"Sąd Rejonowy w Słupsku V Wydział Ksiąg Wieczystych"},
-  {o:"Gremi Personal",a:"Krosno Odrzańskie, ul. Piastów 22-22G, m.10, Kl.22",kw:"ZG1K/00031001/5",r:"",ar:"",s:""},
+  {o:"Gremi Personal",a:"Krosno Odrzańskie, ul. Piastów 22-22G, m.10, Kl.22",kw:"ZG1K/00031001/5",r:"3 pokoi, kuchnia, łazienka, WC i korytarz",ar:"61,3",s:"Sąd Rejonowy w Krośnie Odrzańskim V Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"Zawiercie, Szymańskiego 19/4",kw:"CZ1Z/00071275/8",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"58,37",s:"Sąd Rejonowy w Zawierciu V Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"Bytów, Zwycięstwa 3/34",kw:"SL1B/00028435/3",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"60,50",s:"Sąd Rejonowy w Bytowie V Wydział Ksiąg Wieczystych"},
   {o:"Gremi Personal",a:"Słupsk, Nowobramska 2/21",kw:"SL1S/00024236/6",r:"3 pokoi, kuchni, łazienki i przedpokoju",ar:"58,19",s:"Sąd Rejonowy w Słupsku V Wydział Ksiąg Wieczystych"},
@@ -3312,6 +3338,11 @@ function goStep(n) {
 function toggleFakturaFields() {
   const cb = document.getElementById('kl_faktura_opozniona');
   document.getElementById('fakturaFields').style.display = cb.checked ? 'block' : 'none';
+}
+
+function toggleKaucjaFields() {
+  const cb = document.getElementById('kl_kaucja');
+  document.getElementById('kaucjaFields').style.display = cb.checked ? 'block' : 'none';
 }
 
 function selPeln(el, name) {
@@ -3408,6 +3439,26 @@ function updateWordHint(src, tgt) {
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 function f(id) { return (document.getElementById(id)||{}).value || '___'; }
 function fDate(id) { const v = f(id); if(v==='___') return '___'; const d=new Date(v); if(isNaN(d)) return v; return d.toLocaleDateString('pl-PL'); }
+
+// ── AUTO-CALC CZYNSZ PRZEJŚCIOWY (proporcjonalnie do dni) ──────────────────────
+function gremiAutoCalc(){
+  const od = document.getElementById('cz1_od')?.value;
+  const doD = document.getElementById('cz1_do')?.value;
+  const mies = parseFloat(document.getElementById('cz_kw')?.value) || 0;
+  const info = document.getElementById('cz1_calc_info');
+  if (!od || !doD || !mies) { if (info) info.style.display = 'none'; return; }
+  const d1 = new Date(od), d2 = new Date(doD);
+  if (d2 < d1) { if (info) info.style.display = 'none'; return; }
+  const days = Math.round((d2 - d1) / (1000*60*60*24)) + 1;
+  const daysInMonth = new Date(d1.getFullYear(), d1.getMonth()+1, 0).getDate();
+  const kwota = Math.round((mies / daysInMonth) * days);
+  const kwotaEl = document.getElementById('cz1_kw');
+  if (kwotaEl) { kwotaEl.value = kwota; updateWordHint('cz1_kw','cz1_sl'); }
+  if (info) {
+    info.style.display = 'block';
+    info.textContent = days + ' dni × (' + mies.toLocaleString('pl-PL') + ' zł ÷ ' + daysInMonth + ' dni w miesiącu) = ' + kwota.toLocaleString('pl-PL') + ' zł';
+  }
+}
 
 // ── BUILD PREVIEW ─────────────────────────────────────────────────────────────
 function buildPreview() {
@@ -3548,6 +3599,27 @@ o następującej treści:
 4. W przypadku niewykonania przez Najemcę punktu opisanego w ust. 3 Wynajmujący jest uprawniony do naliczenia kary pieniężnej.
 
 5. Poniesione przez Najemcę nakłady finansowe na remont lokalu nie podlegają rozliczeniu po zakończeniu umowy najmu lokalu mieszkalnego i przechodzą bez prawa zwrotu Najemcy na rzecz Wynajmującego.
+
+`;}
+
+  // Klauzula: kaucja – dodatkowy § (tekst identyczny jak w umowie H4P)
+  const klKaucja = document.getElementById('kl_kaucja')?.checked;
+  if (klKaucja) {
+    const kcKwRaw = document.getElementById('kc_kw')?.value || '';
+    const kcKw = kcKwRaw ? Number(kcKwRaw).toLocaleString('pl-PL') : '...';
+    const kcSl = kcKwRaw ? numberToWords(Number(kcKwRaw)) : '...';
+    const kcTermin = fDate('kc_termin');
+    t += `§3b
+
+1. Najemca zapłaci Wynajmującemu kaucję w wysokości ${kcKw} PLN (słownie: ${kcSl}) do dnia ${kcTermin}r. na rachunek bankowy o nr 49 1140 1108 0000 7107 5200 1001.
+
+2. Kaucja jest pobierana jako zabezpieczenie ewentualnych roszczeń Wynajmującego wynikających z Umowy.
+
+3. Kaucja nie jest przychodem Wynajmującego i nie podlega waloryzacji ani oprocentowaniu.
+
+4. W przypadku wykorzystania przez Wynajmującego części lub całości kaucji na cele wskazane w ust. 2 powyżej Najemca uzupełni kaucję do pierwotnej wysokości w terminie 7 dni od daty otrzymania wezwania.
+
+5. W przypadku, gdy Wynajmujący nie ma w stosunku do Najemcy żadnych roszczeń powstałych w związku z Umową, kaucja podlega zwrotowi w terminie 14 dni od daty zwrotu Przedmiotu Najmu.
 
 `;}
 
